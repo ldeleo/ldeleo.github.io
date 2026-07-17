@@ -1,0 +1,11 @@
+---
+type Props = {
+  class?: string;
+  as?: "div" | "section" | "header" | "footer" | "main" | "article" | "aside" | "nav";
+};
+const { class: extraClass = "", as: Tag = "div" } = Astro.props;
+---
+
+<Tag class:list={["mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12", extraClass]}>
+  <slot />
+</Tag>

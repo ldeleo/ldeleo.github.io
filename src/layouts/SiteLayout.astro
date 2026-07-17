@@ -1,0 +1,172 @@
+---
+import "@/styles/global.css";
+import SiteHeader from "@/components/nav/SiteHeader.astro";
+import SiteFooter from "@/components/nav/SiteFooter.astro";
+import { canonicalUrl, ogImageUrl } from "@/lib/meta";
+import { BRAND_NAME_FULL } from "@/lib/constants";
+
+type Props = {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+};
+
+const { title, description, path, ogImage } = Astro.props;
+const canonical = canonicalUrl(path);
+const image = ogImage ?? ogImageUrl();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={BRAND_NAME_FULL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={image} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="theme-color" content="#FAF8F4" />
+  </head>
+  <body class="min-h-screen">
+    <SiteHeader />
+    <main id="main-content">
+      <slot />
+    </main>
+    <SiteFooter />
+
+    <script>
+      // Reveal-on-scroll: reveal each [data-reveal] once, when it enters view.
+      // Elements already in the first viewport reveal on load (with their
+      // stagger). Respects reduced-motion by showing everything immediately.
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const reveals = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      if (reduce) {
+        reveals.forEach((el) => el.classList.add("is-in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+        );
+        reveals.forEach((el) => io.observe(el));
+      }
+
+      // Masked line-by-line reveal for plain-text headings [data-reveal-lines].
+      // Splits each heading into visual lines, then rises them in once on view.
+      // Falls back to plain visible text under reduced-motion.
+      const lineTargets = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-reveal-lines]")
+      );
+      if (lineTargets.length) {
+        if (reduce) {
+          lineTargets.forEach((el) => el.classList.add("is-in"));
+        } else {
+          const lineIo = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-in");
+                  lineIo.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.2 }
+          );
+
+          const split = (node: HTMLElement, raw: string) => {
+            node.textContent = "";
+            const words = raw.split(/\s+/).map((w) => {
+              const s = document.createElement("span");
+              s.textContent = w;
+              s.style.display = "inline-block";
+              return s;
+            });
+            words.forEach((s, i) => {
+              node.appendChild(s);
+              if (i < words.length - 1) node.appendChild(document.createTextNode(" "));
+            });
+            const lines: HTMLSpanElement[][] = [];
+            let top: number | null = null;
+            words.forEach((s) => {
+              const t = s.offsetTop;
+              if (top === null || Math.abs(t - top) > 6) {
+                lines.push([]);
+                top = t;
+              }
+              lines[lines.length - 1].push(s);
+            });
+            node.textContent = "";
+            lines.forEach((ws, li) => {
+              const line = document.createElement("span");
+              line.className = "line";
+              const inner = document.createElement("span");
+              inner.className = "line-inner";
+              inner.style.setProperty("--line-i", String(li));
+              ws.forEach((s, i) => {
+                if (i) inner.appendChild(document.createTextNode(" "));
+                s.style.display = "";
+                inner.appendChild(s);
+              });
+              line.appendChild(inner);
+              node.appendChild(line);
+            });
+          };
+
+          const setup = () => {
+            lineTargets.forEach((node) => {
+              const raw = (node.getAttribute("data-raw") ?? node.textContent ?? "").trim();
+              node.setAttribute("data-raw", raw);
+              split(node, raw);
+              lineIo.observe(node);
+            });
+          };
+
+          if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(setup);
+          } else {
+            setup();
+          }
+
+          let rt: number;
+          window.addEventListener(
+            "resize",
+            () => {
+              window.clearTimeout(rt);
+              rt = window.setTimeout(() => {
+                lineTargets.forEach((node) => {
+                  split(node, node.getAttribute("data-raw") ?? "");
+                  node.classList.add("is-in");
+                });
+              }, 200);
+            },
+            { passive: true }
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

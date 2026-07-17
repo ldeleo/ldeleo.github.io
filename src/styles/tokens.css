@@ -1,0 +1,64 @@
+/* ============================================================================
+ * lorenzodeleo.com design tokens
+ * Single source for color, type, spacing, motion.
+ *
+ * NOTE: variable NAMES are inherited from the enya-website skeleton so the
+ * shared primitives keep working; the VALUES define this site's own palette.
+ * Personal brand ≠ ENYA brand: warm paper, warm ink, terracotta accent.
+ * "electric-magenta" = warm accent (dingbats), "electric-purple" = primary
+ * accent (hover/active), "electric-deep" = dark anchor, "shock-blue" = focus.
+ * ========================================================================== */
+
+@theme {
+  /* ------------------------------------------------------------------------ */
+  /* Color — warm paper / warm ink / terracotta accent                        */
+  /* ------------------------------------------------------------------------ */
+  --color-paper:           #FAF8F4;
+  --color-paper-deep:      #F3EEE6;
+  --color-ink:             #14100B;
+  --color-soil:            #241D14;
+  --color-muted-strong:    #40382C;
+  --color-muted:           #6B6254;
+  --color-rule:            rgba(20, 16, 11, 0.12);
+  --color-rule-strong:     rgba(20, 16, 11, 0.28);
+
+  /* Accent triad — three jobs, one temperature */
+  --color-electric-magenta: #C75024;   /* warm accent / dingbats */
+  --color-electric-purple:  #9A3D16;   /* primary accent — hover, active nav */
+  --color-electric-deep:    #5C2410;   /* dark anchor */
+  --color-shock-blue:       #2D6BE0;   /* interaction only — focus rings */
+
+  /* ------------------------------------------------------------------------ */
+  /* Typography                                                                */
+  /* ------------------------------------------------------------------------ */
+  --font-sans:  "Instrument Sans Variable", system-ui, -apple-system, sans-serif;
+
+  /* ------------------------------------------------------------------------ */
+  /* Spacing                                                                   */
+  /* ------------------------------------------------------------------------ */
+  --spacing-section-y:    5rem;
+  --spacing-section-y-md: 7rem;
+  --spacing-section-y-lg: 8rem;
+
+  /* ------------------------------------------------------------------------ */
+  /* Motion                                                                    */
+  /* ------------------------------------------------------------------------ */
+  --motion-ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+  --motion-fast:      180ms;
+  --motion-med:       320ms;
+  --motion-slow:      640ms;
+  --motion-reveal:    620ms;
+
+  /* ------------------------------------------------------------------------ */
+  /* Type scale                                                                */
+  /* ------------------------------------------------------------------------ */
+  --text-d1:     clamp(2.5rem, 5.4vw, 5rem);
+  --text-d2:     clamp(2.25rem, 4.6vw, 3.5rem);
+  --text-d3:     clamp(1.75rem, 3.2vw, 2.5rem);
+  --text-title:  clamp(1.375rem, 2.2vw, 1.625rem);
+
+  --tracking-tight: -0.05em;
+  --tracking-mid:   -0.035em;
+  --tracking-snug:  -0.02em;
+}

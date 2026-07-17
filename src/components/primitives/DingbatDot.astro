@@ -1,0 +1,16 @@
+---
+type Props = {
+  inverted?: boolean;
+  class?: string;
+};
+const { inverted = false, class: extraClass = "" } = Astro.props;
+const color = inverted
+  ? "var(--color-electric-magenta)"
+  : "var(--color-electric-magenta)";
+---
+
+<span
+  aria-hidden="true"
+  class:list={["inline-block size-1.5 rounded-full", extraClass]}
+  style={`background: ${color};`}
+></span>

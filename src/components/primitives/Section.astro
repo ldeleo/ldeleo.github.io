@@ -1,0 +1,30 @@
+---
+import Container from "./Container.astro";
+
+type Props = {
+  class?: string;
+  containerClass?: string;
+  id?: string;
+  as?: "section" | "div" | "article";
+  /** Tighter section padding (used between adjacent sections). */
+  compact?: boolean;
+};
+
+const {
+  class: extraClass = "",
+  containerClass = "",
+  id,
+  as: Tag = "section",
+  compact = false,
+} = Astro.props;
+
+const padding = compact
+  ? "py-12 md:py-16 lg:py-20"
+  : "py-20 md:py-28 lg:py-32";
+---
+
+<Tag id={id} class:list={[padding, extraClass]}>
+  <Container class={containerClass}>
+    <slot />
+  </Container>
+</Tag>

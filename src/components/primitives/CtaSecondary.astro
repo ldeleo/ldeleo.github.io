@@ -1,0 +1,38 @@
+---
+type Props = {
+  href: string;
+  external?: boolean;
+  inverted?: boolean;
+  class?: string;
+};
+
+const {
+  href,
+  external = false,
+  inverted = false,
+  class: extraClass = "",
+} = Astro.props;
+
+const externalAttrs = external
+  ? { target: "_blank", rel: "noopener noreferrer" }
+  : {};
+---
+
+<a
+  href={href}
+  {...externalAttrs}
+  class:list={[
+    "group inline-flex items-center gap-2 text-sm font-medium underline decoration-1 underline-offset-4 transition-colors duration-200",
+    inverted
+      ? "decoration-[color:var(--color-paper)]/40 text-[color:var(--color-paper)] hover:decoration-[color:var(--color-electric-magenta)]"
+      : "decoration-[color:var(--color-rule-strong)] text-[color:var(--color-muted-strong)] hover:decoration-[color:var(--color-shock-blue)] hover:text-[color:var(--color-shock-blue)]",
+    extraClass,
+  ]}
+>
+  <span><slot /></span>
+  <span
+    aria-hidden="true"
+    class="inline-block transition-transform duration-200 group-hover:translate-x-0.5"
+    >→</span
+  >
+</a>

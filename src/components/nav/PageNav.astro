@@ -1,0 +1,90 @@
+---
+import Container from "@/components/primitives/Container.astro";
+
+type Props = {
+  prev?: { href: string; label: string };
+  next?: { href: string; label: string };
+};
+
+const { prev, next } = Astro.props;
+---
+
+<nav aria-label="Page" class="border-t" style="border-color: var(--color-rule-strong);">
+  <Container
+    as="div"
+    class="grid grid-cols-2 gap-4 py-12 md:gap-8 md:py-16"
+  >
+    {
+      prev ? (
+        <a href={prev.href} class="enya-pagenav group" data-reveal>
+          <span class="enya-pagenav__eyebrow text-eyebrow">
+            <span aria-hidden="true" class="enya-pagenav__arrow">&larr;</span>
+            Previous
+          </span>
+          <span class="text-title enya-pagenav__label">{prev.label}</span>
+        </a>
+      ) : (
+        <span />
+      )
+    }
+    {
+      next ? (
+        <a
+          href={next.href}
+          class="enya-pagenav group items-end text-right"
+          data-reveal
+          style="--reveal-i: 1;"
+        >
+          <span class="enya-pagenav__eyebrow justify-end text-eyebrow">
+            Next
+            <span aria-hidden="true" class="enya-pagenav__arrow">&rarr;</span>
+          </span>
+          <span class="text-title enya-pagenav__label">{next.label}</span>
+        </a>
+      ) : (
+        <span />
+      )
+    }
+  </Container>
+</nav>
+
+<style>
+  .enya-pagenav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: var(--color-ink);
+  }
+  .enya-pagenav__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    color: var(--color-muted);
+    transition: color var(--motion-fast) var(--motion-ease-out);
+  }
+  .enya-pagenav__label {
+    transition: color var(--motion-fast) var(--motion-ease-out);
+  }
+  .enya-pagenav__arrow {
+    display: inline-block;
+    color: var(--color-electric-purple);
+    transition: transform var(--motion-med) var(--motion-ease-out);
+  }
+  /* One hover grammar: label + eyebrow shift to purple, arrow slides outward. */
+  .enya-pagenav:hover .enya-pagenav__label,
+  .enya-pagenav:focus-visible .enya-pagenav__label,
+  .enya-pagenav:hover .enya-pagenav__eyebrow,
+  .enya-pagenav:focus-visible .enya-pagenav__eyebrow {
+    color: var(--color-electric-purple);
+  }
+  .enya-pagenav.group:hover .enya-pagenav__arrow {
+    transform: translateX(-5px);
+  }
+  .enya-pagenav.items-end:hover .enya-pagenav__arrow {
+    transform: translateX(5px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .enya-pagenav__arrow { transition: none !important; }
+    .enya-pagenav:hover .enya-pagenav__arrow { transform: none !important; }
+  }
+</style>

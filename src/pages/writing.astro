@@ -1,0 +1,93 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import PageHeader from "@/components/primitives/PageHeader.astro";
+import Section from "@/components/primitives/Section.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import CtaPrimary from "@/components/primitives/CtaPrimary.astro";
+import CtaSecondary from "@/components/primitives/CtaSecondary.astro";
+import Rule from "@/components/primitives/Rule.astro";
+import {
+  PAGE_TITLES,
+  PAGE_DESCRIPTIONS,
+  SUBSTACK_URL,
+  LINKEDIN_URL,
+  X_URL,
+  ARTICLE_AI_NATIVE_URL,
+  ARTICLE_LATAM_URL,
+} from "@/lib/constants";
+
+const articles = [
+  {
+    href: ARTICLE_AI_NATIVE_URL,
+    title: "What's an AI-native startup?",
+    body: "The cornerstone essay. What AI-native actually means once you get past the label: companies designed around learning speed and small-team leverage, not products with AI bolted on. Where the durable advantages move when software gets cheap to build.",
+  },
+  {
+    href: ARTICLE_LATAM_URL,
+    title: "A compelling case for pre-seed venture in Spanish-speaking Latin America",
+    body: "Why the earliest stage in an overlooked region is a serious opportunity right now: the timing, the founders, and what disciplined pre-seed investing looks like there.",
+  },
+];
+---
+
+<SiteLayout
+  title={PAGE_TITLES.writing}
+  description={PAGE_DESCRIPTIONS.writing}
+  path="/writing"
+>
+  <PageHeader
+    eyebrow="Writing"
+    title="Notes from building the thing I invest in."
+    supporting="Long-form lives on Substack. Short-form thinking — most days — on LinkedIn and X."
+  />
+
+  <Section compact>
+    <div data-reveal>
+      <Eyebrow>Essays</Eyebrow>
+    </div>
+    <div class="mt-10 grid gap-12">
+      {
+        articles.map((a, i) => (
+          <article class="max-w-4xl" data-reveal style={`--reveal-i: ${i};`}>
+            <Rule strong class="mb-6" />
+            <h2 class="text-d3" style="color: var(--color-ink);">
+              <a
+                href={a.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="no-underline transition-colors hover:text-[color:var(--color-electric-purple)]"
+              >
+                {a.title}
+              </a>
+            </h2>
+            <p class="mt-4 max-w-3xl text-lg leading-relaxed" style="color: var(--color-muted-strong);">
+              {a.body}
+            </p>
+            <CtaSecondary href={a.href} external class="mt-5 text-base">
+              Read on Substack
+            </CtaSecondary>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section
+    class="border-t"
+    style="border-color: var(--color-rule); background: color-mix(in srgb, var(--color-paper-deep) 55%, var(--color-paper));"
+  >
+    <div class="max-w-4xl">
+      <div data-reveal>
+        <Eyebrow>Follow along</Eyebrow>
+      </div>
+      <h2 class="text-d2 mt-6" style="color: var(--color-ink);" data-reveal-lines>
+        The essays land on Substack first.
+      </h2>
+      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4" data-reveal style="--reveal-i: 2;">
+        <CtaPrimary href={SUBSTACK_URL} external>Subscribe on Substack</CtaPrimary>
+        <CtaSecondary href={LINKEDIN_URL} external>LinkedIn</CtaSecondary>
+        <CtaSecondary href={X_URL} external>X</CtaSecondary>
+      </div>
+    </div>
+  </Section>
+</SiteLayout>

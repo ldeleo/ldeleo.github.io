@@ -1,0 +1,24 @@
+---
+import Container from "./Container.astro";
+
+type Props = {
+  class?: string;
+  containerClass?: string;
+  id?: string;
+};
+
+const { class: extraClass = "", containerClass = "", id } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    "relative isolate overflow-hidden py-20 md:py-28 lg:py-32",
+    extraClass,
+  ]}
+  style="background: var(--color-ink); color: var(--color-paper);"
+>
+  <Container class={containerClass}>
+    <slot />
+  </Container>
+</section>

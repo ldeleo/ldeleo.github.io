@@ -1,0 +1,61 @@
+---
+/**
+ * PortraitFrame — editorial portrait for Who We Are.
+ * Self-contained: a fixed 4:5 frame (no JS height-syncing), a hairline border,
+ * soft rounded corners, and a faint paper tint blended over the photo so it
+ * marries to the warm paper palette instead of sitting on it as a foreign block.
+ */
+
+type Props = {
+  src?: string;
+  alt?: string;
+  class?: string;
+};
+
+const {
+  src = "/lorenzo.jpg",
+  alt = "Lorenzo de Leo",
+  class: extraClass = "",
+} = Astro.props;
+---
+
+<figure class:list={["enya-portrait", extraClass]}>
+  <div class="enya-portrait__frame">
+    <img
+      src={src}
+      alt={alt}
+      loading="eager"
+      fetchpriority="high"
+      class="enya-portrait__img"
+    />
+    <span class="enya-portrait__tint" aria-hidden="true"></span>
+  </div>
+</figure>
+
+<style>
+  .enya-portrait {
+    margin: 0;
+  }
+  .enya-portrait__frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--color-rule-strong);
+    border-radius: 14px;
+  }
+  .enya-portrait__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+    filter: contrast(1.04) saturate(0.98);
+  }
+  .enya-portrait__tint {
+    position: absolute;
+    inset: 0;
+    background: var(--color-paper);
+    mix-blend-mode: soft-light;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+</style>

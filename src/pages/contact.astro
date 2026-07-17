@@ -1,0 +1,169 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import PageHeader from "@/components/primitives/PageHeader.astro";
+import Section from "@/components/primitives/Section.astro";
+import { PAGE_TITLES, PAGE_DESCRIPTIONS, WEB3FORMS_ACCESS_KEY, ENYA_URL } from "@/lib/constants";
+---
+
+<SiteLayout
+  title={PAGE_TITLES.contact}
+  description={PAGE_DESCRIPTIONS.contact}
+  path="/contact"
+>
+  <PageHeader
+    eyebrow="Contact"
+    title="Tell me about your event."
+    supporting="Speaking, workshops, courses, or something adjacent — write what you have in mind and I'll reply directly. If it's about your startup and ENYA, the fastest route is enya.vc."
+  />
+
+  <Section compact class="pb-24 md:pb-32">
+    <form
+      id="contact-form"
+      class="ldl-form max-w-2xl"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      data-reveal
+    >
+      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="subject" value="New message from lorenzodeleo.com" />
+      <input type="hidden" name="from_name" value="lorenzodeleo.com contact form" />
+      <!-- Honeypot — humans never see or fill this. -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off" />
+
+      <div class="grid gap-6 sm:grid-cols-2">
+        <label class="ldl-field">
+          <span>Name</span>
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label class="ldl-field">
+          <span>Email</span>
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+        <label class="ldl-field">
+          <span>Organization <em>(optional)</em></span>
+          <input type="text" name="organization" autocomplete="organization" />
+        </label>
+        <label class="ldl-field">
+          <span>Event date &amp; location <em>(optional)</em></span>
+          <input type="text" name="event" />
+        </label>
+      </div>
+
+      <label class="ldl-field mt-6">
+        <span>Message</span>
+        <textarea
+          name="message"
+          rows="6"
+          required
+          placeholder="Who's the audience, and what do you want them to leave with?"></textarea>
+      </label>
+
+      <button type="submit" class="ldl-submit mt-8">Send</button>
+
+      <p id="form-status" class="mt-5 hidden text-base" role="status"></p>
+    </form>
+
+    <p class="mt-10 max-w-2xl text-base" style="color: var(--color-muted); --reveal-i: 1;" data-reveal>
+      Startup founder in Spanish-speaking Latin America? Go straight to
+      <a href={ENYA_URL} target="_blank" rel="noopener noreferrer" class="font-semibold underline">enya.vc</a>
+      — that channel gets read faster.
+    </p>
+  </Section>
+</SiteLayout>
+
+<style>
+  .ldl-field {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .ldl-field span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .ldl-field em {
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+  .ldl-field input,
+  .ldl-field textarea {
+    width: 100%;
+    border: 1px solid var(--color-rule-strong);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--color-paper) 60%, white);
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    color: var(--color-ink);
+    transition: border-color var(--motion-fast) var(--motion-ease-out);
+  }
+  .ldl-field input:focus,
+  .ldl-field textarea:focus {
+    outline: none;
+    border-color: var(--color-electric-magenta);
+  }
+  .ldl-submit {
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: 0.8rem 1.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--motion-fast) var(--motion-ease-out);
+  }
+  .ldl-submit:hover {
+    background: var(--color-electric-purple);
+  }
+  .ldl-submit[disabled] {
+    opacity: 0.6;
+    cursor: default;
+  }
+</style>
+
+<script>
+  // Progressive enhancement: submit via fetch so the visitor stays on the page.
+  // If JS is unavailable the native POST to Web3Forms still works.
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const status = document.getElementById("form-status");
+
+  if (form && status) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      if (btn) btn.disabled = true;
+      status.classList.add("hidden");
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        const ok = res.ok;
+        status.textContent = ok
+          ? "Sent. I'll get back to you soon."
+          : "Something went wrong sending this. Please try again, or reach me on LinkedIn.";
+        status.setAttribute(
+          "style",
+          ok ? "color: var(--color-electric-deep);" : "color: #B00020;"
+        );
+        status.classList.remove("hidden");
+        if (ok) form.reset();
+      } catch {
+        status.textContent =
+          "Something went wrong sending this. Please try again, or reach me on LinkedIn.";
+        status.setAttribute("style", "color: #B00020;");
+        status.classList.remove("hidden");
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,116 @@
+---
+import Container from "@/components/primitives/Container.astro";
+import Wordmark from "@/components/brand/Wordmark.astro";
+import { NAV_LINKS, CTA_HREF, CTA_PRIMARY } from "@/lib/constants";
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+function isActive(href: string) {
+  return currentPath === href;
+}
+---
+
+<header
+  class="enya-header sticky top-0 z-30"
+  data-enya-header
+>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <Container
+    as="div"
+    class="flex min-h-16 flex-wrap items-center justify-between gap-x-6 gap-y-3 py-3 md:min-h-[4.5rem] md:flex-nowrap md:py-0"
+  >
+    <Wordmark variant="header" href="/" />
+
+    <nav
+      aria-label="Primary"
+      class="enya-primary-nav order-3 flex w-full items-center justify-between sm:order-none sm:w-auto sm:justify-start"
+      style="color: var(--color-muted-strong);"
+    >
+      {
+        NAV_LINKS.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            class:list={[
+              "whitespace-nowrap transition-colors duration-200",
+              isActive(item.href)
+                ? "text-[color:var(--color-electric-purple)]"
+                : "hover:text-[color:var(--color-electric-purple)]",
+            ]}
+            style={
+              isActive(item.href)
+                ? "border-bottom: 2px solid var(--color-electric-purple); padding-bottom: 2px;"
+                : undefined
+            }
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href={CTA_HREF}
+      class="enya-header-cta order-2 inline-flex whitespace-nowrap rounded-full px-4 py-2 text-eyebrow font-semibold transition-colors duration-200 sm:order-none md:px-5 md:py-2.5"
+      style="background: var(--color-ink); color: var(--color-paper);"
+    >
+      {CTA_PRIMARY}
+    </a>
+  </Container>
+</header>
+
+<style>
+  /* Header is transparent at the top of the page (it sits over paper anyway)
+     and only earns its hairline + blur once you start scrolling — a quiet
+     aliveness cue that costs nothing. */
+  .enya-header {
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    transition:
+      background var(--motion-med) var(--motion-ease-out),
+      border-color var(--motion-med) var(--motion-ease-out),
+      backdrop-filter var(--motion-med) var(--motion-ease-out);
+  }
+  .enya-header.is-scrolled {
+    border-bottom-color: var(--color-rule);
+    background: color-mix(in srgb, var(--color-paper) 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Primary nav: scale labels down on small screens so all links fit on one
+     row without overflowing the viewport; restore full eyebrow sizing at sm+. */
+  .enya-primary-nav {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+    gap: 0.6rem;
+  }
+  @media (min-width: 640px) {
+    .enya-primary-nav {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      gap: 1.25rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .enya-primary-nav {
+      gap: 2rem;
+    }
+  }
+
+  /* CTA hover (replaces inline JS handlers so the CSP can forbid inline script). */
+  .enya-header-cta:hover {
+    background: var(--color-electric-purple) !important;
+  }
+</style>
+
+<script>
+  // Toggle the header's scrolled state (hairline + blur) past the very top.
+  const header = document.querySelector<HTMLElement>("[data-enya-header]");
+  if (header) {
+    const sync = () => header.classList.toggle("is-scrolled", window.scrollY > 4);
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+  }
+</script>

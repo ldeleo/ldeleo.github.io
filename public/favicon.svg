@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#14100B"/>
+  <text
+    x="30"
+    y="45"
+    text-anchor="middle"
+    font-family="Instrument Sans, system-ui, sans-serif"
+    font-weight="700"
+    font-size="40"
+    letter-spacing="-0.05em"
+    fill="#FAF8F4"
+  >L</text>
+  <circle cx="47" cy="44" r="5" fill="#C75024"/>
+</svg>

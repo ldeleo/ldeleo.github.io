@@ -1,0 +1,253 @@
+@import "tailwindcss";
+@import "@fontsource-variable/instrument-sans/index.css";
+@import "./tokens.css";
+
+/* ============================================================================
+ * Base / resets
+ * ========================================================================== */
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  letter-spacing: -0.006em;
+  font-feature-settings: "ss01", "cv01";
+}
+
+::selection {
+  background: var(--color-electric-purple);
+  color: var(--color-paper);
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-shock-blue);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+button {
+  font: inherit;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================================================================
+ * Display type
+ * ========================================================================== */
+
+.text-display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.text-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------------------------------
+ * Type registers — display 1-3 + title.
+ * Rule for pages: the FIRST h2 on a page gets .text-d2; every later h2 drops
+ * to .text-d3. Only the hero h1 gets .text-d1. This is where hierarchy comes
+ * from — same family, stepped size / tracking / weight, not louder.
+ * ------------------------------------------------------------------------- */
+.text-d1 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.02;
+  font-size: var(--text-d1);
+}
+.text-d2 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  font-size: var(--text-d2);
+  text-wrap: balance;
+}
+.text-d3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: var(--tracking-mid);
+  line-height: 1.05;
+  font-size: var(--text-d3);
+  text-wrap: balance;
+}
+.text-title {
+  font-family: var(--font-sans);
+  font-weight: 500;              /* the quiet second voice */
+  letter-spacing: var(--tracking-snug);
+  line-height: 1.15;
+  font-size: var(--text-title);
+}
+
+/* ============================================================================
+ * Wordmark gradient
+ * ========================================================================== */
+
+/* Use `background-image` (longhand) — `background:` (shorthand) resets
+   background-clip to border-box and breaks the text-clipping. */
+.wordmark-gradient {
+  background-image: linear-gradient(
+    92deg,
+    var(--color-electric-deep) 0%,
+    var(--color-electric-purple) 100%
+  );
+  /* Negative letter-spacing crops the rightmost glyph's ink overflow.
+     The padding-right extends the bounding box so the last "s" renders fully. */
+  padding-right: 0.12em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Inline brand mark — renders "ENYA" / "ENYA Ventures" in running copy with
+   the logo's exact treatment (display font, weight, tracking) and deep→purple
+   gradient, scaled to the surrounding text size. Same wordmark, just smaller. */
+/* ENYA's own colors are hardcoded here — this site's accent tokens are
+   terracotta, but the ENYA mark must always render in ENYA's violet. */
+.enya-mark {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-feature-settings: "ss01", "cv01";
+  background-image: linear-gradient(92deg, #2e1a6b 0%, #6d35ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.wordmark-gradient-inverted {
+  background-image: linear-gradient(
+    92deg,
+    var(--color-paper) 0%,
+    var(--color-electric-magenta) 100%
+  );
+  padding-right: 0.12em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================================================
+ * Skip link (a11y)
+ * ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: 0.25rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: top var(--motion-fast) var(--motion-ease-out);
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+/* ============================================================================
+ * Reveal on scroll — the movement backbone.
+ * Elements marked [data-reveal] start hidden + nudged down; the observer in
+ * SiteLayout adds .is-in once, when they enter view. Siblings stagger via
+ * --reveal-i (0, 1, 2 …). Never applied to running prose mid-viewport.
+ * ========================================================================== */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(6px);
+  transition:
+    opacity var(--motion-reveal) var(--motion-ease-out),
+    transform var(--motion-reveal) var(--motion-ease-out),
+    filter var(--motion-reveal) var(--motion-ease-out);
+  transition-delay: calc(var(--reveal-i, 0) * 80ms);
+  will-change: opacity, transform, filter;
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Masked line-by-line reveal for plain-text headings ([data-reveal-lines]).
+   The line wrappers clip; each inner line sits below and rises into view,
+   staggered per line. .line reserves space for descenders inside its clip,
+   then pulls the next line up by the same amount so vertical rhythm is
+   unchanged. The split itself is done in SiteLayout's script. */
+[data-reveal-lines] .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+[data-reveal-lines] .line-inner {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 720ms var(--motion-ease-out);
+  transition-delay: calc(var(--line-i, 0) * 90ms);
+  will-change: transform;
+}
+[data-reveal-lines].is-in .line-inner {
+  transform: none;
+}
+
+/* ============================================================================
+ * Reduced motion
+ * ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Never leave revealed content stuck hidden when motion is off. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

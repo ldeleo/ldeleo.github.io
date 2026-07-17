@@ -1,0 +1,21 @@
+---
+type Props = {
+  class?: string;
+  inverted?: boolean;
+  as?: "p" | "div";
+};
+const { class: extraClass = "", inverted = false, as: Tag = "p" } = Astro.props;
+const color = inverted
+  ? "text-[color:var(--color-paper)]/82"
+  : "text-[color:var(--color-muted-strong)]";
+---
+
+<Tag
+  class:list={[
+    "max-w-3xl text-xl leading-snug md:text-2xl",
+    color,
+    extraClass,
+  ]}
+>
+  <slot />
+</Tag>

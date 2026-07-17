@@ -1,0 +1,44 @@
+---
+import Section from "./Section.astro";
+import Eyebrow from "./Eyebrow.astro";
+import BodyLarge from "./BodyLarge.astro";
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  /** Optional supporting line under the title. */
+  supporting?: string;
+  /** Tighten bottom padding (used when next section starts dense). */
+  compactBottom?: boolean;
+};
+
+const { eyebrow, title, supporting, compactBottom = true } = Astro.props;
+
+// Titles that embed markup (e.g. the <span class="enya-mark">) can't be split
+// word-by-word, so they get the block reveal; plain-text titles get the
+// line-by-line masked reveal.
+const hasMarkup = /</.test(title);
+---
+
+<Section compact={false} class:list={[compactBottom ? "pb-10 md:pb-14" : ""]}>
+  <header class="max-w-5xl">
+    <div data-reveal>
+      <Eyebrow>{eyebrow}</Eyebrow>
+    </div>
+    <h1
+      class="text-d1 mt-6"
+      style="color: var(--color-ink); --reveal-i: 1;"
+      data-reveal={hasMarkup ? true : undefined}
+      data-reveal-lines={hasMarkup ? undefined : true}
+      set:html={title}
+    />
+
+    {
+      supporting && (
+        <div data-reveal style="--reveal-i: 2;">
+          <BodyLarge class="mt-8 md:mt-12">{supporting}</BodyLarge>
+        </div>
+      )
+    }
+  </header>
+</Section>

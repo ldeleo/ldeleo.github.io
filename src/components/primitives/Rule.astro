@@ -1,0 +1,13 @@
+---
+type Props = {
+  strong?: boolean;
+  class?: string;
+};
+const { strong = false, class: extraClass = "" } = Astro.props;
+const color = strong ? "var(--color-rule-strong)" : "var(--color-rule)";
+---
+
+<hr
+  class:list={["border-0", extraClass]}
+  style={`border-top: 1px solid ${color};`}
+/>

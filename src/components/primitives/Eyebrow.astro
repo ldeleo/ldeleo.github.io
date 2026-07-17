@@ -1,0 +1,24 @@
+---
+import DingbatDot from "./DingbatDot.astro";
+
+type Props = {
+  /** When true (default) renders the magenta dingbat dot before the text. */
+  dingbat?: boolean;
+  inverted?: boolean;
+  class?: string;
+};
+
+const { dingbat = true, inverted = false, class: extraClass = "" } = Astro.props;
+const color = inverted ? "text-[color:var(--color-paper)]/64" : "text-[color:var(--color-muted)]";
+---
+
+<p
+  class:list={[
+    "text-eyebrow inline-flex items-center gap-2.5",
+    color,
+    extraClass,
+  ]}
+>
+  {dingbat && <DingbatDot inverted={inverted} />}
+  <span><slot /></span>
+</p>

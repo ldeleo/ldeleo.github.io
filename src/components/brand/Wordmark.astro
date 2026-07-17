@@ -1,0 +1,55 @@
+---
+import { BRAND_NAME_FULL } from "@/lib/constants";
+
+type Props = {
+  /** "header" (small inline) | "footer" (large display) | "inverted" (over dark) */
+  variant?: "header" | "footer" | "inverted";
+  /** When set, link wraps the wordmark. */
+  href?: string;
+  /** Kept for call-site compatibility with the skeleton; unused. */
+  responsiveShort?: boolean;
+  class?: string;
+};
+
+const { variant = "header", href, class: extraClass = "" } = Astro.props;
+
+const size = {
+  header: "text-xl md:text-[1.5rem] lg:text-[1.65rem]",
+  footer: "text-4xl md:text-6xl lg:text-[4.5rem]",
+  inverted: "text-xl md:text-[1.5rem] lg:text-[1.65rem]",
+}[variant];
+
+const color =
+  variant === "inverted"
+    ? "color: var(--color-paper);"
+    : "color: var(--color-ink);";
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      aria-label={`${BRAND_NAME_FULL} home`}
+      class:list={["text-display ldl-mark inline-block leading-none", size, extraClass]}
+      style={color}
+    >
+      {BRAND_NAME_FULL}<span class="ldl-dot">.</span>
+    </a>
+  ) : (
+    <span
+      class:list={["text-display ldl-mark inline-block leading-none", size, extraClass]}
+      style={color}
+    >
+      {BRAND_NAME_FULL}<span class="ldl-dot">.</span>
+    </span>
+  )
+}
+
+<style>
+  .ldl-mark {
+    letter-spacing: -0.045em;
+  }
+  .ldl-dot {
+    color: var(--color-electric-magenta);
+  }
+</style>

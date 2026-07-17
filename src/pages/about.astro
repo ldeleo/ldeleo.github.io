@@ -1,0 +1,95 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import PageHeader from "@/components/primitives/PageHeader.astro";
+import Section from "@/components/primitives/Section.astro";
+import PortraitFrame from "@/components/brand/PortraitFrame.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import CtaPrimary from "@/components/primitives/CtaPrimary.astro";
+import Rule from "@/components/primitives/Rule.astro";
+import { PAGE_TITLES, PAGE_DESCRIPTIONS, ENYA_URL } from "@/lib/constants";
+
+const chapters = [
+  {
+    eyebrow: "Mathematics",
+    body: "I started in pure mathematics: a PhD at Universidad Complutense de Madrid, where I also taught in the math faculty from 2003 to 2007. Mathematics gave me the habit I still trust most — reduce a problem to what it actually is before touching it.",
+  },
+  {
+    eyebrow: "Deep tech",
+    body: "At ARQUIMEA, an aerospace spin-off of Universidad Carlos III, I led technology-transfer programs across space, robotics, defense, and health. It was my first job turning research into products, and I was responsible for securing the funding to do it.",
+  },
+  {
+    eyebrow: "Company building",
+    body: "Nine years at Rokk3r, the Miami venture builder — leading more than 100 innovation projects across the US and Latin America that fed a portfolio of 50+ co-founded startups. Along the way I created 10xU, Rokk3r's education platform for founders and executives, which reached more than 25,000 students.",
+  },
+  {
+    eyebrow: "Emerging tech",
+    body: "Through the blockchain years I collaborated with the Algorand and Moonbeam foundations and was a partner at Rayo Capital. That stretch taught me to tell a real technology shift from a loud one — a distinction I use daily now.",
+  },
+  {
+    eyebrow: "Now",
+    body: "Today I'm Managing Director at ENYA Ventures, a pre-seed fund backing AI-native founders across Spanish-speaking Latin America — and I run the fund itself on a team of AI agents I built, which keeps my opinions about AI-native companies honest. I mentor at Techstars and the Founder Institute, and I'm a member of the Stanford AI & Web3 Research Lab. Based in Miami.",
+  },
+];
+---
+
+<SiteLayout
+  title={PAGE_TITLES.about}
+  description={PAGE_DESCRIPTIONS.about}
+  path="/about"
+>
+  <PageHeader
+    eyebrow="About"
+    title="Twenty years of building, one consistent thread."
+    supporting="Every chapter is the same job in a new field: take something hard and abstract, and turn it into something that works."
+  />
+
+  <Section compact>
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
+      <div>
+        <PortraitFrame src="/images/portrait.jpg" alt="Lorenzo de Leo" class="lg:sticky lg:top-28" />
+      </div>
+      <div class="grid gap-10">
+        {
+          chapters.map((c, i) => (
+            <article data-reveal style={`--reveal-i: ${i % 3};`}>
+              <Rule class="mb-6" />
+              <Eyebrow>{c.eyebrow}</Eyebrow>
+              <p class="mt-4 text-lg leading-relaxed" style="color: var(--color-muted-strong);">
+                {c.eyebrow === "Now" ? (
+                  <Fragment>
+                    Today I'm Managing Director at{" "}
+                    <a href={ENYA_URL} target="_blank" rel="noopener noreferrer" class="enya-mark">
+                      ENYA Ventures
+                    </a>
+                    , a pre-seed fund backing AI-native founders across
+                    Spanish-speaking Latin America — and I run the fund itself on
+                    a team of AI agents I built, which keeps my opinions about
+                    AI-native companies honest. I mentor at Techstars and the
+                    Founder Institute, and I'm a member of the Stanford AI &amp;
+                    Web3 Research Lab. Based in Miami.
+                  </Fragment>
+                ) : (
+                  c.body
+                )}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
+  <Section style="background: var(--color-ink); color: var(--color-paper);">
+    <div class="max-w-4xl">
+      <div data-reveal>
+        <Eyebrow inverted>Working together</Eyebrow>
+      </div>
+      <h2 class="text-d2 mt-6" style="color: var(--color-paper);" data-reveal-lines>
+        Speaking, teaching, or an AI-native founder with something real.
+      </h2>
+      <div class="mt-10" data-reveal style="--reveal-i: 2;">
+        <CtaPrimary href="/contact" inverted>Get in touch</CtaPrimary>
+      </div>
+    </div>
+  </Section>
+</SiteLayout>

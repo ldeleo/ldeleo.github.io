@@ -1,0 +1,76 @@
+---
+import Container from "@/components/primitives/Container.astro";
+import Wordmark from "@/components/brand/Wordmark.astro";
+import Rule from "@/components/primitives/Rule.astro";
+import CtaSecondary from "@/components/primitives/CtaSecondary.astro";
+import {
+  NAV_LINKS,
+  FOOTER_TAGLINE,
+  LINKEDIN_URL,
+  X_URL,
+  SUBSTACK_URL,
+  ENYA_URL,
+} from "@/lib/constants";
+
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="border-t"
+  style="border-color: var(--color-rule); background: color-mix(in srgb, var(--color-paper-deep) 45%, var(--color-paper));"
+>
+  <Container as="div" class="py-14 md:py-20">
+    <!-- Row 1: wordmark + tagline -->
+    <div class="max-w-4xl">
+      <Wordmark variant="footer" responsiveShort={false} />
+      <p
+        class="mt-6 text-base leading-relaxed md:text-lg"
+        style="color: var(--color-muted);"
+      >
+        {FOOTER_TAGLINE}
+      </p>
+    </div>
+
+    <!-- Divider -->
+    <Rule class="mt-12 md:mt-16" />
+
+    <!-- Row 2: nav + social + © -->
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-4 md:mt-8">
+      <nav
+        aria-label="Footer"
+        class="flex flex-wrap gap-x-6 gap-y-2 text-sm"
+        style="color: var(--color-muted-strong);"
+      >
+        <a
+          href="/"
+          class="transition-colors hover:text-[color:var(--color-electric-purple)]"
+        >
+          Home
+        </a>
+        {
+          NAV_LINKS.map((item) => (
+            <a
+              href={item.href}
+              class="transition-colors hover:text-[color:var(--color-electric-purple)]"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a
+          href="/contact"
+          class="transition-colors hover:text-[color:var(--color-electric-purple)]"
+        >
+          Contact
+        </a>
+      </nav>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <CtaSecondary href={ENYA_URL} external>ENYA Ventures</CtaSecondary>
+        <CtaSecondary href={LINKEDIN_URL} external>LinkedIn</CtaSecondary>
+        <CtaSecondary href={X_URL} external>X</CtaSecondary>
+        <CtaSecondary href={SUBSTACK_URL} external>Substack</CtaSecondary>
+        <p class="text-sm" style="color: var(--color-muted);">© {year}</p>
+      </div>
+    </div>
+  </Container>
+</footer>

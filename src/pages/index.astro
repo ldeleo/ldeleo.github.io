@@ -1,0 +1,200 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import Section from "@/components/primitives/Section.astro";
+import Container from "@/components/primitives/Container.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import BodyLarge from "@/components/primitives/BodyLarge.astro";
+import CtaPrimary from "@/components/primitives/CtaPrimary.astro";
+import CtaSecondary from "@/components/primitives/CtaSecondary.astro";
+import Rule from "@/components/primitives/Rule.astro";
+import { PAGE_TITLES, PAGE_DESCRIPTIONS, STAGES, ENYA_URL } from "@/lib/constants";
+
+const routes = [
+  {
+    href: "/speaking",
+    label: "Speaking",
+    cta: "Go to speaking",
+    body: "Keynotes, workshops, and courses on AI-native organizations, startups, and corporations. Grounded in a system that runs every day, not in slides.",
+  },
+  {
+    href: "/writing",
+    label: "Writing",
+    cta: "Go to writing",
+    body: "Long-form essays on Substack. Short-form thinking, most days, on LinkedIn and X.",
+  },
+  {
+    href: ENYA_URL,
+    label: "Investing",
+    cta: "Visit enya.vc",
+    external: true,
+    body: "ENYA Ventures backs AI-native, venture-scale founders across Spanish-speaking Latin America at pre-seed.",
+  },
+];
+---
+
+<SiteLayout
+  title={PAGE_TITLES.home}
+  description={PAGE_DESCRIPTIONS.home}
+  path="/"
+>
+  <!-- Hero -->
+  <Section compact={false} class="pb-8 md:pb-10">
+    <header class="max-w-5xl">
+      <div data-reveal>
+        <Eyebrow>Operator-investor</Eyebrow>
+      </div>
+      <h1
+        class="text-d1 mt-6"
+        style="color: var(--color-ink);"
+        data-reveal-lines
+      >
+        I back AI-native founders and run my own fund the same way.
+      </h1>
+      <div data-reveal style="--reveal-i: 2;">
+        <BodyLarge class="mt-8 md:mt-10">
+          Managing Director at <a href={ENYA_URL} target="_blank" rel="noopener noreferrer" class="enya-mark">ENYA Ventures</a>,
+          a pre-seed fund for Spanish-speaking Latin America. Before investing:
+          a PhD in pure mathematics, aerospace tech transfer, and nine years
+          building startups at Rokk3r in Miami. I speak and write about
+          AI-native companies — the thing I am building myself.
+        </BodyLarge>
+      </div>
+      <div
+        class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 md:mt-12"
+        data-reveal
+        style="--reveal-i: 3;"
+      >
+        <CtaPrimary href="/contact">Invite me to speak</CtaPrimary>
+        <CtaSecondary href="/writing">Read my writing</CtaSecondary>
+      </div>
+    </header>
+  </Section>
+
+  <!-- Hero image -->
+  <Container>
+    <figure class="ldl-hero-figure" data-reveal>
+      <img
+        src="/images/hero.jpg"
+        alt="Lorenzo de Leo teaching a workshop, pointing at a screen"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+  </Container>
+
+  <!-- Routes -->
+  <Section>
+    <div class="grid gap-10 md:grid-cols-3 md:gap-8">
+      {
+        routes.map((r, i) => (
+          <article data-reveal style={`--reveal-i: ${i};`}>
+            <Rule strong class="mb-6" />
+            <h2 class="text-title" style="color: var(--color-ink);">
+              {r.label}
+            </h2>
+            <p class="mt-3 leading-relaxed" style="color: var(--color-muted-strong);">
+              {r.body}
+            </p>
+            <CtaSecondary
+              href={r.href}
+              external={Boolean(r.external)}
+              class="mt-5 text-base"
+            >
+              {r.cta}
+            </CtaSecondary>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- Proof: the live system -->
+  <Section
+    class="border-y"
+    style="border-color: var(--color-rule); background: color-mix(in srgb, var(--color-paper-deep) 55%, var(--color-paper));"
+  >
+    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <div data-reveal>
+          <Eyebrow>Why me on this topic</Eyebrow>
+        </div>
+        <h2 class="text-d2 mt-6" style="color: var(--color-ink);" data-reveal-lines>
+          Most AI talks describe other people's companies. I show mine.
+        </h2>
+        <div data-reveal style="--reveal-i: 2;">
+          <p class="mt-8 max-w-2xl text-lg leading-relaxed" style="color: var(--color-muted-strong);">
+            ENYA runs day to day on a team of AI agents: research, meeting prep,
+            relationship memory, first drafts. One person directing, agents doing
+            the repetitive work, judgment kept where it belongs. That system is
+            the case study in every talk I give — shown as it actually works,
+            including what broke on the way here.
+          </p>
+        </div>
+      </div>
+      <figure class="ldl-photo" data-reveal style="--reveal-i: 1;">
+        <img
+          src="/images/stage.jpg"
+          alt="Lorenzo de Leo speaking on stage with a microphone"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+  </Section>
+
+  <!-- Stages -->
+  <Section compact>
+    <div data-reveal>
+      <Eyebrow>Some of the stages so far</Eyebrow>
+    </div>
+    <ul class="mt-8 flex max-w-5xl flex-wrap gap-x-8 gap-y-3" data-reveal style="--reveal-i: 1;">
+      {
+        STAGES.map((s) => (
+          <li class="text-lg font-medium md:text-xl" style="color: var(--color-muted-strong);">
+            {s}
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <!-- Final CTA -->
+  <Section style="background: var(--color-ink); color: var(--color-paper);">
+    <div class="max-w-4xl">
+      <div data-reveal>
+        <Eyebrow inverted>Planning an event?</Eyebrow>
+      </div>
+      <h2 class="text-d2 mt-6" style="color: var(--color-paper);" data-reveal-lines>
+        Tell me about your audience, and I'll tell you what I'd bring them.
+      </h2>
+      <div class="mt-10" data-reveal style="--reveal-i: 2;">
+        <CtaPrimary href="/contact" inverted>Get in touch</CtaPrimary>
+      </div>
+    </div>
+  </Section>
+</SiteLayout>
+
+<style>
+  .ldl-hero-figure {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--color-rule-strong);
+  }
+  .ldl-hero-figure img {
+    width: 100%;
+    max-height: 62vh;
+    object-fit: cover;
+    object-position: 50% 30%;
+  }
+  .ldl-photo {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid var(--color-rule-strong);
+  }
+  .ldl-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
