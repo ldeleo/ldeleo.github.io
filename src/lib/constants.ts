@@ -28,7 +28,7 @@ export const CTA_HREF = "/contact";
  * Lorenzo's inbox without exposing the address. Replace the placeholder with
  * the real key from web3forms.com before launch.
  */
-export const WEB3FORMS_ACCESS_KEY = "REPLACE_WITH_WEB3FORMS_KEY";
+export const WEB3FORMS_ACCESS_KEY = "778c9787-a8c2-422f-8cb9-0ae21af4d276";
 
 export const NAV_LINKS = [
   { href: "/speaking", label: "Speaking" },
@@ -53,7 +53,7 @@ export const PAGE_DESCRIPTIONS = {
   about:
     "From a PhD in pure mathematics to aerospace tech transfer, nine years co-building startups at Rokk3r, and now pre-seed investing at ENYA Ventures.",
   contact:
-    "Invite Lorenzo to speak at your event, or get in touch about advising and collaboration.",
+    "Invite Lorenzo to speak at your event, or write about advising, teaching, collaborations, or anything adjacent.",
 } as const;
 
 /** Stages — kept as plain names, shown as a proof strip. */

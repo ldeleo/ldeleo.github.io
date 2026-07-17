@@ -8,6 +8,8 @@ type Props = {
   as?: "section" | "div" | "article";
   /** Tighter section padding (used between adjacent sections). */
   compact?: boolean;
+  /** Inline style forwarded to the section tag (backgrounds, borders). */
+  style?: string;
 };
 
 const {
@@ -16,6 +18,7 @@ const {
   id,
   as: Tag = "section",
   compact = false,
+  style,
 } = Astro.props;
 
 const padding = compact
@@ -23,7 +26,7 @@ const padding = compact
   : "py-20 md:py-28 lg:py-32";
 ---
 
-<Tag id={id} class:list={[padding, extraClass]}>
+<Tag id={id} class:list={[padding, extraClass]} style={style}>
   <Container class={containerClass}>
     <slot />
   </Container>
