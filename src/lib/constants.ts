@@ -42,6 +42,7 @@ export const PAGE_TITLES = {
   writing: "Writing — Lorenzo de Leo",
   about: "About — Lorenzo de Leo",
   contact: "Contact — Lorenzo de Leo",
+  espaciotecMetricas: "Catálogo de métricas — EspacioTec 2026",
 } as const;
 
 export const PAGE_DESCRIPTIONS = {
@@ -54,6 +55,8 @@ export const PAGE_DESCRIPTIONS = {
     "From a PhD in pure mathematics to aerospace tech transfer, nine years co-building startups at Rokk3r, and now pre-seed investing at ENYA Ventures.",
   contact:
     "Invite Lorenzo to speak at your event, or write about advising, teaching, collaborations, or anything adjacent.",
+  espaciotecMetricas:
+    "Qué métricas mirar según el tipo de negocio y la etapa de tu startup. Referencia de la Masterclass 4 de EspacioTec 2026: 15 tipos de negocio, tres etapas, y qué te dice cada señal.",
 } as const;
 
 /** Stages — kept as plain names, shown as a proof strip. */

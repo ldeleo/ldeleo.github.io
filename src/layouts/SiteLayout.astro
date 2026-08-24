@@ -10,15 +10,17 @@ type Props = {
   description: string;
   path: string;
   ogImage?: string;
+  /** BCP-47 code for pages not written in English (e.g. the EspacioTec resources). */
+  lang?: string;
 };
 
-const { title, description, path, ogImage } = Astro.props;
+const { title, description, path, ogImage, lang = "en" } = Astro.props;
 const canonical = canonicalUrl(path);
 const image = ogImage ?? ogImageUrl();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

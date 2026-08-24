@@ -1,0 +1,432 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import Container from "@/components/primitives/Container.astro";
+import { PAGE_TITLES, PAGE_DESCRIPTIONS } from "@/lib/constants";
+import { METRICS, STAGES } from "@/lib/espaciotec-metricas";
+
+const totalMetrics = METRICS.reduce(
+  (n, t) => n + t.s1.length + t.s2.length + t.s3.length,
+  0
+);
+---
+
+<SiteLayout
+  title={PAGE_TITLES.espaciotecMetricas}
+  description={PAGE_DESCRIPTIONS.espaciotecMetricas}
+  path="/espaciotec/metricas"
+  lang="es"
+>
+  <Container>
+    <div class="py-20 md:py-28">
+      <p class="eyebrow">EspacioTec 2026 · Masterclass 4</p>
+      <h1 class="cat-h1">Catálogo de métricas</h1>
+      <p class="cat-lede">
+        Qué mirar según <b>qué tipo de negocio tienes</b> y <b>en qué etapa estás</b>.
+        No para medirlo todo — para tener de dónde escoger las <b>una, dos o tres</b>
+        que de verdad van a cambiar tu próxima decisión.
+      </p>
+
+      <p class="cat-disc">
+        <b>Esto es una referencia, no una ley.</b> Ningún cuadro conoce tu negocio.
+        Tómalo como punto de partida y <b>tropicalízalo</b>: tu mercado, tu ciclo de
+        compra y tu etapa mandan por encima de cualquier lista.
+      </p>
+
+      <div class="cat-controls">
+        <span class="cat-clabel" id="lbl-tipo">Tipo de negocio</span>
+        <div class="cat-chips" id="typeChips" role="group" aria-labelledby="lbl-tipo">
+          <button type="button" data-t="all" aria-pressed="true">Todos</button>
+          {
+            METRICS.map((t) => (
+              <button type="button" data-t={t.id} aria-pressed="false">
+                {t.name}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="cat-controls">
+        <span class="cat-clabel" id="lbl-etapa">Etapa</span>
+        <div class="cat-chips" id="stageChips" role="group" aria-labelledby="lbl-etapa">
+          <button type="button" data-s="all" aria-pressed="true">Todas</button>
+          {
+            STAGES.map((s) => (
+              <button type="button" data-s={s.key} aria-pressed="false">
+                {s.name}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <p class="cat-count" id="count" aria-live="polite">
+        {METRICS.length} tipos de negocio · {totalMetrics} métricas
+      </p>
+
+      <div class="cat-scroll">
+        <table class="cat-table">
+          <colgroup>
+            <col />
+            <col class="c-s1" />
+            <col class="c-s2" />
+            <col class="c-s3" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col" class="hty">Tipo de negocio</th>
+              {
+                STAGES.map((s) => (
+                  <th scope="col" class={`h-${s.key} c-${s.key}`}>
+                    <span class="sname">{s.name}</span>
+                    <p set:html={s.blurb} />
+                  </th>
+                ))
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              METRICS.map((t) => (
+                <tr data-t={t.id}>
+                  <th scope="row" class="ty">
+                    <b>{t.name}</b>
+                    <span>{t.desc}</span>
+                  </th>
+                  {
+                    STAGES.map((s) => (
+                      <td class={`c-${s.key}`}>
+                        <ul>
+                          {t[s.key].map((m) => (
+                            <li>
+                              <b>{m[0]}</b>
+                              <span>{m[1]}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                    ))
+                  }
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="cat-hint">
+        En pantallas angostas la tabla se desplaza de lado. También puedes filtrar
+        por etapa para verla en una sola columna.
+      </p>
+
+      <p class="cat-foot">
+        Material de apoyo de la Masterclass 4 de <b>EspacioTec 2026</b> — «Ajuste
+        producto-mercado y métricas clave: elegir las señales correctas».
+      </p>
+    </div>
+  </Container>
+</SiteLayout>
+
+<style>
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-electric-magenta);
+    font-weight: 600;
+    margin: 0 0 0.9rem;
+  }
+
+  .cat-h1 {
+    font-size: var(--text-d2);
+    line-height: 1.02;
+    letter-spacing: var(--tracking-tight);
+    font-weight: 700;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+
+  .cat-lede {
+    font-size: 1.1875rem;
+    line-height: 1.5;
+    color: var(--color-muted-strong);
+    max-width: 62ch;
+    margin: 0;
+  }
+  .cat-lede b {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .cat-disc {
+    margin: 1.75rem 0 0;
+    padding: 1rem 1.25rem;
+    max-width: 68ch;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--color-muted-strong);
+    background: var(--color-paper-deep);
+    border-left: 3px solid var(--color-electric-magenta);
+    border-radius: 0 0.625rem 0.625rem 0;
+  }
+  .cat-disc b {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .cat-controls {
+    margin: 2rem 0 0;
+  }
+  .cat-clabel {
+    display: block;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+  }
+  .cat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4375rem;
+  }
+  .cat-chips button {
+    font-size: 0.84375rem;
+    line-height: 1.2;
+    padding: 0.4375rem 0.8125rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-rule-strong);
+    background: transparent;
+    color: var(--color-muted-strong);
+    cursor: pointer;
+    transition:
+      background var(--motion-fast) var(--motion-ease-out),
+      color var(--motion-fast) var(--motion-ease-out),
+      border-color var(--motion-fast) var(--motion-ease-out);
+  }
+  .cat-chips button:hover {
+    border-color: var(--color-electric-purple);
+    color: var(--color-ink);
+  }
+  .cat-chips button[aria-pressed="true"] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+    font-weight: 600;
+  }
+
+  .cat-count {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .cat-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--color-rule);
+    border-radius: 0.875rem;
+    background: var(--color-paper);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cat-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 60rem;
+  }
+
+  .cat-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--color-paper);
+    text-align: left;
+    padding: 1rem 1.25rem 0.8125rem;
+    border-bottom: 1px solid var(--color-rule-strong);
+    vertical-align: bottom;
+    font-weight: 400;
+  }
+  .cat-table thead th .sname {
+    display: inline-block;
+    font-size: 0.6875rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0.25rem 0.5625rem;
+    border-radius: 0.3125rem;
+    margin-bottom: 0.4375rem;
+  }
+  /* One hue, three intensities — the color deepens as the company matures. */
+  .cat-table thead th.h-s1 .sname {
+    background: rgba(107, 98, 84, 0.12);
+    color: var(--color-muted);
+  }
+  .cat-table thead th.h-s2 .sname {
+    background: rgba(199, 80, 36, 0.13);
+    color: var(--color-electric-magenta);
+  }
+  .cat-table thead th.h-s3 .sname {
+    background: rgba(92, 36, 16, 0.13);
+    color: var(--color-electric-deep);
+  }
+  .cat-table thead th p {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--color-muted);
+    max-width: 30ch;
+  }
+  .cat-table thead th.hty {
+    font-size: 0.6875rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+
+  .cat-table tbody tr {
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .cat-table tbody tr:last-child {
+    border-bottom: none;
+  }
+  .cat-table tbody tr:nth-child(even) {
+    background: rgba(20, 16, 11, 0.018);
+  }
+  .cat-table tbody tr.is-hidden {
+    display: none;
+  }
+
+  .cat-table td,
+  .cat-table tbody th {
+    vertical-align: top;
+    padding: 1.125rem 1.25rem;
+    text-align: left;
+  }
+  .cat-table th.ty {
+    width: 11.5rem;
+    min-width: 10.5rem;
+    border-right: 1px solid var(--color-rule);
+    font-weight: 400;
+  }
+  .cat-table th.ty b {
+    display: block;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-snug);
+    margin-bottom: 0.25rem;
+  }
+  .cat-table th.ty span {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--color-muted);
+  }
+
+  .cat-table td ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .cat-table td li {
+    font-size: 0.90625rem;
+    line-height: 1.4;
+  }
+  .cat-table td li b {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.125rem;
+  }
+  .cat-table td li span {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.38;
+    color: var(--color-muted);
+  }
+
+  .cat-table col.is-hidden,
+  .cat-table td.is-hidden,
+  .cat-table th.is-hidden {
+    display: none;
+  }
+
+  .cat-hint {
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    margin: 0.75rem 0.125rem 0;
+  }
+
+  .cat-foot {
+    margin: 3rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-rule);
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+  .cat-foot b {
+    color: var(--color-muted-strong);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  const typeChips = document.getElementById("typeChips");
+  const stageChips = document.getElementById("stageChips");
+  const countEl = document.getElementById("count");
+  const rows = Array.from(document.querySelectorAll<HTMLElement>(".cat-table tbody tr"));
+  const STAGE_KEYS = ["s1", "s2", "s3"] as const;
+
+  let curType = "all";
+  let curStage: string = "all";
+
+  function apply() {
+    let shownRows = 0;
+    let shownMetrics = 0;
+
+    rows.forEach((tr) => {
+      const on = curType === "all" || tr.dataset.t === curType;
+      tr.classList.toggle("is-hidden", !on);
+      if (!on) return;
+      shownRows++;
+      STAGE_KEYS.forEach((k) => {
+        if (curStage !== "all" && curStage !== k) return;
+        shownMetrics += tr.querySelectorAll(`td.c-${k} li`).length;
+      });
+    });
+
+    STAGE_KEYS.forEach((k) => {
+      const show = curStage === "all" || curStage === k;
+      document
+        .querySelectorAll<HTMLElement>(`.cat-table .c-${k}`)
+        .forEach((el) => el.classList.toggle("is-hidden", !show));
+    });
+
+    if (countEl) {
+      countEl.textContent =
+        `${shownRows} ${shownRows === 1 ? "tipo de negocio" : "tipos de negocio"} · ` +
+        `${shownMetrics} ${shownMetrics === 1 ? "métrica" : "métricas"}`;
+    }
+  }
+
+  function wire(group: HTMLElement | null, kind: "t" | "s") {
+    if (!group) return;
+    group.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest("button");
+      if (!btn || !group.contains(btn)) return;
+      group
+        .querySelectorAll("button")
+        .forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      if (kind === "t") curType = btn.dataset.t ?? "all";
+      else curStage = btn.dataset.s ?? "all";
+      apply();
+    });
+  }
+
+  wire(typeChips, "t");
+  wire(stageChips, "s");
+  apply();
+</script>
