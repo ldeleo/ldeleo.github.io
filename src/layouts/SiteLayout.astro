@@ -43,6 +43,12 @@ const image = ogImage ?? ogImageUrl();
     <meta name="twitter:image" content={image} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+        [data-reveal-lines] .line-inner { transform: none !important; }
+      </style>
+    </noscript>
 
     <meta name="theme-color" content="#FAF8F4" />
   </head>

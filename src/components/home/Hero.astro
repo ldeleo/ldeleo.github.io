@@ -1,0 +1,36 @@
+---
+import Container from "@/components/primitives/Container.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import CtaPrimary from "@/components/primitives/CtaPrimary.astro";
+import { CTA_FULL, CTA_HREF } from "@/lib/constants";
+import StagePhoto from "./StagePhoto.astro";
+---
+
+<section class="pb-16 pt-12 md:pb-24 md:pt-16 lg:pt-20">
+  <Container>
+    <header class="max-w-5xl">
+      <div data-reveal>
+        <Eyebrow>AI‑native</Eyebrow>
+      </div>
+      <h1 class="text-d1 hero-title mt-6" style="color: var(--color-ink); --reveal-i: 1;" data-reveal>
+        Adding AI to your company is <em>an upgrade.</em>
+        <span class="hero-break">Being AI‑native is <em>a redesign.</em></span>
+      </h1>
+      <p class="lede measure mt-8 md:mt-10" data-reveal style="--reveal-i: 2;">
+        For leadership teams, family businesses, founders, and investors.
+        English, Spanish, or Italian.
+      </p>
+      <div class="mt-10 md:mt-12" data-reveal style="--reveal-i: 3;">
+        <CtaPrimary href={CTA_HREF}>{CTA_FULL}</CtaPrimary>
+      </div>
+    </header>
+
+    <div class="mt-14 md:mt-20" data-reveal style="--reveal-i: 4;">
+      <StagePhoto
+        src="/images/volcano-2026-hero.jpg"
+        alt="Lorenzo de Leo alone on the Volcano Innovation Summit stage, with his name and Managing Director, ENYA Ventures on the screen behind him."
+        priority
+      />
+    </div>
+  </Container>
+</section>

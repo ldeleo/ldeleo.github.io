@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /apply
 
-Sitemap: https://enya.vc/sitemap-index.xml
+Sitemap: https://lorenzodeleo.com/sitemap-index.xml

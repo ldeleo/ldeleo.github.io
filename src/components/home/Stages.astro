@@ -1,0 +1,24 @@
+---
+import Section from "@/components/primitives/Section.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import { STAGES } from "@/data/content";
+
+type Props = {
+  level?: "h1" | "h2";
+};
+
+const { level = "h2" } = Astro.props;
+const Title = level;
+---
+
+<Section id="stages">
+  <div class="max-w-3xl" data-reveal>
+    <Eyebrow>Stages</Eyebrow>
+    <Title class="text-d2 mt-6" style="color: var(--color-ink);">
+      Where this has been said out loud.
+    </Title>
+  </div>
+  <ul class="stage-wall" data-reveal style="--reveal-i: 1;">
+    {STAGES.map((name) => <li>{name}</li>)}
+  </ul>
+</Section>

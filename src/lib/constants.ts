@@ -8,70 +8,58 @@ export const SITE_URL = "https://lorenzodeleo.com";
 export const BRAND_NAME_FULL = "Lorenzo de Leo";
 export const BRAND_NAME_SHORT = "Lorenzo de Leo";
 export const FOOTER_TAGLINE =
-  "Operator-investor. Managing Director at ENYA Ventures. I build with AI, back founders who do the same, and teach what I learn along the way.";
+  "Managing Director at ENYA Ventures. I back AI‑native founders in Latin America, and I speak and write about the redesign that takes.";
+
+/** Speaking inquiries. Shown on the booking block; the form also delivers here. */
+export const SPEAKING_EMAIL = "lorenzodeleo.usa@gmail.com";
 
 export const LINKEDIN_URL = "https://www.linkedin.com/in/lorenzodeleo/";
 export const X_URL = "https://x.com/LorenzodeLeo_";
 export const SUBSTACK_URL = "https://lorenzodeleo.substack.com";
 export const ENYA_URL = "https://enya.vc";
 
+export const ARTICLE_JUDGMENT_URL =
+  "https://lorenzodeleo.substack.com/p/when-building-gets-cheap-judgment";
 export const ARTICLE_AI_NATIVE_URL =
   "https://lorenzodeleo.substack.com/p/whats-an-ai-native-startup";
 export const ARTICLE_LATAM_URL =
   "https://lorenzodeleo.substack.com/p/a-compelling-case-for-pre-seed-venture";
 
-export const CTA_PRIMARY = "Invite me to speak";
-export const CTA_HREF = "/contact";
+export const CTA_PRIMARY = "Invite Lorenzo";
+export const CTA_FULL = "Invite Lorenzo to speak";
+export const CTA_HREF = "/#booking";
 
 /**
- * Web3Forms access key — public-safe token that routes the contact form to
- * Lorenzo's inbox without exposing the address. Replace the placeholder with
- * the real key from web3forms.com before launch.
+ * Web3Forms access key — public-safe token that routes the booking form to
+ * Lorenzo's inbox. The address itself is also shown, for organizers who prefer mail.
  */
 export const WEB3FORMS_ACCESS_KEY = "778c9787-a8c2-422f-8cb9-0ae21af4d276";
 
 export const NAV_LINKS = [
-  { href: "/speaking", label: "Speaking" },
-  { href: "/writing", label: "Writing" },
-  { href: "/about", label: "About" },
+  { href: "/#thesis", label: "Thesis" },
+  { href: "/#talks", label: "Talks" },
+  { href: "/#ideas", label: "Ideas" },
 ] as const;
 
 export const PAGE_TITLES = {
-  home: "Lorenzo de Leo — Operator-investor. Speaker on AI-native organizations",
-  speaking: "Speaking — Lorenzo de Leo",
-  writing: "Writing — Lorenzo de Leo",
+  home: "Lorenzo de Leo — Adding AI is an upgrade. Being AI‑native is a redesign.",
+  speaking: "Talks — Lorenzo de Leo",
+  writing: "Ideas — Lorenzo de Leo",
   about: "About — Lorenzo de Leo",
-  contact: "Contact — Lorenzo de Leo",
+  contact: "Invite Lorenzo to speak",
   espaciotecMetricas: "Catálogo de métricas — EspacioTec 2026",
 } as const;
 
 export const PAGE_DESCRIPTIONS = {
-  home: "Operator-investor and Managing Director at ENYA Ventures. Talks and writing on AI-native organizations, startups, and the LatAm opportunity — from someone who runs his own fund with a team of AI agents.",
+  home: "Adding AI to a company is an upgrade. Being AI‑native is a redesign. Lorenzo de Leo, Managing Director of ENYA Ventures, on the thesis — for leadership teams, founders, and investors. English, Spanish, or Italian.",
   speaking:
-    "Keynotes, workshops, and courses on AI-native organizations, AI-native startups, and AI inside corporations. In English, Spanish, or Italian, grounded in practice rather than slides.",
+    "Three talks, one thesis: the AI‑native redesign. A keynote for leadership teams, a workshop for founders and investors, and a fireside on Latin America. English, Spanish, or Italian.",
   writing:
-    "Essays on AI-native companies and pre-seed venture in Spanish-speaking Latin America, plus regular short-form writing on LinkedIn and X.",
+    "Essays behind the talks: what AI‑native means, why judgment is the scarce resource, and the case for pre-seed venture in Spanish-speaking Latin America.",
   about:
-    "From a PhD in pure mathematics to aerospace tech transfer, nine years co-building startups at Rokk3r, and now pre-seed investing at ENYA Ventures.",
+    "Lorenzo de Leo is Managing Director of ENYA Ventures, a Miami pre-seed fund for AI‑native founders in Spanish-speaking Latin America. Mathematics, a decade building companies, and a fund run on the thesis.",
   contact:
-    "Invite Lorenzo to speak at your event, or write about advising, teaching, collaborations, or anything adjacent.",
+    "Invite Lorenzo de Leo to speak. Share the date, the audience, and the outcome you want the room to leave with. Speaker kit available on request.",
   espaciotecMetricas:
     "Qué métricas mirar según el tipo de negocio y la etapa de tu startup. Referencia de la Masterclass 4 de EspacioTec 2026: 15 tipos de negocio, tres etapas, y qué te dice cada señal.",
 } as const;
-
-/** Stages — kept as plain names, shown as a proof strip. */
-export const STAGES = [
-  "SXSW",
-  "London Business School",
-  "Forbes México",
-  "FIU Executive Forum",
-  "IDE Business School",
-  "OpenExO",
-  "ASEA",
-  "CAAAREM",
-  "Volcano Summit",
-  "D3 Bahamas",
-  "Ruptura Bolivia",
-  "EspacioTec",
-  "TradeHub",
-] as const;

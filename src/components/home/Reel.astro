@@ -1,0 +1,30 @@
+---
+import Section from "@/components/primitives/Section.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import StagePhoto from "./StagePhoto.astro";
+
+type Props = {
+  level?: "h1" | "h2";
+};
+
+const { level = "h2" } = Astro.props;
+const Title = level;
+---
+
+<Section id="reel" compact>
+  <div class="max-w-3xl" data-reveal>
+    <Eyebrow>On film</Eyebrow>
+    <Title class="text-d2 mt-6" style="color: var(--color-ink);">
+      Reel coming soon.
+    </Title>
+    <p class="lede measure mt-6">
+      A short film of the talks is in the works. Until then, a still from the same stage.
+    </p>
+  </div>
+  <div class="mt-12 md:mt-16" data-reveal style="--reveal-i: 1;">
+    <StagePhoto
+      src="/images/volcano-2026-gesture.jpg"
+      alt="Lorenzo de Leo speaking alone on the Volcano Innovation Summit stage, one hand raised, his name and ENYA Ventures on the screen behind him."
+    />
+  </div>
+</Section>

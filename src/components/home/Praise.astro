@@ -1,0 +1,40 @@
+---
+import Section from "@/components/primitives/Section.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import { PRAISE, praiseAttribution } from "@/data/praise";
+
+type Props = {
+  level?: "h1" | "h2";
+};
+
+const { level = "h2" } = Astro.props;
+const Title = level;
+---
+
+<Section id="praise" compact>
+  <div class="max-w-3xl" data-reveal>
+    <Eyebrow>From the room</Eyebrow>
+    <Title class="text-d2 mt-6" style="color: var(--color-ink);">
+      Lines from the hosts, still to come.
+    </Title>
+    <p class="lede measure mt-6">
+      These are not quotes. Each card is a placeholder, marked that way, until the person named sends their own sentence.
+    </p>
+  </div>
+
+  <div class="praise-grid">
+    {
+      PRAISE.map((item, i) => (
+        <blockquote
+          class:list={["praise-card", item.pending && "is-pending"]}
+          data-reveal
+          style={`--reveal-i: ${i % 2};`}
+        >
+          {item.pending && <p class="praise-flag">Placeholder</p>}
+          <p class="praise-quote">{item.quote}</p>
+          <footer>{praiseAttribution(item)}</footer>
+        </blockquote>
+      ))
+    }
+  </div>
+</Section>

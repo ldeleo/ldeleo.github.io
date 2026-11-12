@@ -1,0 +1,64 @@
+---
+import Section from "@/components/primitives/Section.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import { TALKS } from "@/data/content";
+
+type Props = {
+  /** h1 when this section opens a page; h2 on the home page. */
+  level?: "h1" | "h2";
+};
+
+const { level = "h2" } = Astro.props;
+const Title = level;
+---
+
+<Section id="talks">
+  <div class="max-w-3xl" data-reveal>
+    <Eyebrow>Talks</Eyebrow>
+    <Title class="text-d2 mt-6" style="color: var(--color-ink);">
+      One idea, three rooms.
+    </Title>
+    <p class="lede measure mt-6">
+      Same thesis, brought to a different audience. English, Spanish, or Italian.
+    </p>
+  </div>
+
+  <div class="talk-list">
+    {
+      TALKS.map((talk, i) => (
+        <article class="talk" id={talk.id} data-reveal style={`--reveal-i: ${i % 2};`}>
+          <div class="talk-kicker">
+            <span class="talk-index">{talk.index}</span>
+            <span class="talk-format">{talk.format}</span>
+          </div>
+          <div>
+            <h3>{talk.title}</h3>
+            <p class="talk-for">For {talk.audience}.</p>
+            <p class="talk-idea">{talk.idea}</p>
+            <p class="text-eyebrow mt-8" style="color: var(--color-muted);">
+              The room leaves with
+            </p>
+            <ul class="takeaways">
+              {talk.takeaways.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {talk.note && (
+              <p class="talk-note">
+                {talk.note}{" "}
+                {talk.links?.map((link, n) => (
+                  <span>
+                    {n > 0 && " · "}
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            )}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>

@@ -1,0 +1,475 @@
+/* Editorial patterns for the thesis-first page.
+   Serif display lives in global.css. This file is layout, not type scale. */
+
+.measure {
+  max-width: 40rem;
+}
+
+.measure-wide {
+  max-width: 46rem;
+}
+
+.lede {
+  font-size: 1.2rem;
+  line-height: 1.45;
+  color: var(--color-muted-strong);
+}
+
+@media (min-width: 768px) {
+  .lede {
+    font-size: 1.35rem;
+    line-height: 1.4;
+  }
+}
+
+.hero-break {
+  display: block;
+  margin-top: 0.12em;
+}
+
+.stage-photo {
+  margin: 0;
+}
+
+.stage-photo img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-rule-strong);
+}
+
+.stage-photo figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 1.5rem;
+  margin-top: 0.7rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.belief-list {
+  display: grid;
+  gap: 0;
+  margin-top: 3.5rem;
+}
+
+.belief {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.75rem 0 2rem;
+  border-top: 1px solid var(--color-rule-strong);
+}
+
+.belief:last-child {
+  border-bottom: 1px solid var(--color-rule-strong);
+}
+
+@media (min-width: 800px) {
+  .belief {
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1.5rem 2.5rem;
+    padding: 2.25rem 0 2.5rem;
+  }
+}
+
+.belief-index,
+.talk-index {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-weight: 460;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  color: var(--color-electric-deep);
+}
+
+.belief-index {
+  font-size: 1.35rem;
+  padding-top: 0.15rem;
+}
+
+.belief h3,
+.talk h3 {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-weight: 520;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.belief h3 {
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+}
+
+.belief p,
+.talk-idea {
+  max-width: 40rem;
+  color: var(--color-muted-strong);
+  line-height: 1.6;
+}
+
+.talk-list {
+  display: grid;
+  gap: 4.5rem;
+  margin-top: 3.5rem;
+}
+
+@media (min-width: 900px) {
+  .talk-list {
+    gap: 5.5rem;
+  }
+}
+
+.talk {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-ink);
+}
+
+@media (min-width: 800px) {
+  .talk {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 2rem 3rem;
+    padding-top: 2.25rem;
+  }
+}
+
+.talk-kicker {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+.talk-format {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.talk h3 {
+  font-size: clamp(1.7rem, 2.6vw, 2.35rem);
+  max-width: 18em;
+}
+
+.talk-for {
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.talk-idea {
+  margin-top: 1.25rem;
+  font-size: 1.0625rem;
+}
+
+.takeaways {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  max-width: 40rem;
+}
+
+.takeaways li {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--color-rule);
+  color: var(--color-muted-strong);
+  line-height: 1.5;
+}
+
+.takeaways li:last-child {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.talk-note {
+  margin-top: 1.25rem;
+  max-width: 40rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.talk-note a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-rule-strong);
+  text-underline-offset: 0.18em;
+  white-space: nowrap;
+}
+
+.talk-note a:hover {
+  color: var(--color-electric-purple);
+}
+
+.praise-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.75rem;
+}
+
+@media (min-width: 800px) {
+  .praise-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+  }
+}
+
+.praise-card {
+  margin: 0;
+  padding: 1.35rem 1.35rem 1.2rem;
+  border: 1px solid var(--color-rule);
+}
+
+.praise-card.is-pending {
+  border-style: dashed;
+  border-color: var(--color-rule-strong);
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 7px,
+    rgba(20, 16, 11, 0.035) 7px,
+    rgba(20, 16, 11, 0.035) 8px
+  );
+}
+
+.praise-flag {
+  margin: 0 0 0.85rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-electric-deep);
+}
+
+.praise-card p {
+  margin: 0;
+}
+
+.praise-card.is-pending .praise-quote {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 550;
+  font-size: 1.05rem;
+  letter-spacing: -0.011em;
+  line-height: 1.4;
+  color: var(--color-muted-strong);
+}
+
+.praise-card:not(.is-pending) .praise-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 480;
+  font-optical-sizing: auto;
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+
+.praise-card footer {
+  margin-top: 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-muted);
+}
+
+.stage-wall {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 2.5rem;
+  border-bottom: 1px solid var(--color-rule-strong);
+}
+
+@media (min-width: 640px) {
+  .stage-wall {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stage-wall {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.stage-wall li {
+  padding: 1.15rem 1.25rem 1.15rem 0;
+  border-top: 1px solid var(--color-rule-strong);
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.essay-list {
+  display: grid;
+  margin-top: 2.75rem;
+}
+
+.essay {
+  padding: 1.85rem 0;
+  border-top: 1px solid var(--color-rule-strong);
+}
+
+.essay:last-child {
+  border-bottom: 1px solid var(--color-rule-strong);
+}
+
+.essay-kicker {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.essay h3 {
+  margin-top: 0.7rem;
+  max-width: 24em;
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-weight: 520;
+  font-size: clamp(1.55rem, 2.2vw, 2rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.essay h3 a {
+  text-decoration: none;
+}
+
+.essay h3 a:hover {
+  color: var(--color-electric-purple);
+}
+
+.essay p {
+  max-width: 40rem;
+  margin-top: 0.8rem;
+  color: var(--color-muted-strong);
+  line-height: 1.55;
+}
+
+.booking-form {
+  display: grid;
+  gap: 1.35rem;
+  max-width: 40rem;
+  margin-top: 2.25rem;
+}
+
+.booking-row {
+  display: grid;
+  gap: 1.35rem;
+}
+
+@media (min-width: 700px) {
+  .booking-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.booking-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.booking-field span {
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-paper) 72%, transparent);
+}
+
+.booking-field em {
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  opacity: 0.7;
+}
+
+.booking-field input,
+.booking-field textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-paper) 45%, transparent);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.55rem 0 0.7rem;
+  font: inherit;
+  color: var(--color-paper);
+  caret-color: var(--color-paper);
+}
+
+.booking-field textarea {
+  resize: vertical;
+  min-height: 7.5rem;
+}
+
+.booking-field input::placeholder,
+.booking-field textarea::placeholder {
+  color: color-mix(in srgb, var(--color-paper) 42%, transparent);
+}
+
+.booking-field input:focus,
+.booking-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-paper);
+}
+
+.booking-submit {
+  justify-self: start;
+  margin-top: 0.5rem;
+  border: 0;
+  border-bottom: 1px solid var(--color-paper);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.35rem 0;
+  color: var(--color-paper);
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.booking-submit:hover {
+  color: var(--color-electric-magenta);
+  border-bottom-color: var(--color-electric-magenta);
+}
+
+.booking-submit[disabled] {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.booking-mail a {
+  color: var(--color-paper);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--color-paper) 45%, transparent);
+}
+
+.booking-mail a:hover {
+  text-decoration-color: var(--color-paper);
+}
+
+.path-list {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.path h2 {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-weight: 520;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
