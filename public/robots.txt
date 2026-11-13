@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /apply
+Disallow: /preview/
 
 Sitemap: https://enya.vc/sitemap-index.xml
