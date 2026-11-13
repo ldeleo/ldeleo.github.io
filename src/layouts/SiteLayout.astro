@@ -28,6 +28,11 @@ const image = ogImage ?? ogImageUrl();
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {
+      import.meta.env.BASE_URL.startsWith("/preview") && (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
     <link rel="canonical" href={canonical} />
 
     <meta property="og:title" content={title} />
