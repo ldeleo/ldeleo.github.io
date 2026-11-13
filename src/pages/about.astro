@@ -5,6 +5,7 @@ import Eyebrow from "@/components/primitives/Eyebrow.astro";
 import PortraitFrame from "@/components/brand/PortraitFrame.astro";
 import CtaPrimary from "@/components/primitives/CtaPrimary.astro";
 import Rule from "@/components/primitives/Rule.astro";
+import { BIO_NOTE } from "@/data/praise";
 import { CTA_FULL, CTA_HREF, ENYA_URL, PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 
 const chapters = [
@@ -36,7 +37,7 @@ const chapters = [
   description={PAGE_DESCRIPTIONS.about}
   path="/about"
 >
-  <Section>
+  <Section id="bio">
     <div class="grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
       <div>
         <PortraitFrame
@@ -74,6 +75,11 @@ const chapters = [
             ))
           }
         </div>
+
+        <blockquote class="bio-note" data-reveal>
+          <p>{BIO_NOTE.quote}</p>
+          <footer>{BIO_NOTE.attribution}</footer>
+        </blockquote>
       </div>
     </div>
   </Section>

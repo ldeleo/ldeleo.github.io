@@ -37,51 +37,43 @@ export const PRAISE: PraiseItem[] = [
   {
     id: "davivienda",
     quote:
-      "En Davivienda estamos convencidos de que el futuro es emocionante, y conectar nuestra visión con aliados estratégicos nos impulsa a escalar iniciativas de alto impacto. Lorenzo ha potenciado nuestra propuesta de valor, al compartir con su destacado profesionalismo, el conocimiento de transformar la IA teórica en soluciones ágiles y escalables que transforma la experiencia de nuestros clientes y usuarios.",
+      "Lorenzo showed us how to turn AI theory into agile, scalable solutions that transform the experience of our customers and users, and it strengthened our value proposition.",
     attribution:
-      "Andrés Pineda, Gerente de Innovación y Operaciones, Banco Davivienda Salvadoreño",
+      "Andrés Pineda, Innovation & Operations Manager, Banco Davivienda Salvadoreño",
     pending: false,
   },
   {
     id: "btg-pactual",
-    quote: "[Quote pending — BTG Pactual]",
-    org: "BTG Pactual",
-    event: "Bogotá",
-    pending: true,
+    quote:
+      "A talk that put a pragmatic approach to AI on the table, along with what it means to be AI-native, as a starting point for a new generation of entrepreneurs.",
+    attribution:
+      "Luisa Plazas, Executive Director, Marketing and Communications, BTG Pactual Colombia",
+    pending: false,
   },
   {
     id: "volcano",
-    quote: "[Quote pending — Volcano Innovation Summit]",
+    quote: "[Quote pending]",
     org: "Volcano Innovation Summit",
-    event: "2026",
+    // When a line arrives: Janma Bardi, Founder & Co-Chair, Volcano Summit
     pending: true,
   },
   {
-    id: "mexico-tech-week",
+    id: "eduardo-hernandez",
     quote:
-      "Lorenzo nos abrió las puertas de ENYA Ventures y nos mostró en vivo cómo opera su fondo con agentes de IA. Salimos con muchas ideas sobre cómo aplicar estas herramientas en nuestros emprendimientos y en nuestro día a día.",
-    attribution:
-      "Eduardo Hernández Fuentes, Founders & Investors House, Mexico Tech Week",
+      "Lorenzo opened the doors of ENYA Ventures and showed us, live, how his fund runs on AI agents. We left with a lot of ideas for applying these tools in our startups and in our day-to-day work.",
+    attribution: "Eduardo Hernández Fuentes, Partner, LeapstartMx",
     pending: false,
   },
   {
     id: "search-club-roberto",
     quote:
-      "Lorenzo es de esas mentes que siempre están un paso adelante, que saben qué es lo que viene y te ayudan a mantenerte en la jugada. Hemos trabajado juntos en varios proyectos, entre ellos ESPACIOTEC, un certamen de emprendimiento en Centroamérica que venimos impulsando desde hace cinco años.",
-    attribution:
-      "Roberto López Castellanos, CEO & Co-founder, Search Club / EspacioTec",
-    pending: false,
-  },
-  {
-    id: "search-club-erick",
-    quote:
-      "Lorenzo nos ha apoyado muchísimo desde hace 4 años con el corazón de Espaciotec: la formación para los emprendedores. Siempre tuvimos la visión que una de las maneras más eficientes de apoyar a un emprendedor en etapa temprana era ayudarles a formarse en pilares básicos del mundo del emprendimiento, su experiencia ha sido de mucho valor para el programa.",
-    attribution: "Erick Alvarez, Co-founder, Search Club / EspacioTec",
+      "Lorenzo is one of those minds that is always a step ahead. He knows what's coming and helps you stay in the game.",
+    attribution: "Roberto López Castellanos, CEO & Co-Founder, Search Club",
     pending: false,
   },
   {
     id: "uniandinos",
-    quote: "[Quote pending — Uniandinos]",
+    quote: "[Quote pending]",
     org: "Uniandinos",
     event: "Bogotá",
     pending: true,
@@ -94,6 +86,15 @@ export const PRAISE: PraiseItem[] = [
     pending: false,
   },
 ];
+
+/** Quiet line under the bio. Not part of the praise wall. */
+export const BIO_NOTE: PraiseItem = {
+  id: "search-club-erick",
+  quote:
+    "For five years, Lorenzo has supported the heart of EspacioTec: training our entrepreneurs. We've always believed that one of the best ways to back an early-stage founder is to help them master the fundamentals, and his experience has been invaluable to the program.",
+  attribution: "Erick Alvarez, Co-Founder, Search Club",
+  pending: false,
+};
 
 /** "Name, Role · Org · Event" — empty parts drop out. Approved lines use `attribution`. */
 export function praiseAttribution(item: PraiseItem): string {
