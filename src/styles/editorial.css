@@ -310,37 +310,6 @@
   color: var(--color-muted);
 }
 
-.stage-wall {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin-top: 2.5rem;
-  border-bottom: 1px solid var(--color-rule-strong);
-}
-
-@media (min-width: 640px) {
-  .stage-wall {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1024px) {
-  .stage-wall {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-.stage-wall li {
-  padding: 1.15rem 1.25rem 1.15rem 0;
-  border-top: 1px solid var(--color-rule-strong);
-  font-family: var(--font-serif);
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  color: var(--color-ink);
-}
-
 .essay-list {
   display: grid;
   margin-top: 2.75rem;

@@ -53,7 +53,7 @@ export const PRAISE: PraiseItem[] = [
   {
     id: "volcano",
     quote: "[Quote pending]",
-    org: "Volcano Innovation Summit",
+    org: "Volcano Summit",
     // When a line arrives: Janma Bardi, Founder & Co-Chair, Volcano Summit
     pending: true,
   },

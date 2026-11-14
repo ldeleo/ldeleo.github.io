@@ -115,26 +115,28 @@ export const TALKS: Talk[] = [
   },
 ];
 
-/** Logo-style names. Text until real marks exist. BTG Pactual leads. */
+/** Official marks, most recognized first. Intrinsic size keeps the strip from shifting. */
 export const STAGES = [
-  "BTG Pactual",
-  "Mexico Tech Week",
-  "Volcano Innovation Summit",
-  "Banco Davivienda",
-  "EspacioTec",
-  "Uniandinos",
-  "Startuplinks",
-  "SXSW",
-  "London Business School",
-  "Forbes México",
-  "FIU Executive Forum",
-  "D3 Bahamas",
-  "IDE Business School",
-  "OpenExO",
-  "ASEA",
-  "CAAAREM",
-  "Ruptura Bolivia",
-  "TradeHub",
+  { name: "SXSW", src: "/images/logos/sxsw.svg", width: 268, height: 62 },
+  { name: "Visa", src: "/images/logos/visa.svg", width: 1000, height: 325 },
+  { name: "BTG Pactual", src: "/images/logos/btg.svg", width: 398, height: 158 },
+  { name: "Banco Davivienda", src: "/images/logos/davivienda.webp", width: 494, height: 42 },
+  { name: "Florida International University", src: "/images/logos/fiu.webp", width: 344, height: 160, scale: 1.12 },
+  { name: "University of Florida", src: "/images/logos/uf.svg", width: 264, height: 50 },
+  { name: "FGV", src: "/images/logos/fgv.webp", width: 893, height: 160 },
+  { name: "Startup Grind", src: "/images/logos/startup-grind.webp", width: 1080, height: 180 },
+  { name: "Mexico Tech Week", src: "/images/logos/mxtw.svg", width: 160, height: 11 },
+  { name: "ISDI", src: "/images/logos/isdi.webp", width: 155, height: 128, scale: 1.55 },
+  { name: "Volcano Summit", src: "/images/logos/volcano.webp", width: 677, height: 96 },
+  { name: "CAAAREM", src: "/images/logos/caaarem.webp", width: 271, height: 160, scale: 1.28 },
+  { name: "ASEA", src: "/images/logos/asea.webp", width: 333, height: 96 },
+  { name: "LIDE", src: "/images/logos/lide.webp", width: 332, height: 128 },
+  { name: "Geneva Business School", src: "/images/logos/geneva.svg", width: 538, height: 147 },
+  { name: "Uniandinos", src: "/images/logos/uniandinos.svg", width: 193, height: 45 },
+  { name: "Cámara de Comercio de Cali", src: "/images/logos/cali.svg", width: 100, height: 28 },
+  { name: "TradeHub Summit", src: "/images/logos/tradehub.svg", width: 183, height: 53 },
+  { name: "D3 Bahamas", src: "/images/logos/d3.svg", width: 322, height: 50 },
+  { name: "EspacioTec", src: "/images/logos/espaciotec.webp", width: 763, height: 96 },
 ] as const;
 
 export type Essay = {

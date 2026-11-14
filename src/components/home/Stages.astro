@@ -1,5 +1,5 @@
 ---
-import Section from "@/components/primitives/Section.astro";
+import Container from "@/components/primitives/Container.astro";
 import Eyebrow from "@/components/primitives/Eyebrow.astro";
 import { STAGES } from "@/data/content";
 
@@ -11,14 +11,119 @@ const { level = "h2" } = Astro.props;
 const Title = level;
 ---
 
-<Section id="stages">
-  <div class="max-w-3xl" data-reveal>
-    <Eyebrow>Stages</Eyebrow>
-    <Title class="text-d2 mt-6" style="color: var(--color-ink);">
-      Some of the stages I've spoken on.
-    </Title>
+<section id="stages" class="stage-logos">
+  <Container>
+    <div class="max-w-3xl" data-reveal>
+      <Eyebrow>Stages</Eyebrow>
+      <Title class="text-d2 mt-6" style="color: var(--color-ink);">
+        Some of the stages.
+      </Title>
+    </div>
+  </Container>
+
+  <div class="logo-marquee">
+    <div class="logo-track">
+      <ul class="logo-set">
+        {
+          STAGES.map((logo) => (
+            <li>
+              <img
+                src={logo.src}
+                alt={logo.name}
+                width={logo.width}
+                height={logo.height}
+                style={"scale" in logo ? `--logo-scale:${logo.scale}` : undefined}
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="logo-set" aria-hidden="true">
+        {
+          STAGES.map((logo) => (
+            <li>
+              <img
+                src={logo.src}
+                alt=""
+                width={logo.width}
+                height={logo.height}
+                style={"scale" in logo ? `--logo-scale:${logo.scale}` : undefined}
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
-  <ul class="stage-wall" data-reveal style="--reveal-i: 1;">
-    {STAGES.map((name) => <li>{name}</li>)}
-  </ul>
-</Section>
+</section>
+
+<style>
+  .stage-logos {
+    padding: 5rem 0 4.5rem;
+  }
+  .logo-marquee {
+    margin-top: 2.75rem;
+    overflow: hidden;
+    min-height: 4.75rem;
+  }
+  .logo-track {
+    display: flex;
+    width: max-content;
+    animation: logo-marquee 110s linear infinite;
+  }
+  .logo-marquee:hover .logo-track,
+  .logo-marquee:focus-within .logo-track {
+    animation-play-state: paused;
+  }
+  .logo-set {
+    display: flex;
+    align-items: center;
+    gap: 3.25rem;
+    margin: 0;
+    padding: 0.6rem 1.6rem 0.6rem 0;
+    list-style: none;
+  }
+  .logo-set li {
+    display: flex;
+    align-items: center;
+    height: 3.25rem;
+    flex: none;
+  }
+  .logo-set img {
+    height: calc(2.05rem * var(--logo-scale, 1));
+    width: auto;
+    max-width: none;
+    display: block;
+    filter: brightness(0) invert(96%) sepia(12%) saturate(160%) hue-rotate(350deg);
+  }
+  @keyframes logo-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-marquee {
+      overflow: visible;
+      min-height: 0;
+    }
+    .logo-track {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+      max-width: 76rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .logo-set {
+      flex-wrap: wrap;
+      gap: 1.5rem 2.25rem;
+      padding-right: 0;
+    }
+    .logo-set[aria-hidden="true"] {
+      display: none;
+    }
+  }
+</style>
