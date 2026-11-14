@@ -13,26 +13,26 @@
   /* ------------------------------------------------------------------------ */
   /* Color — warm paper / warm ink / terracotta accent                        */
   /* ------------------------------------------------------------------------ */
-  --color-paper:           #FAF8F4;
-  --color-paper-deep:      #F3EEE6;
-  --color-ink:             #14100B;
-  --color-soil:            #241D14;
-  --color-muted-strong:    #40382C;
-  --color-muted:           #6B6254;
-  --color-rule:            rgba(20, 16, 11, 0.12);
-  --color-rule-strong:     rgba(20, 16, 11, 0.28);
+  --color-paper:           #0C0B0A;
+  --color-paper-deep:      #161412;
+  --color-ink:             #F4F0E6;
+  --color-soil:            #F4F0E6;
+  --color-muted-strong:    #D4CEC3;
+  --color-muted:           #A8A194;
+  --color-rule:            rgba(244, 240, 230, 0.14);
+  --color-rule-strong:     rgba(244, 240, 230, 0.32);
 
-  /* Accent triad — three jobs, one temperature */
-  --color-electric-magenta: #C75024;   /* warm accent / dingbats */
-  --color-electric-purple:  #9A3D16;   /* primary accent — hover, active nav */
-  --color-electric-deep:    #5C2410;   /* dark anchor */
-  --color-shock-blue:       #2D6BE0;   /* interaction only — focus rings */
+  /* Ember accent. Shock is the focus ring, light enough to see on near-black. */
+  --color-electric-magenta: #C45C26;
+  --color-electric-purple:  #E08A55;
+  --color-electric-deep:    #C45C26;
+  --color-shock-blue:       #F6C7A4;
 
   /* ------------------------------------------------------------------------ */
   /* Typography                                                                */
   /* ------------------------------------------------------------------------ */
-  --font-sans:  "Instrument Sans Variable", system-ui, -apple-system, sans-serif;
-  --font-serif: "Fraunces Variable", "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --font-sans:  Manrope, "Instrument Sans Variable", system-ui, sans-serif;
+  --font-serif: Syne, "Fraunces Variable", Georgia, serif;
 
   /* ------------------------------------------------------------------------ */
   /* Spacing                                                                   */

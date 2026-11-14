@@ -2,11 +2,9 @@
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import Section from "@/components/primitives/Section.astro";
 import Eyebrow from "@/components/primitives/Eyebrow.astro";
-import PortraitFrame from "@/components/brand/PortraitFrame.astro";
-import CtaPrimary from "@/components/primitives/CtaPrimary.astro";
 import Rule from "@/components/primitives/Rule.astro";
 import { BIO_NOTE } from "@/data/praise";
-import { CTA_FULL, CTA_HREF, ENYA_URL, PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
+import { ENYA_URL, PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 
 const chapters = [
   {
@@ -40,11 +38,16 @@ const chapters = [
   <Section id="bio">
     <div class="grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
       <div>
-        <PortraitFrame
-          src="/images/portrait.jpg"
-          alt="Lorenzo de Leo"
-          class="lg:sticky lg:top-28"
-        />
+        <figure class="room-portrait lg:sticky lg:top-28">
+          <img
+            src="/images/room/portrait.jpg"
+            alt="Lorenzo de Leo"
+            width="1100"
+            height="1650"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
       </div>
       <div>
         <div data-reveal>
@@ -76,6 +79,17 @@ const chapters = [
           }
         </div>
 
+        <figure class="room-still" data-reveal>
+          <img
+            src="/images/room/agora.jpg"
+            alt="Lorenzo de Leo seated and speaking, at Agora."
+            width="1400"
+            height="2031"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
         <blockquote class="bio-note" data-reveal>
           <p>{BIO_NOTE.quote}</p>
           <footer>{BIO_NOTE.attribution}</footer>
@@ -84,17 +98,4 @@ const chapters = [
     </div>
   </Section>
 
-  <Section style="background: var(--color-ink); color: var(--color-paper);">
-    <div class="max-w-3xl">
-      <div data-reveal>
-        <Eyebrow inverted>Speaking</Eyebrow>
-      </div>
-      <h2 class="text-d2 mt-6" style="color: var(--color-paper);" data-reveal-lines>
-        The talks carry the same thesis.
-      </h2>
-      <div class="mt-10" data-reveal style="--reveal-i: 2;">
-        <CtaPrimary href={CTA_HREF} inverted>{CTA_FULL}</CtaPrimary>
-      </div>
-    </div>
-  </Section>
 </SiteLayout>

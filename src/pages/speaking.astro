@@ -4,18 +4,35 @@ import Talks from "@/components/home/Talks.astro";
 import Praise from "@/components/home/Praise.astro";
 import Stages from "@/components/home/Stages.astro";
 import Reel from "@/components/home/Reel.astro";
-import Booking from "@/components/home/Booking.astro";
-import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
+import { CTA_FULL, CTA_HREF, PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 ---
 
-<SiteLayout
-  title={PAGE_TITLES.speaking}
-  description={PAGE_DESCRIPTIONS.speaking}
-  path="/speaking"
->
+<SiteLayout title={PAGE_TITLES.speaking} description={PAGE_DESCRIPTIONS.speaking} path="/speaking">
   <Talks level="h1" />
+  <figure class="room-bleed">
+    <img
+      src="/images/room/d3.jpg"
+      alt="Lorenzo de Leo speaking at D3 Bahamas, with the audience seated behind him."
+      width="1500"
+      height="1500"
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
   <Praise />
   <Stages />
+  <figure class="room-bleed">
+    <img
+      src="/images/room/point.jpg"
+      alt="Lorenzo de Leo teaching, pointing at a screen."
+      width="1600"
+      height="1066"
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
   <Reel />
-  <Booking />
+  <p class="room-invite" id="invite">
+    <a href={CTA_HREF}>{CTA_FULL}</a>
+  </p>
 </SiteLayout>

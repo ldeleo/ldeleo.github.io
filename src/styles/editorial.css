@@ -263,8 +263,8 @@
 
 .praise-card:not(.is-pending) .praise-quote {
   font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 480;
+  font-style: normal;
+  font-weight: 600;
   font-optical-sizing: auto;
   font-size: clamp(1.125rem, 1.25vw, 1.3125rem);
   letter-spacing: -0.015em;
@@ -293,8 +293,8 @@
 .bio-note p {
   margin: 0;
   font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 450;
+  font-style: normal;
+  font-weight: 500;
   font-optical-sizing: auto;
   font-size: 1.02rem;
   line-height: 1.5;
@@ -417,7 +417,7 @@
   font-weight: 650;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-paper) 72%, transparent);
+  color: var(--color-muted);
 }
 
 .booking-field em {
@@ -432,13 +432,13 @@
 .booking-field textarea {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-paper) 45%, transparent);
+  border-bottom: 1px solid var(--color-rule-strong);
   border-radius: 0;
   background: transparent;
   padding: 0.55rem 0 0.7rem;
   font: inherit;
-  color: var(--color-paper);
-  caret-color: var(--color-paper);
+  color: var(--color-ink);
+  caret-color: var(--color-ink);
 }
 
 .booking-field textarea {
@@ -448,24 +448,24 @@
 
 .booking-field input::placeholder,
 .booking-field textarea::placeholder {
-  color: color-mix(in srgb, var(--color-paper) 42%, transparent);
+  color: var(--color-muted);
 }
 
 .booking-field input:focus,
 .booking-field textarea:focus {
   outline: none;
-  border-bottom-color: var(--color-paper);
+  border-bottom-color: var(--color-ink);
 }
 
 .booking-submit {
   justify-self: start;
   margin-top: 0.5rem;
   border: 0;
-  border-bottom: 1px solid var(--color-paper);
+  border-bottom: 1px solid var(--color-electric-magenta);
   border-radius: 0;
   background: transparent;
   padding: 0.35rem 0;
-  color: var(--color-paper);
+  color: var(--color-ink);
   font-weight: 600;
   font-size: 1.05rem;
   cursor: pointer;
@@ -482,14 +482,14 @@
 }
 
 .booking-mail a {
-  color: var(--color-paper);
+  color: var(--color-ink);
   text-decoration: underline;
   text-underline-offset: 0.18em;
-  text-decoration-color: color-mix(in srgb, var(--color-paper) 45%, transparent);
+  text-decoration-color: var(--color-rule-strong);
 }
 
 .booking-mail a:hover {
-  text-decoration-color: var(--color-paper);
+  text-decoration-color: var(--color-ink);
 }
 
 .path-list {

@@ -12,8 +12,9 @@ const { level = "h2" } = Astro.props;
 const Title = level;
 ---
 
-<Section id="talks">
-  <div class="max-w-3xl" data-reveal>
+<Section id="talks" class="room-talks">
+  <div class="room-split">
+    <div data-reveal>
     <Eyebrow>Talks</Eyebrow>
     <Title class="text-d2 mt-6" style="color: var(--color-ink);">
       One idea, three rooms.
@@ -21,6 +22,16 @@ const Title = level;
     <p class="lede measure mt-6">
       Same thesis, brought to a different audience. English, Spanish, or Italian.
     </p>
+    </div>
+    <img
+      class="room-split__cut"
+      src="/images/room/cut-stage.png"
+      alt="Lorenzo de Leo speaking into a microphone, close up."
+      width="1100"
+      height="701"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 
   <div class="talk-list">

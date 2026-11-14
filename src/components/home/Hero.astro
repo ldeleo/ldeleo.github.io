@@ -1,36 +1,36 @@
 ---
-import Container from "@/components/primitives/Container.astro";
-import Eyebrow from "@/components/primitives/Eyebrow.astro";
-import CtaPrimary from "@/components/primitives/CtaPrimary.astro";
-import { CTA_FULL, CTA_HREF } from "@/lib/constants";
-import StagePhoto from "./StagePhoto.astro";
+import { ENYA_URL } from "@/lib/constants";
 ---
 
-<section class="pb-16 pt-12 md:pb-24 md:pt-16 lg:pt-20">
-  <Container>
-    <header class="max-w-5xl">
-      <div data-reveal>
-        <Eyebrow>AI‑native</Eyebrow>
-      </div>
-      <h1 class="text-d1 hero-title mt-6" style="color: var(--color-ink); --reveal-i: 1;" data-reveal>
-        Adding AI to your company is <em>an upgrade.</em>
-        <span class="hero-break">Being AI‑native is <em>a redesign.</em></span>
-      </h1>
-      <p class="lede measure mt-8 md:mt-10" data-reveal style="--reveal-i: 2;">
-        For leadership teams, family businesses, founders, and investors.
-        English, Spanish, or Italian.
-      </p>
-      <div class="mt-10 md:mt-12" data-reveal style="--reveal-i: 3;">
-        <CtaPrimary href={CTA_HREF}>{CTA_FULL}</CtaPrimary>
-      </div>
-    </header>
-
-    <div class="mt-14 md:mt-20" data-reveal style="--reveal-i: 4;">
-      <StagePhoto
-        src="/images/volcano-2026-hero.jpg"
-        alt="Lorenzo de Leo alone on the Volcano Innovation Summit stage, with his name and Managing Director, ENYA Ventures on the screen behind him."
-        priority
-      />
-    </div>
-  </Container>
+<section class="room-hero">
+  <img
+    class="room-hero__plate"
+    src="/images/room/volcano-hero.jpg"
+    alt="Lorenzo de Leo alone on the Volcano Innovation Summit stage, with his name and Managing Director, ENYA Ventures on the screen behind him."
+    width="1616"
+    height="1080"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+  />
+  <div class="room-hero__scrim" aria-hidden="true"></div>
+  <div class="room-hero__copy">
+    <p class="room-kicker">Managing Director, ENYA Ventures</p>
+    <h1 class="text-d1">
+      Adding AI to your company is an upgrade.
+      <span class="hero-break">Being AI‑native is a redesign.</span>
+    </h1>
+    <p class="room-hero__lede">
+      For leadership teams, family businesses, founders, and investors.
+      English, Spanish, or Italian.
+    </p>
+    <p class="room-hero__who">
+      I'm Lorenzo de Leo, Managing Director of
+      <a href={ENYA_URL} class="enya-mark" target="_blank" rel="noopener noreferrer">ENYA Ventures</a>,
+      a Miami pre-seed fund that backs AI‑native founders in Latin America.
+      I invest in this thesis, and I'm building the fund to run on it.
+      Research, meeting prep, and relationship memory already do.
+    </p>
+    <p class="room-hero__credit">Volcano Innovation Summit, 2026 · Photo: Volcano Summit</p>
+  </div>
 </section>

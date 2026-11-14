@@ -41,12 +41,6 @@ const year = new Date().getFullYear();
         class="flex flex-wrap gap-x-6 gap-y-2 text-sm"
         style="color: var(--color-muted-strong);"
       >
-        <a
-          href="/"
-          class="transition-colors hover:text-[color:var(--color-electric-purple)]"
-        >
-          Home
-        </a>
         {
           NAV_LINKS.map((item) => (
             <a
@@ -57,18 +51,6 @@ const year = new Date().getFullYear();
             </a>
           ))
         }
-        <a
-          href="/about"
-          class="transition-colors hover:text-[color:var(--color-electric-purple)]"
-        >
-          About
-        </a>
-        <a
-          href="/contact"
-          class="transition-colors hover:text-[color:var(--color-electric-purple)]"
-        >
-          Booking
-        </a>
       </nav>
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
         <CtaSecondary href={ENYA_URL} external>ENYA Ventures</CtaSecondary>

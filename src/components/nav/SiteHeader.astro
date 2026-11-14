@@ -1,10 +1,13 @@
 ---
 import Container from "@/components/primitives/Container.astro";
 import Wordmark from "@/components/brand/Wordmark.astro";
-import { NAV_LINKS, CTA_HREF, CTA_PRIMARY } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/constants";
 
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const raw = Astro.url.pathname.replace(/\/$/, "") || "/";
+const currentPath = (base && raw.startsWith(base) ? raw.slice(base.length) : raw) || "/";
 function isActive(href: string) {
+  if (href === "/") return currentPath === "/";
   return currentPath === href;
 }
 ---
@@ -47,14 +50,6 @@ function isActive(href: string) {
         ))
       }
     </nav>
-
-    <a
-      href={CTA_HREF}
-      class="enya-header-cta order-2 inline-flex whitespace-nowrap rounded-full px-4 py-2 text-eyebrow font-semibold transition-colors duration-200 sm:order-none md:px-5 md:py-2.5"
-      style="background: var(--color-ink); color: var(--color-paper);"
-    >
-      {CTA_PRIMARY}
-    </a>
   </Container>
 </header>
 
@@ -72,9 +67,9 @@ function isActive(href: string) {
   }
   .enya-header.is-scrolled {
     border-bottom-color: var(--color-rule);
-    background: color-mix(in srgb, var(--color-paper) 85%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(12, 11, 10, 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
 
   /* Primary nav: scale labels down on small screens so all links fit on one
@@ -99,10 +94,6 @@ function isActive(href: string) {
     }
   }
 
-  /* CTA hover (replaces inline JS handlers so the CSP can forbid inline script). */
-  .enya-header-cta:hover {
-    background: var(--color-electric-purple) !important;
-  }
 </style>
 
 <script>

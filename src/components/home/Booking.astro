@@ -17,26 +17,26 @@ const Title = level;
 const mailto = `mailto:${SPEAKING_EMAIL}?subject=${encodeURIComponent("Speaking inquiry")}&body=${encodeURIComponent("Date:\nAudience:\nOutcome I want the room to leave with:\n")}`;
 ---
 
-<Section id="booking" style="background: var(--color-ink); color: var(--color-paper);">
+<Section id="invite">
   <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-20">
     <div>
       <div data-reveal>
-        <Eyebrow inverted>Booking</Eyebrow>
+        <Eyebrow>Booking</Eyebrow>
       </div>
-      <Title class="text-d2 mt-6" style="color: var(--color-paper);" data-reveal-lines>
+      <Title class="text-d2 mt-6" style="color: var(--color-ink);" data-reveal-lines>
         Invite Lorenzo to speak.
       </Title>
-      <p class="mt-6 max-w-md text-lg leading-relaxed" style="color: color-mix(in srgb, var(--color-paper) 82%, transparent);" data-reveal style="--reveal-i: 2;">
+      <p class="mt-6 max-w-md text-lg leading-relaxed" style="color: var(--color-muted-strong);" data-reveal style="--reveal-i: 2;">
         Tell me the date, the audience, and the outcome you want the room to leave with. I'll tell you which session fits.
       </p>
-      <p class="booking-mail mt-8 text-base leading-relaxed" style="color: color-mix(in srgb, var(--color-paper) 78%, transparent);" data-reveal style="--reveal-i: 3;">
+      <p class="booking-mail mt-8 text-base leading-relaxed" style="color: var(--color-muted-strong);" data-reveal style="--reveal-i: 3;">
         Or write directly:
         <a href={mailto}>{SPEAKING_EMAIL}</a>
       </p>
-      <p class="mt-4 text-base" style="color: color-mix(in srgb, var(--color-paper) 78%, transparent);" data-reveal style="--reveal-i: 3;">
+      <p class="mt-4 text-base" style="color: var(--color-muted-strong);" data-reveal style="--reveal-i: 3;">
         Speaker kit available on request.
       </p>
-      <p class="mt-8 max-w-md text-sm leading-relaxed" style="color: color-mix(in srgb, var(--color-paper) 62%, transparent);" data-reveal style="--reveal-i: 4;">
+      <p class="mt-8 max-w-md text-sm leading-relaxed" style="color: var(--color-muted);" data-reveal style="--reveal-i: 4;">
         Building an AI‑native company in Spanish-speaking Latin America?
         The fund reads
         <a href={ENYA_URL} class="underline" target="_blank" rel="noopener noreferrer">enya.vc</a>.
@@ -118,7 +118,7 @@ const mailto = `mailto:${SPEAKING_EMAIL}?subject=${encodeURIComponent("Speaking 
         status.textContent = ok
           ? "Sent. I'll reply directly."
           : "Something went wrong. Please email lorenzodeleo.usa@gmail.com.";
-        status.setAttribute("style", ok ? "color: var(--color-paper);" : "color: #FFB4A8;");
+        status.setAttribute("style", ok ? "color: var(--color-ink);" : "color: #FFB4A8;");
         status.classList.remove("hidden");
         if (ok) form.reset();
       } catch {

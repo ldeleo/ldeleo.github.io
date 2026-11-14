@@ -1,16 +1,26 @@
 @import "tailwindcss";
-@import "@fontsource-variable/instrument-sans/index.css";
-@import "@fontsource-variable/fraunces/opsz.css";
-@import "@fontsource-variable/fraunces/opsz-italic.css";
+@import "@fontsource/syne/latin-500.css";
+@import "@fontsource/syne/latin-600.css";
+@import "@fontsource/syne/latin-700.css";
+@import "@fontsource/syne/latin-800.css";
+@import "@fontsource/manrope/latin-400.css";
+@import "@fontsource/manrope/latin-500.css";
+@import "@fontsource/manrope/latin-600.css";
+@import "@fontsource/manrope/latin-700.css";
+@import "@fontsource/manrope/latin-ext-400.css";
+@import "@fontsource/manrope/latin-ext-500.css";
+@import "@fontsource/manrope/latin-ext-600.css";
+@import "@fontsource/manrope/latin-ext-700.css";
 @import "./tokens.css";
 @import "./editorial.css";
+@import "./room.css";
 
 /* ============================================================================
  * Base / resets
  * ========================================================================== */
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html {
@@ -90,8 +100,7 @@ video {
 .text-d3,
 .text-title {
   font-family: var(--font-serif);
-  font-optical-sizing: auto;
-  font-weight: 520;
+  font-weight: 700;
   text-wrap: balance;
 }
 .text-d1 {
@@ -118,8 +127,8 @@ video {
 .text-d1 em,
 .text-d2 em,
 .text-d3 em {
-  font-style: italic;
-  font-weight: 480;
+  font-style: normal;
+  font-weight: 700;
 }
 
 /* ============================================================================

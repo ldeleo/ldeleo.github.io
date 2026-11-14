@@ -1,15 +1,9 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import Ideas from "@/components/home/Ideas.astro";
-import Booking from "@/components/home/Booking.astro";
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 ---
 
-<SiteLayout
-  title={PAGE_TITLES.writing}
-  description={PAGE_DESCRIPTIONS.writing}
-  path="/writing"
->
+<SiteLayout title={PAGE_TITLES.writing} description={PAGE_DESCRIPTIONS.writing} path="/writing">
   <Ideas level="h1" />
-  <Booking />
 </SiteLayout>

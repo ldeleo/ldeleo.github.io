@@ -27,7 +27,7 @@ export const ARTICLE_LATAM_URL =
 
 export const CTA_PRIMARY = "Invite Lorenzo";
 export const CTA_FULL = "Invite Lorenzo to speak";
-export const CTA_HREF = "/#booking";
+export const CTA_HREF = "/contact";
 
 /**
  * Web3Forms access key — public-safe token that routes the booking form to
@@ -36,9 +36,11 @@ export const CTA_HREF = "/#booking";
 export const WEB3FORMS_ACCESS_KEY = "778c9787-a8c2-422f-8cb9-0ae21af4d276";
 
 export const NAV_LINKS = [
-  { href: "/#thesis", label: "Thesis" },
-  { href: "/#talks", label: "Talks" },
-  { href: "/#ideas", label: "Ideas" },
+  { href: "/", label: "Home" },
+  { href: "/speaking", label: "Speaking" },
+  { href: "/book", label: "Book" },
+  { href: "/writing", label: "Writing" },
+  { href: "/about", label: "About" },
 ] as const;
 
 export const PAGE_TITLES = {
@@ -46,6 +48,7 @@ export const PAGE_TITLES = {
   speaking: "Talks — Lorenzo de Leo",
   writing: "Ideas — Lorenzo de Leo",
   about: "About — Lorenzo de Leo",
+  book: "The AI-Native Company — Lorenzo de Leo",
   contact: "Invite Lorenzo to speak",
   espaciotecMetricas: "Catálogo de métricas — EspacioTec 2026",
 } as const;
@@ -58,6 +61,7 @@ export const PAGE_DESCRIPTIONS = {
     "Essays behind the talks: what AI‑native means, why judgment is the scarce resource, and the case for pre-seed venture in Spanish-speaking Latin America.",
   about:
     "Lorenzo de Leo is Managing Director of ENYA Ventures, a Miami pre-seed fund for AI‑native founders in Spanish-speaking Latin America. Mathematics, a decade building companies, and a fund run on the thesis.",
+  book: "The AI-Native Company. Coming soon.",
   contact:
     "Invite Lorenzo de Leo to speak. Share the date, the audience, and the outcome you want the room to leave with. Speaker kit available on request.",
   espaciotecMetricas:

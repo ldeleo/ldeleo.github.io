@@ -1,29 +1,21 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import Hero from "@/components/home/Hero.astro";
-import Who from "@/components/home/Who.astro";
 import Thesis from "@/components/home/Thesis.astro";
-import Talks from "@/components/home/Talks.astro";
-import Praise from "@/components/home/Praise.astro";
-import Stages from "@/components/home/Stages.astro";
-import Reel from "@/components/home/Reel.astro";
-import Ideas from "@/components/home/Ideas.astro";
-import Booking from "@/components/home/Booking.astro";
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 ---
 
-<SiteLayout
-  title={PAGE_TITLES.home}
-  description={PAGE_DESCRIPTIONS.home}
-  path="/"
->
+<SiteLayout title={PAGE_TITLES.home} description={PAGE_DESCRIPTIONS.home} path="/">
   <Hero />
-  <Who />
   <Thesis />
-  <Talks />
-  <Praise />
-  <Stages />
-  <Reel />
-  <Ideas />
-  <Booking />
+  <figure class="room-bleed">
+    <img
+      src="/images/room/workshop.jpg"
+      alt="Lorenzo de Leo speaking to a seated room."
+      width="1600"
+      height="1066"
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
 </SiteLayout>
