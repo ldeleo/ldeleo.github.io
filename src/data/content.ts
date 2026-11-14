@@ -118,7 +118,10 @@ export const TALKS: Talk[] = [
 /** Official marks, most recognized first. Intrinsic size keeps the strip from shifting. */
 export const STAGES = [
   { name: "SXSW", src: "/images/logos/sxsw.svg", width: 268, height: 62 },
+  { name: "London Business School", src: "/images/logos/lbs.svg", width: 512, height: 446, scale: 2 },
   { name: "Visa", src: "/images/logos/visa.svg", width: 1000, height: 325 },
+  { name: "Forbes México", src: "/images/logos/forbes-mx.svg", width: 512, height: 154 },
+  { name: "YPO", src: "/images/logos/ypo.webp", width: 299, height: 114 },
   { name: "BTG Pactual", src: "/images/logos/btg.svg", width: 398, height: 158 },
   { name: "Banco Davivienda", src: "/images/logos/davivienda.webp", width: 494, height: 42 },
   { name: "Florida International University", src: "/images/logos/fiu.webp", width: 344, height: 160, scale: 1.12 },
@@ -129,6 +132,7 @@ export const STAGES = [
   { name: "ISDI", src: "/images/logos/isdi.webp", width: 155, height: 128, scale: 1.55 },
   { name: "Volcano Summit", src: "/images/logos/volcano.webp", width: 677, height: 96 },
   { name: "CAAAREM", src: "/images/logos/caaarem.webp", width: 271, height: 160, scale: 1.28 },
+  { name: "OpenExO", src: "/images/logos/openexo.webp", width: 623, height: 121 },
   { name: "ASEA", src: "/images/logos/asea.webp", width: 333, height: 96 },
   { name: "LIDE", src: "/images/logos/lide.webp", width: 332, height: 128 },
   { name: "Geneva Business School", src: "/images/logos/geneva.svg", width: 538, height: 147 },
