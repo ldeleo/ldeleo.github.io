@@ -9,6 +9,7 @@ type Props = {
 
 const { level = "h2" } = Astro.props;
 const Title = level;
+const quotes = PRAISE.filter((item) => !item.pending);
 ---
 
 <Section id="praise" compact>
@@ -18,13 +19,13 @@ const Title = level;
       Lines from the hosts.
     </Title>
     <p class="lede measure mt-6">
-      In their words. Dashed cards are still waiting on a sentence.
+      In their words.
     </p>
   </div>
 
   <div class="praise-grid">
     {
-      PRAISE.map((item, i) => (
+      quotes.map((item, i) => (
         <blockquote
           class:list={["praise-card", item.pending && "is-pending"]}
           data-reveal

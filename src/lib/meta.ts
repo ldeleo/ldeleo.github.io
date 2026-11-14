@@ -12,5 +12,5 @@ export function canonicalUrl(path: string): string {
 }
 
 export function ogImageUrl(): string {
-  return `${SITE_URL}/og-default.png`;
+  return `${SITE_URL}/og.jpg`;
 }

@@ -45,10 +45,15 @@
 
 .room-hero h1 {
   margin: 1rem 0 0;
-  max-width: 9.2em;
-  font-size: clamp(2.5rem, 4.5vw, 4.15rem);
-  line-height: 0.94;
-  letter-spacing: -0.04em;
+  max-width: 7.6em;
+  font-size: clamp(2.6rem, 5.8vw, 5.375rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.room-hero__mobile,
+.room-hero__invite {
+  display: none;
 }
 
 .room-hero__lede,
@@ -247,6 +252,16 @@
   text-underline-offset: 0.18em;
 }
 
+@media (max-width: 760px) {
+  footer nav a,
+  footer a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+}
+
 .room-invite {
   margin: 0;
   padding: 1rem 6vw 5rem;
@@ -307,24 +322,51 @@
 }
 
 @media (max-width: 800px) {
-  .room-hero__plate {
-    object-position: 50% 12%;
+  .room-hero {
+    display: block;
+    min-height: 0;
   }
+  .room-hero__plate,
   .room-hero__scrim {
-    background: linear-gradient(
-      180deg,
-      rgba(12, 11, 10, 0.5) 0%,
-      rgba(12, 11, 10, 0.08) 16%,
-      rgba(12, 11, 10, 0.55) 38%,
-      rgba(12, 11, 10, 0.94) 52%,
-      #0c0b0a 70%
-    );
+    display: none;
+  }
+  .room-hero__mobile {
+    display: block;
+    width: 100%;
+    height: auto;
   }
   .room-hero__copy {
-    padding-top: 82vh;
+    width: 100%;
+    padding: 1.75rem 1.25rem 0.5rem;
+    background: #0c0b0a;
   }
   .room-hero h1 {
-    font-size: clamp(2.35rem, 11vw, 3.15rem);
+    max-width: 12em;
+    font-size: clamp(2.35rem, 11vw, 3.2rem);
+  }
+  .room-hero__copy {
+    display: flex;
+    flex-direction: column;
+  }
+  .room-kicker { order: 1; }
+  .room-hero h1 { order: 2; }
+  .room-hero__lede { order: 3; }
+  .room-hero__invite { order: 4; }
+  .room-hero__who { order: 5; }
+  .room-hero__credit { order: 6; }
+  .room-hero__invite {
+    display: block;
+    margin: 1.35rem 0 0.4rem;
+  }
+  .room-hero__invite a {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-electric-magenta);
+    padding-bottom: 0.2rem;
   }
   .room-split__cut {
     justify-self: start;

@@ -3,6 +3,7 @@ import SiteLayout from "@/layouts/SiteLayout.astro";
 import Hero from "@/components/home/Hero.astro";
 import Thesis from "@/components/home/Thesis.astro";
 import Invite from "@/components/home/Invite.astro";
+import Photo from "@/components/media/Photo.astro";
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 ---
 
@@ -10,13 +11,13 @@ import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
   <Hero />
   <Thesis />
   <figure class="room-bleed">
-    <img
-      src="/images/room/workshop.jpg"
+    <Photo
+      name="workshop"
       alt="Lorenzo de Leo speaking to a seated room."
       width="1600"
       height="1066"
-      loading="lazy"
-      decoding="async"
+      sizes="100vw"
+      widths={[480, 800, 1200]}
     />
   </figure>
   <Invite />

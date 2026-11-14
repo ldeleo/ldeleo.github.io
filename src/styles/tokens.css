@@ -31,8 +31,8 @@
   /* ------------------------------------------------------------------------ */
   /* Typography                                                                */
   /* ------------------------------------------------------------------------ */
-  --font-sans:  Manrope, "Instrument Sans Variable", system-ui, sans-serif;
-  --font-serif: Syne, "Fraunces Variable", Georgia, serif;
+  --font-sans:  Manrope, "Manrope Fallback", "Instrument Sans Variable", system-ui, sans-serif;
+  --font-serif: Syne, "Syne Fallback", "Fraunces Variable", Georgia, serif;
 
   /* ------------------------------------------------------------------------ */
   /* Spacing                                                                   */

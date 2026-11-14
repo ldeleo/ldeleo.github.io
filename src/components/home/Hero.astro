@@ -1,14 +1,25 @@
 ---
-import { ENYA_URL } from "@/lib/constants";
+import { CTA_HREF, CTA_FULL, ENYA_URL } from "@/lib/constants";
+import Photo from "@/components/media/Photo.astro";
 ---
 
 <section class="room-hero">
-  <img
+  <Photo
     class="room-hero__plate"
-    src="/images/room/volcano-hero.jpg"
+    name="volcano-hero"
     alt="Lorenzo de Leo alone on the Volcano Innovation Summit stage, with his name and Managing Director, ENYA Ventures on the screen behind him."
     width="1616"
     height="1080"
+    sizes="100vw"
+    widths={[480, 800, 1200, 1600]}
+    priority
+  />
+  <img
+    class="room-hero__mobile"
+    src="/images/room/volcano-mobile.jpg"
+    alt="Lorenzo de Leo on the Volcano Innovation Summit stage."
+    width="540"
+    height="552"
     loading="eager"
     fetchpriority="high"
     decoding="async"
@@ -16,7 +27,7 @@ import { ENYA_URL } from "@/lib/constants";
   <div class="room-hero__scrim" aria-hidden="true"></div>
   <div class="room-hero__copy">
     <p class="room-kicker">Managing Director, ENYA Ventures</p>
-    <h1 class="text-d1">
+    <h1>
       Adding AI to your company is an upgrade.
       <span class="hero-break">Being AI‑native is a redesign.</span>
     </h1>
@@ -32,5 +43,8 @@ import { ENYA_URL } from "@/lib/constants";
       Research, meeting prep, and relationship memory already do.
     </p>
     <p class="room-hero__credit">Volcano Innovation Summit, 2026 · Photo: Volcano Summit</p>
+    <p class="room-hero__invite">
+      <a href={CTA_HREF}>{CTA_FULL}</a>
+    </p>
   </div>
 </section>

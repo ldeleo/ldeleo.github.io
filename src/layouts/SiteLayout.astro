@@ -51,11 +51,10 @@ const image = ogImage ?? ogImageUrl();
     <noscript>
       <style>
         [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
-        [data-reveal-lines] .line-inner { transform: none !important; }
       </style>
     </noscript>
 
-    <meta name="theme-color" content="#FAF8F4" />
+    <meta name="theme-color" content="#0C0B0A" />
   </head>
   <body class="min-h-screen">
     <SiteHeader />
@@ -86,99 +85,6 @@ const image = ogImage ?? ogImageUrl();
           { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
         );
         reveals.forEach((el) => io.observe(el));
-      }
-
-      // Masked line-by-line reveal for plain-text headings [data-reveal-lines].
-      // Splits each heading into visual lines, then rises them in once on view.
-      // Falls back to plain visible text under reduced-motion.
-      const lineTargets = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-reveal-lines]")
-      );
-      if (lineTargets.length) {
-        if (reduce) {
-          lineTargets.forEach((el) => el.classList.add("is-in"));
-        } else {
-          const lineIo = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("is-in");
-                  lineIo.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.2 }
-          );
-
-          const split = (node: HTMLElement, raw: string) => {
-            node.textContent = "";
-            const words = raw.split(/\s+/).map((w) => {
-              const s = document.createElement("span");
-              s.textContent = w;
-              s.style.display = "inline-block";
-              return s;
-            });
-            words.forEach((s, i) => {
-              node.appendChild(s);
-              if (i < words.length - 1) node.appendChild(document.createTextNode(" "));
-            });
-            const lines: HTMLSpanElement[][] = [];
-            let top: number | null = null;
-            words.forEach((s) => {
-              const t = s.offsetTop;
-              if (top === null || Math.abs(t - top) > 6) {
-                lines.push([]);
-                top = t;
-              }
-              lines[lines.length - 1].push(s);
-            });
-            node.textContent = "";
-            lines.forEach((ws, li) => {
-              const line = document.createElement("span");
-              line.className = "line";
-              const inner = document.createElement("span");
-              inner.className = "line-inner";
-              inner.style.setProperty("--line-i", String(li));
-              ws.forEach((s, i) => {
-                if (i) inner.appendChild(document.createTextNode(" "));
-                s.style.display = "";
-                inner.appendChild(s);
-              });
-              line.appendChild(inner);
-              node.appendChild(line);
-            });
-          };
-
-          const setup = () => {
-            lineTargets.forEach((node) => {
-              const raw = (node.getAttribute("data-raw") ?? node.textContent ?? "").trim();
-              node.setAttribute("data-raw", raw);
-              split(node, raw);
-              lineIo.observe(node);
-            });
-          };
-
-          if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(setup);
-          } else {
-            setup();
-          }
-
-          let rt: number;
-          window.addEventListener(
-            "resize",
-            () => {
-              window.clearTimeout(rt);
-              rt = window.setTimeout(() => {
-                lineTargets.forEach((node) => {
-                  split(node, node.getAttribute("data-raw") ?? "");
-                  node.classList.add("is-in");
-                });
-              }, 200);
-            },
-            { passive: true }
-          );
-        }
       }
     </script>
   </body>

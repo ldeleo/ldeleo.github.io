@@ -4,6 +4,7 @@ import Section from "@/components/primitives/Section.astro";
 import Eyebrow from "@/components/primitives/Eyebrow.astro";
 import Rule from "@/components/primitives/Rule.astro";
 import Invite from "@/components/home/Invite.astro";
+import Photo from "@/components/media/Photo.astro";
 import { BIO_NOTE } from "@/data/praise";
 import { ENYA_URL, PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 
@@ -40,13 +41,14 @@ const chapters = [
     <div class="grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
       <div>
         <figure class="room-portrait lg:sticky lg:top-28">
-          <img
-            src="/images/room/portrait.jpg"
+          <Photo
+            name="portrait"
             alt="Lorenzo de Leo"
-            width="1100"
-            height="1650"
-            loading="eager"
-            decoding="async"
+            width="1240"
+            height="1860"
+            sizes="(min-width: 1024px) 28rem, 100vw"
+            widths={[480, 800, 1200]}
+            priority
           />
         </figure>
       </div>
@@ -81,13 +83,13 @@ const chapters = [
         </div>
 
         <figure class="room-still" data-reveal>
-          <img
-            src="/images/room/agora.jpg"
+          <Photo
+            name="agora"
             alt="Lorenzo de Leo seated and speaking, at Agora."
             width="1400"
             height="2031"
-            loading="lazy"
-            decoding="async"
+            sizes="(min-width: 1024px) 40rem, 100vw"
+            widths={[480, 800, 1200]}
           />
         </figure>
 

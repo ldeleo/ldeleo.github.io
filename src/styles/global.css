@@ -15,6 +15,24 @@
 @import "./editorial.css";
 @import "./room.css";
 
+/* Metric-matched fallbacks so the web fonts swap without shifting the line boxes. */
+@font-face {
+  font-family: "Syne Fallback";
+  src: local("Arial");
+  size-adjust: 118%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Arial");
+  size-adjust: 105%;
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
 /* ============================================================================
  * Base / resets
  * ========================================================================== */
@@ -214,12 +232,10 @@ video {
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(22px);
-  filter: blur(6px);
+  transform: translateY(12px);
   transition:
     opacity var(--motion-reveal) var(--motion-ease-out),
-    transform var(--motion-reveal) var(--motion-ease-out),
-    filter var(--motion-reveal) var(--motion-ease-out);
+    transform var(--motion-reveal) var(--motion-ease-out);
   transition-delay: calc(var(--reveal-i, 0) * 80ms);
   will-change: opacity, transform, filter;
 }

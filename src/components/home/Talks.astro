@@ -23,15 +23,19 @@ const Title = level;
       Same thesis, brought to a different audience. English, Spanish, or Italian.
     </p>
     </div>
-    <img
-      class="room-split__cut"
-      src="/images/room/cut-stage.png"
-      alt="Lorenzo de Leo speaking into a microphone, close up."
-      width="1100"
-      height="701"
-      loading="lazy"
-      decoding="async"
-    />
+    <picture>
+      <source srcset="/images/room/cut-stage.avif" type="image/avif" />
+      <source srcset="/images/room/cut-stage.webp" type="image/webp" />
+      <img
+        class="room-split__cut"
+        src="/images/room/cut-stage.webp"
+        alt="Lorenzo de Leo speaking into a microphone, close up."
+        width="900"
+        height="574"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   </div>
 
   <div class="talk-list">

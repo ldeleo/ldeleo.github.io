@@ -422,10 +422,11 @@
 
 .booking-field em {
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: none;
-  opacity: 0.7;
+  opacity: 1;
+  color: #d5cfc4;
 }
 
 .booking-field input,

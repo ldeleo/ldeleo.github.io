@@ -36,7 +36,6 @@ export const CTA_HREF = "/contact";
 export const WEB3FORMS_ACCESS_KEY = "778c9787-a8c2-422f-8cb9-0ae21af4d276";
 
 export const NAV_LINKS = [
-  { href: "/", label: "Home" },
   { href: "/speaking", label: "Speaking" },
   { href: "/book", label: "Book" },
   { href: "/writing", label: "Writing" },
