@@ -1,18 +1,18 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import Section from "@/components/primitives/Section.astro";
-import Ideas from "@/components/home/Ideas.astro";
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
+import { SPINE } from "@/data/book";
 ---
 
 <SiteLayout title={PAGE_TITLES.writing} description={PAGE_DESCRIPTIONS.writing} path="/writing">
   <Section id="book" compact>
     <p class="room-kicker">Book</p>
     <h1 class="text-d2 mt-6" style="color: var(--color-ink);">The AI-Native Company</h1>
-    <p class="lede mt-4">Coming soon.</p>
+    <p class="lede mt-4">{SPINE}</p>
+    <p class="lede mt-4">Written in public. The first chapter is up. The rest of the book is named, and still being written.</p>
     <p class="topic-entry mt-6">
-      <a href="/ai-native/definition">Read the first topic: Definition</a>
+      <a href="/ai-native">Read the book</a>
     </p>
   </Section>
-  <Ideas />
 </SiteLayout>

@@ -45,7 +45,7 @@ export const NAV_LINKS = [
 export const PAGE_TITLES = {
   home: "Lorenzo de Leo — Adding AI is an upgrade. Being AI‑native is a redesign.",
   speaking: "Talks — Lorenzo de Leo",
-  writing: "Ideas — Lorenzo de Leo",
+  writing: "The AI-Native Company — Lorenzo de Leo",
   about: "About — Lorenzo de Leo",
   book: "The AI-Native Company — Lorenzo de Leo",
   contact: "Invite Lorenzo to speak",
@@ -57,10 +57,10 @@ export const PAGE_DESCRIPTIONS = {
   speaking:
     "Three talks, one thesis: the AI‑native redesign. A keynote for leadership teams, a workshop for founders and investors, and a fireside on Latin America. English, Spanish, or Italian.",
   writing:
-    "Essays behind the talks: what AI‑native means, why judgment is the scarce resource, and the earliest stage in Spanish-speaking Latin America.",
+    "The AI-Native Company, written in public. People and agents as one system, and the advantage to whoever builds that system first.",
   about:
     "Lorenzo de Leo is Managing Director of ENYA Ventures, an AI-native pre-seed fund for Latin America he is building. Mathematics, a decade of company building, and a fund shaped around the thesis.",
-  book: "The AI-Native Company. Coming soon.",
+  book: "The AI-Native Company, written in public. Definition is the first chapter.",
   contact:
     "Invite Lorenzo de Leo to speak. Share the date, the audience, and the outcome you want the room to leave with. Speaker kit available on request.",
   espaciotecMetricas:

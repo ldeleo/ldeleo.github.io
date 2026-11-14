@@ -4,18 +4,21 @@ book: "The AI-Native Company"
 topic: "Definition"
 slug: "ai-native/definition"
 lang: "en"
-description: "What is an AI-native company? A map of the main definitions, real examples, a working definition and a seven-question test of how far along a company is."
+description: "What is an AI-native company? A map of how the phrase is used, what each source emphasizes, a working definition, and seven questions that show how far along a company is."
 author: "Lorenzo de Leo"
 datePublished: "2026-11-13"
-dateModified: "2026-11-13"
-version: "v0.1"
+dateModified: "2026-11-14"
+version: "v0.2"
 keyPoints:
-  - "\"AI-native\" now means several useful things at once, so the honest way in is a map, not a verdict."
+  - "The phrase is doing several jobs at once. A map comes before a verdict."
   - "\"AI from day one\" is a start date, not a design."
-  - "It's a matter of degree: companies are 40%, 60% or 80% of the way there."
-  - "My working definition: a company whose construction assumes a system of people and agents, with shared memory, loops that close fast, and explicit points where human judgment decides. It replaces the one I wrote in July."
-  - "Seven questions about how a company is built tell you how far along it is."
+  - "The sources are mostly right. Each one was written for its own job, and this chapter builds on them."
+  - "Cloud-native settled a fight like this by writing the definition down. Building has gotten cheaper before. This wave reaches more of the company."
+  - "The website can't tell you. Seven questions about the inside of the company can, and the answer is a degree."
 changelog:
+  - version: "v0.2"
+    date: "2026-11-14"
+    note: "Reframed the source map as research, moved the spine to the book page, and described ENYA as one person working with agents."
   - version: "v0.1"
     date: "2026-11-13"
     note: "Draft. First version of the Definition topic: map of definitions, examples, working definition (replaces the July 2026 wording) and the AI-native test."
@@ -23,68 +26,104 @@ changelog:
 
 # What is an AI-native company?
 
-**Short answer.** An AI-native company is one where people and agents work as one system: they share the same memory, the work moves through loops that close fast, and everyone knows where human judgment decides. The product may or may not contain AI. What matters is how the company itself is built. And it's a matter of degree. Most companies are somewhere on the way, and the useful question is how far.
+The phrase is everywhere this year. It shows up in pitch decks, in memos from public-company CEOs, in a request for startups, and in a telecom standard that has been using a cousin of the term for years. In 2026, "AI startup" is what "internet company" was in 2005: a label that is true of almost everyone, and thinner every month. "AI-native" was supposed to be the sharper version. It has come to mean several useful things at once.
 
-That's the spine of this book: *AI-native means people and agents work as one system, and the advantage goes to whoever builds that system first.* But it isn't the only definition out there, and it shouldn't be read alone. So before arguing for mine, here's the map.
+I don't read that as a mess. A venture firm, a research team, a consultancy, a network engineer, and a founder are answering different questions with the same word. None of them is wrong. So this chapter is a map first. The one-line claim the rest of the book hangs on, the spine, lives on the [book page](/ai-native#spine). What follows here is the research, then the definition I actually use, then a way to tell how far along a company is. The book is written in public. When a view on this page changes, the changelog at the bottom records it.
 
 ## Why "AI-native" means several things at once
 
-In 2026, "AI startup" is what "internet company" was in 2005: a label that's true of almost everyone and therefore says less every month. "AI-native" was supposed to be sharper. Instead it has come to mean several useful things at once.
+A venture firm uses the phrase to name a market category. A research team uses it to describe a growth pattern. A consultancy uses it for an enterprise operating model. A telecom standard uses it for a network. A founder uses it to say "we used AI from day one." They are not disagreeing so much as they are pointing at different parts of the same object.
 
-A venture firm uses it to name a market category. A research team uses it to describe a growth pattern. A consultancy uses it for an enterprise operating model. A telecom standard uses it for a network. A founder uses it to say "we used AI from day one." None of these people are wrong. They're answering different questions with the same word.
-
-So the honest way in is a map, not a verdict. Each definition below is good at the question it was built for. The interesting part is where each one stops.
+The honest way in is a map, not a verdict. Each source below had its own job, and I have tried to read it for that job. A request for startups was never meant to be a definition. A spending report was never meant to be an org design. I agree with the direction of all of them. For each one I want to say what aspect of AI-native it emphasizes, and what I take from it and build on. The rest of the chapter is my angle: the same aspects, taken further, until they become a definition and a test.
 
 ## The map
 
-**1. The product test (CRV).** CRV's founder guide asks one question: *"if you remove the AI, does the product cease to function?"* It adds a forward-looking twist I like: *"when the models get better, are you happy or sad?"* ([CRV, March 2026](https://www.crv.com/content/what-is-ai-native))
-- *The question it answers:* is the product built on AI, or is AI a feature?
-- *Where it stops:* it looks at the product, not the company. A company can sell an AI-native product and still be built like any other company. A law firm or a logistics business can be AI-native with no AI in what it sells. CRV also argues that true AI-nativity can't be retrofitted. For a product architecture that may be right. For a company's operating model, I'm less sure, and the test at the end of this page treats age as irrelevant.
+Nine sources, in the order I actually use them. The quotes are theirs. The "what I take" is mine.
 
-**2. The system definition (IBM).** IBM defines AI-native as something *"designed from the ground up with AI as a core component, not bolted on later as a mere feature."* It notes that legacy enterprises can qualify if they *"comprehensively re-orient their business model around data and AI models,"* and it predicts that *"the term's usefulness [will] fade over time as AI's ubiquity advances."* ([IBM, February 2026](https://www.ibm.com/think/topics/ai-native))
-- *The question it answers:* what makes a system AI-native, technically?
-- *Where it stops:* it's mostly about architecture and the tech stack. It says little about people, roles or who decides.
+### The product test (CRV)
 
-**3. The market category (Y Combinator).** YC opened its Summer 2026 Requests for Startups with *"AI has stopped being a feature and started being the foundation."* One request asks for *"AI-native companies that don't sell software—they sell the service. Instead of giving you a tool, they just do the work."* Another, "The AI Operating System for Companies," starts from this observation: *"The best AI-native companies we're seeing have figured out something most haven't: they've made their entire company queryable."* It describes the result as turning *"a company from an open loop into a closed loop."* ([Y Combinator, Requests for Startups, Summer 2026](https://www.ycombinator.com/rfs))
-- *The question it answers:* where should founders build next?
-- *Where it stops:* a request for startups isn't a definition. But the "queryable company" is the closest any major source comes to describing AI-native as a way of operating [→ Technology: The tool downloads. The context doesn't.].
+CRV's founder guide asks one question: *"if you remove the AI, does the product cease to function?"* It adds a second question I have started asking myself: *"when the models get better, are you happy or sad?"* ([CRV, March 2026](https://www.crv.com/content/what-is-ai-native))
 
-**4. The buying pattern (a16z).** a16z's spending report observes that *"while big companies are getting incremental benefits to existing team structures, at startups we're seeing truly AI-native companies emerge."* It splits vertical AI into products that supercharge human employees and ones that act as *"AI employees."* ([a16z, October 2025](https://a16z.com/the-ai-application-spending-report-where-startup-dollars-really-go/))
-- *The question it answers:* what are startups actually paying for?
-- *Where it stops:* spend data shows what companies buy, not how they're built. It's a market lens.
+What it emphasizes is the product. Is the AI the thing, or a feature on the thing, and does progress in the models help you or strand you? I take both questions. They are a clean test of a product, which is the job of a founder's guide. A company's construction is a related question, and people's roles are a corollary of that construction, not a missing clause in the product test. I use CRV's questions when I look at what a company sells. The test at the end of this page is for how the company is built.
 
-**5. The business model (Emergence Capital).** Emergence names a category, AI-native services: companies that sell the outcome rather than the tool. It also names a trap, *"Mirage PMF: The illusion of product-market fit created by revenue growth that's powered by human labor rather than AI leverage."* ([Emergence, March 2026](https://www.emcap.com/thoughts/the-ai-native-services-playbook))
-- *The question it answers:* how does a services business built on AI work and make money?
-- *Where it stops:* it covers one business model, services. But Mirage PMF is one of the best operating signals anyone has published, and it applies to any company [→ Building: Product-market fit in an AI-native company].
+### The system definition (IBM)
 
-**6. The growth profile (Bessemer).** Bessemer's State of AI benchmarks two kinds of AI startups, "Supernovas" and "Shooting Stars," by growth and margin. On how the best teams work, it says: *"Today, the question isn't if your team uses AI, but how well you orchestrate it into a compounding, high-velocity system."* ([Bessemer, August 2025](https://www.bvp.com/atlas/the-state-of-ai-2025))
-- *The question it answers:* what does great growth look like now?
-- *Where it stops:* benchmarks describe outcomes. Two companies can hit the same numbers built in completely different ways [→ Investing: New benchmarks].
+IBM defines AI-native as something *"designed from the ground up with AI as a core component, not bolted on later as a mere feature."* It notes that legacy enterprises can qualify if they *"comprehensively re-orient their business model around data and AI models,"* and it predicts that *"the term's usefulness [will] fade over time as AI's ubiquity advances."* ([IBM, February 2026](https://www.ibm.com/think/topics/ai-native))
 
-**7. The enterprise operating model (McKinsey).** McKinsey's "seven operating truths" come from interviews with 15 AI-centric companies and describe *"what it takes to successfully place AI at the center of the organization."* It observes that *"jobs are being redefined as collaborations between humans and agents."* ([McKinsey, June 2026](https://www.mckinsey.com/capabilities/business-building/our-insights/the-seven-operating-truths-of-ai-native-companies))
-- *The question it answers:* how does an organization get AI to deliver?
-- *Where it stops:* it's the closest to my view, and it's written from the seat of a large organization transforming itself, not a small team building from zero [→ Organization: Don't clone the org chart].
+What it emphasizes is the system: AI as a core component of the design, not a layer added at the end, and a path for companies that were not born this way. I take all three. IBM's definition is well aligned with the one I use. Who does which job is a corollary. Once the construction assumes a system of people and agents, roles follow from it. They are not a second definition. I go further on that corollary in the chapters on judgment and organization. I also take the prediction. The word will fade. The design question will not.
 
-**8. The builder's playbook (Anthropic).** Anthropic's founder playbook walks through each stage of a startup *"when AI is core to your technical and organizational development,"* and notes that *"the lean 10-person unicorn has gone from scrappy underdog story to deliberate plan of action."* ([Anthropic](https://claude.com/resources/guides/the-founders-playbook-building-an-ai-native-startup))
-- *The question it answers:* how do I build one, step by step?
-- *Where it stops:* it's a how-to from a model provider. It assumes the definition rather than testing it.
+### The market category (Y Combinator)
 
-**9. The network standard (Ericsson).** Outside startups, telecom has used "AI native" for years: *"the concept of having intrinsic trustworthy AI capabilities, where AI is a natural part of the functionality, in terms of design, deployment, operation, and maintenance."* Ericsson is blunt that *"simply using AI to replace existing or add new functionalities … does not make an implementation AI native,"* and it measures maturity in levels. ([Ericsson](https://www.ericsson.com/en/reports-and-papers/white-papers/ai-native))
-- *The question it answers:* when is a network AI-native?
-- *Where it stops:* it's a different domain. But two of its moves are worth borrowing: adding AI is not the same as being AI-native, and maturity comes in levels.
+Y Combinator opened its Summer 2026 Requests for Startups with *"AI has stopped being a feature and started being the foundation."* One request asks for *"AI-native companies that don't sell software—they sell the service. Instead of giving you a tool, they just do the work."* Another, "The AI Operating System for Companies," starts from this observation: *"The best AI-native companies we're seeing have figured out something most haven't: they've made their entire company queryable."* It describes the result as turning *"a company from an open loop into a closed loop."* ([Y Combinator, Requests for Startups, Summer 2026](https://www.ycombinator.com/rfs))
 
-**A lesson from cloud-native.** "Cloud-native" went through the same confusion a decade ago. It settled because a community wrote a definition down and kept maintaining it. The Cloud Native Computing Foundation's version is now at v1.1, approved in February 2024, and it describes practices, not products: *"loosely coupled systems that interoperate in a manner that is secure, resilient, manageable, sustainable, and observable."* ([CNCF](https://github.com/cncf/toc/blob/main/DEFINITION.md)) That's the ambition of this page, too: a working definition, versioned and kept up to date in public.
+This was a request for startups. It was never offered as a definition, and it reads better once you leave it in that job: a public note about where founders might build. I take two things from it. The first is the company that sells the work rather than the tool. The second is the queryable company, the firm that can be read and written as one system, an open loop closed. That second idea is the one I build on. [→ Technology: The tool downloads. The context doesn't.]
+
+### The buying pattern (a16z)
+
+a16z's spending report observes that *"while big companies are getting incremental benefits to existing team structures, at startups we're seeing truly AI-native companies emerge."* It splits vertical AI into products that supercharge human employees and ones that act as *"AI employees."* ([a16z, October 2025](https://a16z.com/the-ai-application-spending-report-where-startup-dollars-really-go/))
+
+What it emphasizes is the market. What are companies actually paying for, and where is the spend showing up. I take the split. Tools that make a person faster, and tools that do a job a person used to do, are different purchases, and a spending report is the right instrument for seeing the difference. How a company is built is the question this book stays on. The report tells me which way the money is leaning while that question is still open.
+
+### The business model (Emergence Capital)
+
+Emergence names a category, AI-native services: companies that sell the outcome rather than the tool. It also names a trap, *"Mirage PMF: The illusion of product-market fit created by revenue growth that's powered by human labor rather than AI leverage."* ([Emergence, March 2026](https://www.emcap.com/thoughts/the-ai-native-services-playbook))
+
+What it emphasizes is one business model, services, and a failure mode inside it. I take Mirage PMF, and I use it beyond services. Fast revenue that is still a room of people doing the work by hand is a signal about the construction, whatever the company sells. [→ Building: Product-market fit in an AI-native company]
+
+### The growth profile (Bessemer)
+
+Bessemer's State of AI benchmarks two kinds of AI startups, "Supernovas" and "Shooting Stars," by growth and margin. On how the best teams work, it asks a question I want to leave standing, because it is a great one: *"Today, the question isn't if your team uses AI, but how well you orchestrate it into a compounding, high-velocity system."* ([Bessemer, August 2025](https://www.bvp.com/atlas/the-state-of-ai-2025))
+
+What it emphasizes is the shape of growth, and then, in that one sentence, the work of orchestration. I take the question. Two companies can post the same numbers and be built in different ways. The benchmarks describe the outcome. The question describes the work. The book is about the work. [→ Investing: New benchmarks]
+
+### The enterprise operating model (McKinsey)
+
+McKinsey's "seven operating truths" come from interviews with 15 AI-centric companies and describe *"what it takes to successfully place AI at the center of the organization."* It observes that *"jobs are being redefined as collaborations between humans and agents."* ([McKinsey, June 2026](https://www.mckinsey.com/capabilities/business-building/our-insights/the-seven-operating-truths-of-ai-native-companies))
+
+What it emphasizes is the operating model of a company that is already large and in the middle of changing itself. I take the collaboration. A job that is a person and an agent, working as one, is the picture I recognize. McKinsey drew it from that seat. I build on the same picture from a smaller starting point. [→ Organization: Don't clone the org chart]
+
+### The builder's playbook (Anthropic)
+
+Anthropic's founder playbook walks through each stage of a startup *"when AI is core to your technical and organizational development,"* and notes that *"the lean 10-person unicorn has gone from scrappy underdog story to deliberate plan of action."* ([Anthropic](https://claude.com/resources/guides/the-founders-playbook-building-an-ai-native-startup))
+
+What it emphasizes is the sequence. How you actually build, once AI is core to the company and not only to the product. I take the sequence, and I take the small team as a design rather than a holding pattern. A playbook starts once you know what you are aiming at. This page is the sentence that comes before it.
+
+### The network standard (Ericsson)
+
+Outside startups, telecom has used "AI native" for years: *"the concept of having intrinsic trustworthy AI capabilities, where AI is a natural part of the functionality, in terms of design, deployment, operation, and maintenance."* Ericsson is plain that *"simply using AI to replace existing or add new functionalities … does not make an implementation AI native,"* and it measures maturity in levels. ([Ericsson](https://www.ericsson.com/en/reports-and-papers/white-papers/ai-native))
+
+What it emphasizes is a network, not a startup. I take two moves that were written for that domain and travel cleanly out of it. Using AI is not the same thing as being AI-native. And you arrive by degrees, not by a switch. Both of those are in the definition below, and in the test.
+
+## A lesson from cloud-native
+
+"Cloud-native" went through this same argument about a decade ago. For a while it meant whatever a vendor needed it to mean. It settled because a community wrote a definition down and kept maintaining it. The Cloud Native Computing Foundation's version is now at v1.1, approved in February 2024, and it describes practices, not products: *"loosely coupled systems that interoperate in a manner that is secure, resilient, manageable, sustainable, and observable."* ([CNCF](https://github.com/cncf/toc/blob/main/DEFINITION.md))
+
+That is the ambition of this page. A working definition, versioned, dated, and corrected in public when it is wrong. The cloud version took years and a foundation. This one is a person keeping a page. The habit is the same: write down what you mean, and show the edit when you change your mind.
+
+There is a second parallel, closer to the work itself. Building has gotten cheaper before. Over roughly the past fifteen years, standing up a store went from a custom project to something a person can do in a weekend: hosted commerce, payments, off-the-shelf logistics. The same thing happened. When the making gets cheap, the advantage moves, toward taste, distribution, and the operation around the tool. A cheap store did not make a good merchant.
+
+Where it is not the same is the width of the wave. That one cheapened a layer. You could open the store without a team of engineers, and you still hired people to merchandise, to talk to customers, and to fulfill. This wave reaches those jobs too. Building, selling, support, and the loop that connects them can all move at once. A definition that only covers the product repeats the last lesson. The lesson this time is the company.
 
 ## How the words relate
 
-| Term | How it's usually used | What it describes | Where it lands on the test below |
-|---|---|---|---|
-| **AI-enabled** (or AI-powered, AI-augmented) | AI features added to a product or process that existed before | A product or a function | Low to middle: functions automated, structure unchanged |
-| **AI-first** | A company that makes AI central to its product and decisions, often an existing company committing to change | A strategic commitment | Anywhere: a direction, not a state |
-| **Agentic** | Systems or organizations where AI agents take actions, not just answer | A capability of the system | Necessary but not sufficient: agents without shared memory and clear judgment are tools on the side |
-| **AI-native** (as used in this book) | People and agents working as one system, with shared memory, closed loops and explicit judgment points | How the company is built | A degree, measured by the test |
+Four phrases get used as if they were one. They are not, and the differences are ordinary once you say them in sentences.
 
-A good example of "AI-first" as a commitment comes from April 2025, when Duolingo's CEO announced the company would be AI-first: *"Making minor tweaks to systems designed for humans won't get us there. In many cases, we'll need to start from scratch."* ([The Verge](https://www.theverge.com/news/657594/duolingo-ai-first-replace-contract-workers)) That's a statement about direction. Whether a company has arrived is a different question, and that's what the test is for.
+**AI-enabled**, and its cousins AI-powered and AI-augmented, usually means a feature added to a product or a process that already existed. The product was a product. Then it grew a model. What it describes is a product, or a function inside a company. On the test below, that tends to look like a function automated and a structure left as it was.
+
+**AI-first** is a commitment. A company, often one that already exists, decides that AI will sit at the center of the product and of its decisions. It describes a direction. Duolingo's CEO put it cleanly in April 2025: *"Making minor tweaks to systems designed for humans won't get us there. In many cases, we'll need to start from scratch."* ([The Verge](https://www.theverge.com/news/657594/duolingo-ai-first-replace-contract-workers)) That is a statement about where the company is heading. Whether it has arrived is a different question, and that is what the test is for.
+
+**Agentic** describes a capability. The system doesn't only answer. Agents take actions. That capability matters, and it is not yet a description of the company. Agents without a shared memory, and without a clear point where a person decides, are tools on the side. Shared memory and judgment are what turn the capability into the way the company works.
+
+**AI-native**, as this book uses it, is about that construction. People and agents as one system: shared memory, loops that close fast, and explicit points where human judgment decides. It is a degree, not a badge, and the test is how you read the degree.
+
+The table is the same distinction, compressed.
+
+| Term | How it's usually used | What it describes | How the test reads it |
+|---|---|---|---|
+| **AI-enabled** (or AI-powered, AI-augmented) | AI features added to a product or process that existed before | A product or a function | A function automated, the structure unchanged |
+| **AI-first** | A company that makes AI central to its product and decisions, often an existing company committing to change | A strategic commitment | A direction, not a place you arrive |
+| **Agentic** | Systems or organizations where AI agents take actions, not just answer | A capability of the system | Part of the picture, once memory and judgment are there |
+| **AI-native** (as used in this book) | People and agents working as one system, with shared memory, closed loops and explicit judgment points | How the company is built | A degree, read with the test |
 
 ## "AI from day one" is a start date, not a design
 
@@ -103,9 +142,9 @@ None of these is a verdict. Each shows a different part of the picture, with the
 
 ## My working definition, and how it evolved
 
-Put the map together and a pattern shows up. The product test, the benchmarks and the categories all describe what a company sells or how fast it grows. The operating views all point at something underneath: YC's queryable company, McKinsey's jobs as collaborations between humans and agents, Emergence's Mirage PMF. What they point at is whether the company itself is built as one system of people and agents.
+Put the map together and a pattern shows up. Some of these sources are looking at the product, some at the growth, some at a category, some at the operating model. I agree with the direction of that work. The aspect I want to take further is the one underneath the product and the numbers: whether the company itself is built as one system of people and agents.
 
-That's the part I care about, for three reasons. It's where a small team can genuinely learn faster than an incumbent. It's the part a competitor can't download: the tool downloads, the context doesn't. And it's the part that's hardest to see from outside.
+That's the part a small team can learn faster than a large one. It's the part a competitor can't download: the tool downloads, the context doesn't. And it's the part that's hardest to see from outside.
 
 So here's my working definition, as of November 2026:
 
@@ -124,7 +163,9 @@ I still agree with most of it. Four months of conversations, and of writing the 
 - **"Infrastructure" became "shared memory."** Infrastructure is something anyone can buy. When I tried to write questions that actually separate companies, the ones that worked were about where the company's memory lives and who can read and write it. The context is the asset, not the engine.
 - **"Startup" became "company."** An incumbent can rebuild itself this way, and a startup can fail to. The test needs to work for both.
 
-This is a working definition. It's dated on purpose, and I expect it to change again. Probably the next change will come from the judgment side, as agents take on more of the work. If you think it's wrong, or you've seen a case it doesn't fit, I'd genuinely like to hear it. Changing my mind in public is part of how this book is supposed to work.
+This is a working definition. It's dated on purpose, and I expect it to change again. Probably the next change will come from the judgment side, as agents take on more of the work. Changing my mind in public is part of how this book is supposed to work.
+
+[[cta:hear]]
 
 ## The test: questions only the inside of a company can answer
 
@@ -148,19 +189,19 @@ I start with a warm-up I don't score: *tell me what you sell in one line, withou
 
 **How I read the answers.** Each question gets zero, one or two points: tools on the side, a function automated, or a structure built around the system. Add them up and you get a rough percentage. I read it in bands, not as a verdict: *AI-using*, *AI-enabled*, *AI-native in parts* and *AI-native*. Most companies that call themselves AI-native because they used AI from day one honestly sit around AI-enabled. That isn't a criticism. As above, day one is a start date, not a design.
 
-Three cautions. This is not a quality score: a company can be AI-enabled and a great business, or far along the scale and still not a good investment. It is not a moat score either. AI-native is not a moat; it's the rate at which you build one, and the edge over incumbents closes as they catch up. And age doesn't decide it. Shopify's memo asked question one as policy. Klarna answered question four the hard way.
+Three cautions. This is not a quality score. A company can be early on this scale and a great business, or far along the scale and still a poor business for reasons that have nothing to do with the scale. The test does not make that call. It is not a moat score either. AI-native is not a moat; it's the rate at which you build one, and the edge over incumbents closes as they catch up. And age doesn't decide it. Shopify's memo asked question one as policy. Klarna answered question four the hard way.
 
-**Our own case, as of November 2026.** *This part will change as the system does; the date is here on purpose.*
+**ENYA, as of November 2026.** *This part will change as the system does; the date is here on purpose.*
 
-I hold ENYA, the fund I'm building, to the same test, so here is how we work today. It's open, in the sense that anyone who wants to use it can. And it's humble: it's what I've been testing and improving, it works for me, and there are probably better setups out there.
+ENYA is the fund I am building, and I hold it to the same test because it is the setup I can see from the inside. It is one example. It is not the best way, and it is not the only one. Advisors and collaborators are part of the work around the fund, and they sit outside this setup. They have no access to the memory, and no access to the agents.
 
-We run on a shared brain: one memory of people, conversations, decisions and content that both I and a small set of agents read and write. Each agent has a job (research, publishing, relationships). Nothing enters the memory without a validation step, and nothing goes out under my name until I've approved that specific piece. On the test, our memory and our judgment map are where I'd want them. Our learning loop runs in days to weeks, not continuously, so it's still slower than I'd like.
+I am the only human inside it. There is one memory of people, conversations, decisions, and content, which I and a small set of agents both read and write. Each agent has a job: research, publishing, relationships. Nothing enters the memory without a validation step, and nothing goes out under my name until I have approved that specific piece. On the test, the memory and the judgment map are where I want them. The learning loop runs in days to weeks, not continuously, so it is still slower than I would like. How the system is put together belongs in Technology. [→ Technology: The tool downloads. The context doesn't.]
 
-And one honest admission. Until August, I wasn't asking these questions explicitly in my conversations with founders, and they weren't in our intake form. A fund built on an AI-native thesis wasn't asking its own question. Writing this test is how I'm fixing that.
+Until August, I wasn't asking these questions explicitly in conversations with founders, and they weren't on the fund's intake form. A fund built on an AI-native thesis wasn't asking its own question. Writing this test is how I'm fixing that.
 
-I strongly believe the method travels: shared memory, clear judgment points, loops that close. The implementation doesn't. Every person, team and use case needs its own setup, and what works for a small team building a fund won't map one-to-one onto a clinic or a logistics company.
+The method is the part worth copying: shared memory, clear judgment points, loops that close. The implementation is not. What works for one person building a fund will not map onto a clinic or a logistics company. ENYA is one point on the scale. I have met many companies that look 60% or 80% of the way there. I have not been inside them. AI-native is a degree.
 
-**An invitation.** Today ENYA is the only company I can fully validate against this test. That's not because I haven't seen others. I've met many companies that look 60% or 80% of the way there; I just haven't been able to verify what's inside them. If you're building one, or you know one, I'd like to see it. Send it my way, and the best cases will make it into this chapter.
+[[cta:cases]]
 
 ## What's next
 
@@ -200,5 +241,5 @@ The label will fade. What will be left is the design question: how do people and
 - Klarna, via CNBC, May 2025. https://www.cnbc.com/2025/05/14/klarna-ceo-says-ai-helped-company-shrink-workforce-by-40percent.html
 - Klarna spokesperson clarification, via Silicon Republic. https://www.siliconrepublic.com/machines/klarna-ai-hiring-humans-forrester
 
-**My earlier writing**
+**Earlier writing**
 - Lorenzo de Leo, "What's an AI-native startup?", July 3, 2026. https://lorenzodeleo.substack.com/p/whats-an-ai-native-startup

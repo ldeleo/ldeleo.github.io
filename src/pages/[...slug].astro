@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { SITE_URL } from "@/lib/constants";
+import { BOOK_HREF, BOOK_TITLE, BOOK_TOPICS, bookNeighbors } from "@/data/book";
 import { canonicalUrl } from "@/lib/meta";
 import { formatTopicDate, keepCompound, readingMinutes, topicHeadings, workingDefinition } from "@/lib/topic";
 
@@ -21,6 +22,12 @@ const updated = formatTopicDate(entry.data.dateModified);
 const path = `/${entry.data.slug}`;
 const canonical = canonicalUrl(path);
 const definition = workingDefinition(entry.body ?? "");
+const previewBase = import.meta.env.BASE_URL.replace(/\/$/, "");
+const shareUrl = `${SITE_URL}${previewBase}${path}`;
+const shareText = `${entry.data.title} — ${entry.data.author}`;
+const { prev, next } = bookNeighbors(entry.data.slug);
+const topicIndex = BOOK_TOPICS.findIndex((topic) => topic.href === path);
+const currentTopic = BOOK_TOPICS[topicIndex];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -81,6 +88,13 @@ const jsonLd = {
       </nav>
 
       <article>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/writing">Writing</a>
+          <span aria-hidden="true">/</span>
+          <a href={BOOK_HREF}>{BOOK_TITLE}</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{entry.data.topic}</span>
+        </nav>
         <p class="topic-kicker">
           <span>{keepCompound(entry.data.book)} · {entry.data.topic} · {entry.data.version}</span>
           <span class="topic-kicker-meta">
@@ -103,6 +117,40 @@ const jsonLd = {
         <div class="topic-prose">
           <Content />
         </div>
+        <nav class="topic-pager" aria-label="Chapters">
+          {
+            prev.soon ? (
+              <span class="pager-soon" title="Coming soon">
+                <span class="pager-kicker">Previous</span>
+                {prev.title}
+                <span class="soon">Coming soon</span>
+              </span>
+            ) : (
+              <a href={prev.href}>
+                <span class="pager-kicker">Previous</span>
+                {prev.title}
+              </a>
+            )
+          }
+          {
+            next ? (
+              next.soon ? (
+                <span class="pager-soon pager-next" title="Coming soon">
+                  <span class="pager-kicker">Next</span>
+                  {next.title}
+                  <span class="soon">Coming soon</span>
+                </span>
+              ) : (
+                <a class="pager-next" href={next.href}>
+                  <span class="pager-kicker">Next</span>
+                  {next.title}
+                </a>
+              )
+            ) : (
+              <span></span>
+            )
+          }
+        </nav>
         <footer class="topic-changelog">
           <h2>Changelog</h2>
           <ul>
@@ -120,6 +168,55 @@ const jsonLd = {
         </footer>
         <a class="back-top" href="#main-content">Back to top</a>
       </article>
+      <aside class="topic-rail" aria-label="Related and share">
+        <div class="rail-block">
+          <p class="rail-label">Share</p>
+          <div class="cta-actions">
+            <a class="cta-btn" data-share="x" data-share-text={shareText} href={`https://x.com/intent/post?text=${encodeURIComponent(`${shareText} ${shareUrl} @LorenzodeLeo_`)}`} target="_blank" rel="noopener noreferrer">Post on X<span class="new-tab"> (opens in a new tab)</span></a>
+            <a class="cta-btn" data-share="linkedin" data-share-text={shareText} href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(`${shareText} ${shareUrl} @LorenzodeLeo_`)}`} target="_blank" rel="noopener noreferrer">Post on LinkedIn<span class="new-tab"> (opens in a new tab)</span></a>
+            <button class="cta-btn" type="button" data-copy>Copy link</button>
+          </div>
+        </div>
+        <div class="rail-block">
+          <p class="rail-label">Related</p>
+          <p class="rail-note">More on this, if you want it.</p>
+          <ul class="rail-list">
+            <li><a href={BOOK_HREF}>The book</a></li>
+            {
+              currentTopic?.source && (
+                <li>
+                  <a href={currentTopic.source.href} target="_blank" rel="noopener noreferrer">
+                    {currentTopic.source.title}
+                    <span class="new-tab"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              )
+            }
+            {
+              next &&
+                (next.soon ? (
+                  <li>
+                    <span class="rail-soon" title="Coming soon">
+                      {next.title}
+                      <span class="soon">Coming soon</span>
+                    </span>
+                  </li>
+                ) : (
+                  <li>
+                    <a href={next.href}>{next.title}</a>
+                  </li>
+                ))
+            }
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div class="share-pop" hidden>
+    <p class="share-pop-label">Share this passage</p>
+    <div class="cta-actions">
+      <a class="cta-btn" data-pop="x" href="https://x.com/intent/post" target="_blank" rel="noopener noreferrer">Post on X<span class="new-tab"> (opens in a new tab)</span></a>
+      <a class="cta-btn" data-pop="linkedin" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener noreferrer">Post on LinkedIn<span class="new-tab"> (opens in a new tab)</span></a>
     </div>
   </div>
   <script is:inline>
@@ -188,5 +285,92 @@ const jsonLd = {
       };
       test.addEventListener("change", update);
     }
+
+    const payloadFor = (text, url) => text + " " + url + " @LorenzodeLeo_";
+    const intent = (kind, text, url) => {
+      const payload = encodeURIComponent(payloadFor(text, url));
+      return kind === "x"
+        ? "https://x.com/intent/post?text=" + payload
+        : "https://www.linkedin.com/feed/?shareActive=true&text=" + payload;
+    };
+    const pageUrl = () => location.origin + location.pathname;
+    for (const link of document.querySelectorAll("[data-share]")) {
+      const box = link.closest(".cta-box");
+      const url = pageUrl() + (box && box.id ? "#" + box.id : "");
+      const text = link.getAttribute("data-share-text") || document.title;
+      link.href = intent(link.getAttribute("data-share"), text, url);
+    }
+    const copy = document.querySelector("[data-copy]");
+    if (copy) {
+      copy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(pageUrl());
+          copy.textContent = "Copied";
+        } catch (error) {
+          copy.textContent = "Copy the URL";
+        }
+        setTimeout(() => {
+          copy.textContent = "Copy link";
+        }, 1600);
+      });
+    }
+
+    const pop = document.querySelector(".share-pop");
+    const popX = pop && pop.querySelector("[data-pop='x']");
+    const popIn = pop && pop.querySelector("[data-pop='linkedin']");
+    let popTimer = 0;
+    const hidePop = () => {
+      if (!pop) return;
+      pop.hidden = true;
+    };
+    const showPop = () => {
+      const selection = document.getSelection();
+      if (!selection || selection.isCollapsed || !pop || !popX || !popIn) {
+        hidePop();
+        return;
+      }
+      const text = selection.toString().replace(/\s+/g, " ").trim();
+      if (text.length < 20 || text.length > 500) {
+        hidePop();
+        return;
+      }
+      const node = selection.anchorNode;
+      const prose = document.querySelector(".topic-prose");
+      if (!node || !prose || !prose.contains(node.nodeType === 1 ? node : node.parentElement)) {
+        hidePop();
+        return;
+      }
+      const range = selection.getRangeAt(0);
+      let section = prose.querySelector("h2, h3");
+      for (const head of prose.querySelectorAll("h2, h3")) {
+        if (head.compareDocumentPosition(range.startContainer) & Node.DOCUMENT_POSITION_FOLLOWING) section = head;
+      }
+      const url = pageUrl() + (section && section.id ? "#" + section.id : "");
+      const quote = "“" + text + "”";
+      popX.href = intent("x", quote, url);
+      popIn.href = intent("linkedin", quote, url);
+      const rect = range.getBoundingClientRect();
+      pop.hidden = false;
+      const width = pop.offsetWidth;
+      const height = pop.offsetHeight;
+      const coarse = window.matchMedia("(pointer: coarse)").matches;
+      let top = coarse ? rect.bottom + 12 : rect.top - height - 10;
+      if (!coarse && top < 72) top = rect.bottom + 12;
+      if (coarse && top + height > window.innerHeight - 8) top = Math.max(72, rect.top - height - 10);
+      let left = rect.left + rect.width / 2 - width / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - width - 8));
+      pop.style.top = top + "px";
+      pop.style.left = left + "px";
+    };
+    document.addEventListener("selectionchange", () => {
+      window.clearTimeout(popTimer);
+      popTimer = window.setTimeout(showPop, 180);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") hidePop();
+    });
+    document.addEventListener("mousedown", (event) => {
+      if (pop && !pop.hidden && !pop.contains(event.target)) hidePop();
+    });
   </script>
 </SiteLayout>

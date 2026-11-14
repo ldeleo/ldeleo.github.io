@@ -23,9 +23,10 @@ function splitText(value) {
     parts.push({
       type: "html",
       value:
-        `<span class="xref" data-topic="${escapeHtml(topic)}" data-section="${escapeHtml(section)}">` +
+        `<span class="xref" title="Coming soon" data-topic="${escapeHtml(topic)}" data-section="${escapeHtml(section)}">` +
         `<span class="xref-topic">${escapeHtml(topic)}</span>` +
         `<span class="xref-section">${escapeHtml(section)}</span>` +
+        `<span class="soon">Coming soon</span>` +
         `</span>`,
     });
     last = index + match[0].length;
@@ -135,8 +136,8 @@ function scoreResult() {
 
 function sectionClass(id) {
   const classes = ["topic-section"];
-  if (id === "the-map") classes.push("topic-card", "topic-map");
-  if (id === "how-the-words-relate") classes.push("topic-card", "topic-compare");
+  if (id === "the-map") classes.push("topic-map");
+  if (id === "how-the-words-relate") classes.push("topic-compare");
   if (String(id).startsWith("the-test")) classes.push("topic-card", "topic-test");
   return classes;
 }
@@ -181,6 +182,7 @@ export function rehypeReading() {
       }
       if (child.type === "element" && child.tagName === "h3") {
         protectHyphen(child);
+        headingId(child, seen);
         if (section) section.children.push(child);
         else out.push(child);
         continue;
@@ -198,17 +200,131 @@ export function rehypeReading() {
     }
     flush();
     tree.children = out;
+    replaceCtas(tree, file);
     annotate(tree);
+    labelTables(tree);
     tidyLinks(tree);
   };
+}
+
+const CTA = {
+  hear: {
+    id: "invite-hear",
+    text: "If you think it's wrong, or you've seen a case it doesn't fit, I'd genuinely like to hear it.",
+    post: "If you think this definition of an AI-native company is wrong, or you've seen a case it doesn't fit, I'd genuinely like to hear it.",
+  },
+  cases: {
+    id: "invite-cases",
+    text: "If you're building one, or you know one, I'd like to see it. Send it my way, and the best cases will make it into this chapter.",
+    post: "If you're building an AI-native company, or you know one, I'd like to see it. The best cases will make it into the chapter.",
+  },
+};
+
+function pageUrl(file, hash) {
+  const slug = file.data?.astro?.frontmatter?.slug ?? "";
+  const preview = process.env.PREVIEW_BASE === "/preview" ? "/preview" : "";
+  return `https://lorenzodeleo.com${preview}/${slug}${hash}`;
+}
+
+function shareHref(kind, post, url) {
+  const payload = `${post} ${url} @LorenzodeLeo_`;
+  if (kind === "x") return `https://x.com/intent/post?text=${encodeURIComponent(payload)}`;
+  return `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(payload)}`;
+}
+
+function newTabSpan() {
+  return element("span", { className: ["new-tab"] }, [plain(" (opens in a new tab)")]);
+}
+
+function shareLink(kind, label, post, url) {
+  return element(
+    "a",
+    {
+      className: ["cta-btn"],
+      href: shareHref(kind, post, url),
+      target: "_blank",
+      rel: ["noopener", "noreferrer"],
+      dataShare: kind,
+      dataShareText: post,
+    },
+    [plain(label), newTabSpan()]
+  );
+}
+
+function ctaBox(kind, file) {
+  const spec = CTA[kind];
+  const url = pageUrl(file, `#${spec.id}`);
+  return element("aside", { className: ["cta-box"], id: spec.id }, [
+    element("p", {}, [plain(spec.text)]),
+    element("div", { className: ["cta-actions"] }, [
+      shareLink("x", "Post on X", spec.post, url),
+      shareLink("linkedin", "Post on LinkedIn", spec.post, url),
+    ]),
+  ]);
+}
+
+function replaceCtas(node, file) {
+  if (!node?.children) return;
+  node.children = node.children.map((child) => {
+    if (child.type === "element" && child.tagName === "p") {
+      const text = nodeText(child).trim();
+      const match = text.match(/^\[\[cta:(hear|cases)\]\]$/);
+      if (match) return ctaBox(match[1], file);
+    }
+    replaceCtas(child, file);
+    return child;
+  });
+}
+
+function labelTables(node) {
+  if (!node?.children) return;
+  if (node.type === "element" && node.tagName === "table") {
+    const headers = [];
+    const collect = (current) => {
+      if (!current?.children) return;
+      for (const child of current.children) {
+        if (child.type === "element" && child.tagName === "th") headers.push(nodeText(child).trim());
+        else collect(child);
+      }
+    };
+    collect(node);
+    let column = 0;
+    const mark = (current, inBody) => {
+      if (!current?.children) return;
+      for (const child of current.children) {
+        if (child.type !== "element") continue;
+        if (child.tagName === "tbody") mark(child, true);
+        else if (child.tagName === "tr" && inBody) {
+          column = 0;
+          mark(child, true);
+        } else if (child.tagName === "td" && inBody) {
+          child.properties = child.properties ?? {};
+          child.properties.dataLabel = headers[column] || "";
+          column += 1;
+        } else if (child.tagName !== "thead") mark(child, inBody);
+      }
+    };
+    mark(node, false);
+  }
+  for (const child of node.children) labelTables(child);
 }
 
 function tidyLinks(node) {
   if (!node?.children) return;
   for (const child of node.children) {
     if (child.type === "element" && child.tagName === "a") {
-      const label = nodeText(child).trim();
-      if (label && !/^https?:/i.test(label) && label.length <= 36) addClass(child, "cite");
+      const label = nodeText(child).replace(/\s*\(opens in a new tab\)\s*/g, "").trim();
+      if (label && !/^https?:/i.test(label) && label.length <= 42) addClass(child, "cite");
+      const href = child.properties?.href;
+      const hrefValue = Array.isArray(href) ? href[0] : href;
+      if (typeof hrefValue === "string" && /^https?:/i.test(hrefValue)) {
+        child.properties.target = "_blank";
+        child.properties.rel = ["noopener", "noreferrer"];
+        const marked = child.children?.some(
+          (item) => item.type === "element" && classList(item).includes("new-tab")
+        );
+        if (!marked) child.children.push(newTabSpan());
+      }
     }
     tidyLinks(child);
   }
