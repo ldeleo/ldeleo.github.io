@@ -1,0 +1,192 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { SITE_URL } from "@/lib/constants";
+import { canonicalUrl } from "@/lib/meta";
+import { formatTopicDate, keepCompound, readingMinutes, topicHeadings, workingDefinition } from "@/lib/topic";
+
+export async function getStaticPaths() {
+  const topics = await getCollection("book");
+  return topics.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const headings = topicHeadings(entry.body ?? "");
+const minutes = readingMinutes(entry.body ?? "");
+const updated = formatTopicDate(entry.data.dateModified);
+const path = `/${entry.data.slug}`;
+const canonical = canonicalUrl(path);
+const definition = workingDefinition(entry.body ?? "");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: entry.data.title,
+      description: entry.data.description,
+      datePublished: entry.data.datePublished,
+      dateModified: entry.data.dateModified,
+      inLanguage: entry.data.lang,
+      author: { "@type": "Person", name: entry.data.author },
+      about: { "@id": `${canonical}#term` },
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": `${canonical}#term`,
+      name: "AI-native company",
+      description: definition,
+      inDefinedTermSet: entry.data.book,
+    },
+  ],
+};
+---
+
+<SiteLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  path={path}
+  lang={entry.data.lang}
+  author={entry.data.author}
+  datePublished={entry.data.datePublished}
+  dateModified={entry.data.dateModified}
+  alternates={[
+    { hreflang: entry.data.lang, href: canonical },
+    { hreflang: "es", href: `${SITE_URL}/es${path}` },
+    { hreflang: "x-default", href: canonical },
+  ]}
+  jsonLd={jsonLd}
+  reading
+>
+  <div class="read-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <span></span>
+  </div>
+  <div class="topic-shell">
+    <div class="topic-layout">
+      <nav class="topic-toc topic-toc-desktop" aria-label="On this page">
+        <p class="topic-toc-label">On this page</p>
+        <ol>
+          {
+            headings.map((heading) => (
+              <li>
+                <a href={`#${heading.id}`}>{keepCompound(heading.text)}</a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
+      <article>
+        <p class="topic-kicker">
+          <span>{keepCompound(entry.data.book)} · {entry.data.topic} · {entry.data.version}</span>
+          <span class="topic-kicker-meta">
+            <span class="topic-kicker-date">Updated {updated}</span>
+            <span class="topic-kicker-time">{minutes} min read</span>
+          </span>
+        </p>
+        <details class="topic-toc topic-toc-mobile">
+          <summary>Contents</summary>
+          <ol>
+            {
+              headings.map((heading) => (
+                <li>
+                  <a href={`#${heading.id}`}>{keepCompound(heading.text)}</a>
+                </li>
+              ))
+            }
+          </ol>
+        </details>
+        <div class="topic-prose">
+          <Content />
+        </div>
+        <footer class="topic-changelog">
+          <h2>Changelog</h2>
+          <ul>
+            {
+              entry.data.changelog.map((item) => (
+                <li>
+                  <strong>
+                    {item.version} · {formatTopicDate(item.date)}.
+                  </strong>{" "}
+                  {item.note}
+                </li>
+              ))
+            }
+          </ul>
+        </footer>
+        <a class="back-top" href="#main-content">Back to top</a>
+      </article>
+    </div>
+  </div>
+  <script is:inline>
+    const bar = document.querySelector(".read-progress");
+    const fill = bar && bar.querySelector("span");
+    const back = document.querySelector(".back-top");
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const pct = max > 0 ? Math.round((doc.scrollTop / max) * 100) : 0;
+      if (fill) fill.style.width = pct + "%";
+      if (bar) bar.setAttribute("aria-valuenow", String(pct));
+      if (back) back.classList.toggle("is-on", doc.scrollTop > 700);
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const links = [...document.querySelectorAll(".topic-toc a")];
+    const heads = [...document.querySelectorAll(".topic-prose h2")];
+    const markSection = () => {
+      if (!heads.length) return;
+      const line = 200;
+      let current = null;
+      for (const head of heads) {
+        if (head.getBoundingClientRect().top <= line) current = head;
+      }
+      for (const link of links) {
+        const on = current && link.getAttribute("href") === "#" + current.id;
+        link.classList.toggle("is-current", on);
+        if (on) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      }
+    };
+    document.addEventListener("scroll", markSection, { passive: true });
+    markSection();
+
+    const test = document.querySelector(".topic-test");
+    if (test) {
+      const sets = [...test.querySelectorAll(".q-score")];
+      const text = test.querySelector(".score-result-text");
+      const bands = [...test.querySelectorAll(".score-bands li")];
+      const update = () => {
+        const picked = sets.map((set) => set.querySelector("input:checked")).filter(Boolean);
+        if (picked.length < sets.length) {
+          if (text) {
+            text.textContent = picked.length
+              ? picked.length + " of " + sets.length + " scored"
+              : "Score each question from 0 to 2.";
+          }
+          for (const item of bands) {
+            item.classList.remove("is-on");
+            item.removeAttribute("aria-current");
+          }
+          return;
+        }
+        const total = picked.reduce((sum, input) => sum + Number(input.value), 0);
+        const pct = Math.round((total / 14) * 100);
+        const index = pct >= 75 ? 3 : pct >= 50 ? 2 : pct >= 25 ? 1 : 0;
+        if (text) text.textContent = total + " of 14 · about " + pct + "%";
+        bands.forEach((item, i) => {
+          const on = i === index;
+          item.classList.toggle("is-on", on);
+          if (on) item.setAttribute("aria-current", "true");
+          else item.removeAttribute("aria-current");
+        });
+      };
+      test.addEventListener("change", update);
+    }
+  </script>
+</SiteLayout>

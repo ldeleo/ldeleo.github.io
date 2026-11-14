@@ -1,0 +1,80 @@
+---
+import Section from "@/components/primitives/Section.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import { TALKS } from "@/data/content";
+
+type Props = {
+  /** h1 when this section opens a page; h2 on the home page. */
+  level?: "h1" | "h2";
+};
+
+const { level = "h2" } = Astro.props;
+const Title = level;
+const TalkTitle = level === "h1" ? "h2" : "h3";
+---
+
+<Section id="talks" class="room-talks">
+  <div class="room-split">
+    <div data-reveal>
+    <Eyebrow>Talks</Eyebrow>
+    <Title class="text-d2 mt-6" style="color: var(--color-ink);">
+      One idea, three rooms.
+    </Title>
+    <p class="lede measure mt-6">
+      Same thesis, brought to a different audience. English, Spanish, or Italian.
+    </p>
+    </div>
+    <picture>
+      <source srcset="/images/room/cut-stage.avif" type="image/avif" />
+      <source srcset="/images/room/cut-stage.webp" type="image/webp" />
+      <img
+        class="room-split__cut"
+        src="/images/room/cut-stage.webp"
+        alt="Lorenzo de Leo speaking into a microphone, close up."
+        width="900"
+        height="574"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+  </div>
+
+  <div class="talk-list">
+    {
+      TALKS.map((talk, i) => (
+        <article class="talk" id={talk.id} data-reveal style={`--reveal-i: ${i % 2};`}>
+          <div class="talk-kicker">
+            <span class="talk-index">{talk.index}</span>
+            <span class="talk-format">{talk.format}</span>
+          </div>
+          <div>
+            <TalkTitle>{talk.title}</TalkTitle>
+            <p class="talk-for">For {talk.audience}.</p>
+            <p class="talk-idea">{talk.idea}</p>
+            <p class="text-eyebrow mt-8" style="color: var(--color-muted);">
+              The room leaves with
+            </p>
+            <ul class="takeaways">
+              {talk.takeaways.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {talk.note && (
+              <p class="talk-note">
+                {talk.note}{" "}
+                {talk.links?.map((link, n) => (
+                  <span>
+                    {n > 0 && " · "}
+                    <a class="tap-44" href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            )}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>

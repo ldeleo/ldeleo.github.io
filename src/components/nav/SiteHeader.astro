@@ -1,10 +1,13 @@
 ---
 import Container from "@/components/primitives/Container.astro";
 import Wordmark from "@/components/brand/Wordmark.astro";
-import { NAV_LINKS, CTA_HREF, CTA_PRIMARY } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/constants";
 
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const raw = Astro.url.pathname.replace(/\/$/, "") || "/";
+const currentPath = (base && raw.startsWith(base) ? raw.slice(base.length) : raw) || "/";
 function isActive(href: string) {
+  if (href === "/") return currentPath === "/";
   return currentPath === href;
 }
 ---
@@ -20,7 +23,18 @@ function isActive(href: string) {
   >
     <Wordmark variant="header" href="/" />
 
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-nav-toggle
+    >
+      Menu
+    </button>
+
     <nav
+      id="site-nav"
       aria-label="Primary"
       class="enya-primary-nav order-3 flex w-full items-center justify-between sm:order-none sm:w-auto sm:justify-start"
       style="color: var(--color-muted-strong);"
@@ -47,14 +61,6 @@ function isActive(href: string) {
         ))
       }
     </nav>
-
-    <a
-      href={CTA_HREF}
-      class="enya-header-cta order-2 inline-flex whitespace-nowrap rounded-full px-4 py-2 text-eyebrow font-semibold transition-colors duration-200 sm:order-none md:px-5 md:py-2.5"
-      style="background: var(--color-ink); color: var(--color-paper);"
-    >
-      {CTA_PRIMARY}
-    </a>
   </Container>
 </header>
 
@@ -72,9 +78,9 @@ function isActive(href: string) {
   }
   .enya-header.is-scrolled {
     border-bottom-color: var(--color-rule);
-    background: color-mix(in srgb, var(--color-paper) 85%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(12, 11, 10, 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
 
   /* Primary nav: scale labels down on small screens so all links fit on one
@@ -88,21 +94,57 @@ function isActive(href: string) {
   }
   @media (min-width: 640px) {
     .enya-primary-nav {
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      gap: 1.25rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      gap: 0.9rem;
     }
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1100px) {
     .enya-primary-nav {
-      gap: 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      gap: 1.35rem;
     }
   }
 
-  /* CTA hover (replaces inline JS handlers so the CSP can forbid inline script). */
-  .enya-header-cta:hover {
-    background: var(--color-electric-purple) !important;
+  .nav-toggle {
+    display: none;
   }
+
+  @media (max-width: 760px) {
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--color-rule-strong);
+      background: transparent;
+      color: var(--color-ink);
+      font: inherit;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+    }
+    .enya-primary-nav {
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding-bottom: 0.5rem;
+    }
+    .enya-header.is-open .enya-primary-nav {
+      display: flex;
+    }
+    .enya-primary-nav a {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 1.0625rem;
+      letter-spacing: 0.04em;
+    }
+  }
+
 </style>
 
 <script>
@@ -112,5 +154,22 @@ function isActive(href: string) {
     const sync = () => header.classList.toggle("is-scrolled", window.scrollY > 4);
     sync();
     window.addEventListener("scroll", sync, { passive: true });
+  }
+
+  const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+  const nav = document.getElementById("site-nav");
+  if (toggle && header && nav) {
+    toggle.addEventListener("click", () => {
+      const open = header.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "Close" : "Menu";
+    });
+    nav.addEventListener("click", (event) => {
+      if ((event.target as HTMLElement).closest("a")) {
+        header.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.textContent = "Menu";
+      }
+    });
   }
 </script>

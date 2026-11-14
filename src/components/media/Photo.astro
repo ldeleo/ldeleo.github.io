@@ -1,0 +1,30 @@
+---
+type Props = {
+  /** File prefix in /images/room, without the width suffix. */
+  name: string;
+  alt: string;
+  width: number;
+  height: number;
+  sizes: string;
+  widths: number[];
+  class?: string;
+  priority?: boolean;
+};
+
+const { name, alt, width, height, sizes, widths, class: className, priority = false } = Astro.props;
+const srcset = widths.map((w) => `/images/room/${name}-${w}.jpg ${w}w`).join(", ");
+const src = `/images/room/${name}-${widths[widths.length - 1]}.jpg`;
+---
+
+<img
+  class={className}
+  src={src}
+  srcset={srcset}
+  sizes={sizes}
+  width={width}
+  height={height}
+  alt={alt}
+  loading={priority ? "eager" : "lazy"}
+  fetchpriority={priority ? "high" : "auto"}
+  decoding="async"
+/>

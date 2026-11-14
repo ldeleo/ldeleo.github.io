@@ -1,0 +1,21 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const target = `${base}/writing#book`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>The AI-Native Company</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href={`https://lorenzodeleo.com${target}`} />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <script is:inline define:vars={{ target }}>
+      location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p><a href={target}>The AI-Native Company</a></p>
+  </body>
+</html>

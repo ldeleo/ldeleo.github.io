@@ -4,6 +4,11 @@ import SiteHeader from "@/components/nav/SiteHeader.astro";
 import SiteFooter from "@/components/nav/SiteFooter.astro";
 import { canonicalUrl, ogImageUrl } from "@/lib/meta";
 import { BRAND_NAME_FULL } from "@/lib/constants";
+import manropeLatin from "@fontsource/manrope/files/manrope-latin-400-normal.woff2?url";
+import manropeBold from "@fontsource/manrope/files/manrope-latin-700-normal.woff2?url";
+import manropeExt from "@fontsource/manrope/files/manrope-latin-ext-400-normal.woff2?url";
+import manropeExtBold from "@fontsource/manrope/files/manrope-latin-ext-700-normal.woff2?url";
+import syneLatin from "@fontsource/syne/files/syne-latin-700-normal.woff2?url";
 
 type Props = {
   title: string;
@@ -12,9 +17,18 @@ type Props = {
   ogImage?: string;
   /** BCP-47 code for pages not written in English (e.g. the EspacioTec resources). */
   lang?: string;
+  author?: string;
+  datePublished?: string;
+  dateModified?: string;
+  /** Future translations. `es` is not rewritten onto /preview. */
+  alternates?: { hreflang: string; href: string }[];
+  jsonLd?: unknown;
+  /** Light paper for long-form pages. Header and footer stay dark. */
+  reading?: boolean;
 };
 
-const { title, description, path, ogImage, lang = "en" } = Astro.props;
+const { title, description, path, ogImage, lang = "en", author, datePublished, dateModified, alternates, jsonLd, reading = false } =
+  Astro.props;
 const canonical = canonicalUrl(path);
 const image = ogImage ?? ogImageUrl();
 ---
@@ -28,6 +42,11 @@ const image = ogImage ?? ogImageUrl();
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {
+      import.meta.env.BASE_URL.startsWith("/preview") && (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
     <link rel="canonical" href={canonical} />
 
     <meta property="og:title" content={title} />
@@ -41,12 +60,37 @@ const image = ogImage ?? ogImageUrl();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
+    {author && <meta name="author" content={author} />}
+    {datePublished && <meta property="article:published_time" content={datePublished} />}
+    {dateModified && <meta property="article:modified_time" content={dateModified} />}
+    {
+      alternates?.map((alternate) => (
+        <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+      ))
+    }
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
+    {
+      reading && (
+        <>
+          <link rel="preload" href={manropeLatin} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={manropeBold} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={manropeExt} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={manropeExtBold} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={syneLatin} as="font" type="font/woff2" crossorigin />
+        </>
+      )
+    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+      </style>
+    </noscript>
 
-    <meta name="theme-color" content="#FAF8F4" />
+    <meta name="theme-color" content="#0C0B0A" />
   </head>
-  <body class="min-h-screen">
+  <body class:list={["min-h-screen", reading && "is-reading"]}>
     <SiteHeader />
     <main id="main-content">
       <slot />
@@ -75,99 +119,6 @@ const image = ogImage ?? ogImageUrl();
           { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
         );
         reveals.forEach((el) => io.observe(el));
-      }
-
-      // Masked line-by-line reveal for plain-text headings [data-reveal-lines].
-      // Splits each heading into visual lines, then rises them in once on view.
-      // Falls back to plain visible text under reduced-motion.
-      const lineTargets = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-reveal-lines]")
-      );
-      if (lineTargets.length) {
-        if (reduce) {
-          lineTargets.forEach((el) => el.classList.add("is-in"));
-        } else {
-          const lineIo = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("is-in");
-                  lineIo.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.2 }
-          );
-
-          const split = (node: HTMLElement, raw: string) => {
-            node.textContent = "";
-            const words = raw.split(/\s+/).map((w) => {
-              const s = document.createElement("span");
-              s.textContent = w;
-              s.style.display = "inline-block";
-              return s;
-            });
-            words.forEach((s, i) => {
-              node.appendChild(s);
-              if (i < words.length - 1) node.appendChild(document.createTextNode(" "));
-            });
-            const lines: HTMLSpanElement[][] = [];
-            let top: number | null = null;
-            words.forEach((s) => {
-              const t = s.offsetTop;
-              if (top === null || Math.abs(t - top) > 6) {
-                lines.push([]);
-                top = t;
-              }
-              lines[lines.length - 1].push(s);
-            });
-            node.textContent = "";
-            lines.forEach((ws, li) => {
-              const line = document.createElement("span");
-              line.className = "line";
-              const inner = document.createElement("span");
-              inner.className = "line-inner";
-              inner.style.setProperty("--line-i", String(li));
-              ws.forEach((s, i) => {
-                if (i) inner.appendChild(document.createTextNode(" "));
-                s.style.display = "";
-                inner.appendChild(s);
-              });
-              line.appendChild(inner);
-              node.appendChild(line);
-            });
-          };
-
-          const setup = () => {
-            lineTargets.forEach((node) => {
-              const raw = (node.getAttribute("data-raw") ?? node.textContent ?? "").trim();
-              node.setAttribute("data-raw", raw);
-              split(node, raw);
-              lineIo.observe(node);
-            });
-          };
-
-          if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(setup);
-          } else {
-            setup();
-          }
-
-          let rt: number;
-          window.addEventListener(
-            "resize",
-            () => {
-              window.clearTimeout(rt);
-              rt = window.setTimeout(() => {
-                lineTargets.forEach((node) => {
-                  split(node, node.getAttribute("data-raw") ?? "");
-                  node.classList.add("is-in");
-                });
-              }, 200);
-            },
-            { passive: true }
-          );
-        }
       }
     </script>
   </body>
