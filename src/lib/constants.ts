@@ -8,7 +8,7 @@ export const SITE_URL = "https://lorenzodeleo.com";
 export const BRAND_NAME_FULL = "Lorenzo de Leo";
 export const BRAND_NAME_SHORT = "Lorenzo de Leo";
 export const FOOTER_TAGLINE =
-  "Managing Director at ENYA Ventures. I back AI‑native founders in Latin America, and I speak and write about the redesign that takes.";
+  "Managing Director of ENYA Ventures, an AI-native pre-seed fund for Latin America. I speak and write about the redesign that takes.";
 
 /** Speaking inquiries. Shown on the booking block; the form also delivers here. */
 export const SPEAKING_EMAIL = "lorenzodeleo.usa@gmail.com";
@@ -57,9 +57,9 @@ export const PAGE_DESCRIPTIONS = {
   speaking:
     "Three talks, one thesis: the AI‑native redesign. A keynote for leadership teams, a workshop for founders and investors, and a fireside on Latin America. English, Spanish, or Italian.",
   writing:
-    "Essays behind the talks: what AI‑native means, why judgment is the scarce resource, and the case for pre-seed venture in Spanish-speaking Latin America.",
+    "Essays behind the talks: what AI‑native means, why judgment is the scarce resource, and the earliest stage in Spanish-speaking Latin America.",
   about:
-    "Lorenzo de Leo is Managing Director of ENYA Ventures, a Miami pre-seed fund for AI‑native founders in Spanish-speaking Latin America. Mathematics, a decade building companies, and a fund run on the thesis.",
+    "Lorenzo de Leo is Managing Director of ENYA Ventures, an AI-native pre-seed fund for Latin America he is building. Mathematics, a decade of company building, and a fund shaped around the thesis.",
   book: "The AI-Native Company. Coming soon.",
   contact:
     "Invite Lorenzo de Leo to speak. Share the date, the audience, and the outcome you want the room to leave with. Speaker kit available on request.",

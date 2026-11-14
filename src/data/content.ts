@@ -163,7 +163,7 @@ export const ESSAYS: Essay[] = [
   {
     href: ARTICLE_LATAM_URL,
     title: "A compelling case for pre-seed venture in Spanish-speaking Latin America",
-    body: "Why the earliest stage in an overlooked region is a serious opportunity right now: the timing, the founders, and what disciplined pre-seed investing looks like there.",
+    body: "Why the earliest stage in an overlooked region is a serious opportunity right now: the timing, and the founders.",
     behind: "Behind the fireside",
   },
 ];
