@@ -41,6 +41,7 @@ export const NAV_LINKS = [
   { href: "/book", label: "Book" },
   { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export const PAGE_TITLES = {

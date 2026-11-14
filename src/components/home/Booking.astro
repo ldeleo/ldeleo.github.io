@@ -3,8 +3,11 @@ import Section from "@/components/primitives/Section.astro";
 import Eyebrow from "@/components/primitives/Eyebrow.astro";
 import {
   ENYA_URL,
+  LINKEDIN_URL,
   SPEAKING_EMAIL,
+  SUBSTACK_URL,
   WEB3FORMS_ACCESS_KEY,
+  X_URL,
 } from "@/lib/constants";
 
 type Props = {
@@ -41,6 +44,11 @@ const mailto = `mailto:${SPEAKING_EMAIL}?subject=${encodeURIComponent("Speaking 
         The fund reads
         <a href={ENYA_URL} class="underline" target="_blank" rel="noopener noreferrer">enya.vc</a>.
       </p>
+      <p class="contact-channels" data-reveal style="--reveal-i: 5;">
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={X_URL} target="_blank" rel="noopener noreferrer">X</a>
+        <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer">Substack</a>
+      </p>
     </div>
 
     <form
@@ -52,8 +60,8 @@ const mailto = `mailto:${SPEAKING_EMAIL}?subject=${encodeURIComponent("Speaking 
       style="--reveal-i: 1;"
     >
       <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-      <input type="hidden" name="subject" value="Speaking inquiry from lorenzodeleo.com" />
-      <input type="hidden" name="from_name" value="lorenzodeleo.com" />
+      <input type="hidden" name="subject" value="New message from lorenzodeleo.com" />
+      <input type="hidden" name="from_name" value="lorenzodeleo.com contact form" />
       <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off" />
 
       <div class="booking-row">
@@ -73,22 +81,17 @@ const mailto = `mailto:${SPEAKING_EMAIL}?subject=${encodeURIComponent("Speaking 
       </label>
 
       <label class="booking-field">
-        <span>Date</span>
-        <input type="text" name="date" required autocomplete="off" placeholder="When, and which city" />
+        <span>Event date &amp; location <em>(if speaking)</em></span>
+        <input type="text" name="event" autocomplete="off" />
       </label>
 
       <label class="booking-field">
-        <span>Audience</span>
-        <input type="text" name="audience" required placeholder="Who will be in the room" />
-      </label>
-
-      <label class="booking-field">
-        <span>Outcome</span>
+        <span>Message</span>
         <textarea
-          name="outcome"
-          rows="5"
+          name="message"
+          rows="6"
           required
-          placeholder="What should they leave able to decide or do?"></textarea>
+          placeholder="For speaking: who's the audience, and what should they leave with?"></textarea>
       </label>
 
       <button type="submit" class="booking-submit">Send the inquiry</button>

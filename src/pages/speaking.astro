@@ -4,7 +4,8 @@ import Talks from "@/components/home/Talks.astro";
 import Praise from "@/components/home/Praise.astro";
 import Stages from "@/components/home/Stages.astro";
 import Reel from "@/components/home/Reel.astro";
-import { CTA_FULL, CTA_HREF, PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
+import Invite from "@/components/home/Invite.astro";
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 ---
 
 <SiteLayout title={PAGE_TITLES.speaking} description={PAGE_DESCRIPTIONS.speaking} path="/speaking">
@@ -32,7 +33,5 @@ import { CTA_FULL, CTA_HREF, PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/consta
     />
   </figure>
   <Reel />
-  <p class="room-invite" id="invite">
-    <a href={CTA_HREF}>{CTA_FULL}</a>
-  </p>
+  <Invite />
 </SiteLayout>
