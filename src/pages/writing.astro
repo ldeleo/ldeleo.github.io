@@ -1,9 +1,15 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
+import Section from "@/components/primitives/Section.astro";
 import Ideas from "@/components/home/Ideas.astro";
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 ---
 
 <SiteLayout title={PAGE_TITLES.writing} description={PAGE_DESCRIPTIONS.writing} path="/writing">
-  <Ideas level="h1" />
+  <Section id="book" compact>
+    <p class="room-kicker">Book</p>
+    <h1 class="text-d2 mt-6" style="color: var(--color-ink);">The AI-Native Company</h1>
+    <p class="lede mt-4">Coming soon.</p>
+  </Section>
+  <Ideas />
 </SiteLayout>
