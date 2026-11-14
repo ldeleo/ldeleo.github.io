@@ -486,6 +486,7 @@ body.is-reading .enya-header {
 }
 
 .topic-toc-mobile {
+  margin-bottom: 2rem;
   border: 1px solid var(--read-line);
   border-radius: 12px;
   background: var(--read-card);
@@ -626,6 +627,10 @@ body.is-reading .enya-header {
 
   .topic-prose table {
     min-width: 36rem;
+  }
+
+  .key-points {
+    padding: 1.45rem 1.7rem 1.55rem;
   }
 
   .topic-toc-mobile {
