@@ -4,6 +4,11 @@ import SiteHeader from "@/components/nav/SiteHeader.astro";
 import SiteFooter from "@/components/nav/SiteFooter.astro";
 import { canonicalUrl, ogImageUrl } from "@/lib/meta";
 import { BRAND_NAME_FULL } from "@/lib/constants";
+import manropeLatin from "@fontsource/manrope/files/manrope-latin-400-normal.woff2?url";
+import manropeBold from "@fontsource/manrope/files/manrope-latin-700-normal.woff2?url";
+import manropeExt from "@fontsource/manrope/files/manrope-latin-ext-400-normal.woff2?url";
+import manropeExtBold from "@fontsource/manrope/files/manrope-latin-ext-700-normal.woff2?url";
+import syneLatin from "@fontsource/syne/files/syne-latin-700-normal.woff2?url";
 
 type Props = {
   title: string;
@@ -18,9 +23,11 @@ type Props = {
   /** Future translations. `es` is not rewritten onto /preview. */
   alternates?: { hreflang: string; href: string }[];
   jsonLd?: unknown;
+  /** Light paper for long-form pages. Header and footer stay dark. */
+  reading?: boolean;
 };
 
-const { title, description, path, ogImage, lang = "en", author, datePublished, dateModified, alternates, jsonLd } =
+const { title, description, path, ogImage, lang = "en", author, datePublished, dateModified, alternates, jsonLd, reading = false } =
   Astro.props;
 const canonical = canonicalUrl(path);
 const image = ogImage ?? ogImageUrl();
@@ -63,6 +70,17 @@ const image = ogImage ?? ogImageUrl();
     }
     {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
+    {
+      reading && (
+        <>
+          <link rel="preload" href={manropeLatin} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={manropeBold} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={manropeExt} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={manropeExtBold} as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href={syneLatin} as="font" type="font/woff2" crossorigin />
+        </>
+      )
+    }
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <noscript>
       <style>
@@ -72,7 +90,7 @@ const image = ogImage ?? ogImageUrl();
 
     <meta name="theme-color" content="#0C0B0A" />
   </head>
-  <body class="min-h-screen">
+  <body class:list={["min-h-screen", reading && "is-reading"]}>
     <SiteHeader />
     <main id="main-content">
       <slot />

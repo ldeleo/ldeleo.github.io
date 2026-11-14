@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { SITE_URL } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/meta";
-import { formatTopicDate, topicHeadings, workingDefinition } from "@/lib/topic";
+import { formatTopicDate, readingMinutes, topicHeadings, workingDefinition } from "@/lib/topic";
 
 export async function getStaticPaths() {
   const topics = await getCollection("book");
@@ -16,6 +16,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const headings = topicHeadings(entry.body ?? "");
+const minutes = readingMinutes(entry.body ?? "");
 const updated = formatTopicDate(entry.data.dateModified);
 const path = `/${entry.data.slug}`;
 const canonical = canonicalUrl(path);
@@ -59,7 +60,12 @@ const jsonLd = {
     { hreflang: "x-default", href: canonical },
   ]}
   jsonLd={jsonLd}
+  reading
 >
+  <div class="read-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <span></span>
+  </div>
+  <a class="back-top" href="#main-content">Back to top</a>
   <div class="topic-shell">
     <div class="topic-layout">
       <details class="topic-toc topic-toc-mobile">
@@ -90,7 +96,7 @@ const jsonLd = {
 
       <article>
         <p class="topic-kicker">
-          {entry.data.book} · {entry.data.topic} · {entry.data.version} · Updated {updated}
+          {entry.data.book} · {entry.data.topic} · {entry.data.version} · Updated {updated} · {minutes} min read
         </p>
         <div class="topic-prose">
           <Content />
@@ -113,4 +119,65 @@ const jsonLd = {
       </article>
     </div>
   </div>
+  <script is:inline>
+    const bar = document.querySelector(".read-progress");
+    const fill = bar && bar.querySelector("span");
+    const back = document.querySelector(".back-top");
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const pct = max > 0 ? Math.round((doc.scrollTop / max) * 100) : 0;
+      if (fill) fill.style.width = pct + "%";
+      if (bar) bar.setAttribute("aria-valuenow", String(pct));
+      if (back) back.classList.toggle("is-on", doc.scrollTop > 700);
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const links = [...document.querySelectorAll(".topic-toc a")];
+    const heads = [...document.querySelectorAll(".topic-prose h2")];
+    if (heads.length && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          const id = visible.target.id;
+          for (const link of links) {
+            const on = link.getAttribute("href") === "#" + id;
+            link.classList.toggle("is-current", on);
+            if (on) link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
+          }
+        },
+        { rootMargin: "-15% 0px -70% 0px", threshold: [0, 1] }
+      );
+      heads.forEach((head) => observer.observe(head));
+    }
+
+    const test = document.querySelector(".topic-test");
+    if (test) {
+      const sets = [...test.querySelectorAll(".q-score")];
+      const text = test.querySelector(".score-result-text");
+      const bands = [...test.querySelectorAll(".score-bands li")];
+      const update = () => {
+        let total = 0;
+        for (const set of sets) {
+          const picked = set.querySelector("input:checked");
+          if (picked) total += Number(picked.value);
+        }
+        const pct = Math.round((total / 14) * 100);
+        const index = pct >= 75 ? 3 : pct >= 50 ? 2 : pct >= 25 ? 1 : 0;
+        if (text) text.textContent = total + " of 14 · about " + pct + "%";
+        bands.forEach((item, i) => {
+          const on = i === index;
+          item.classList.toggle("is-on", on);
+          if (on) item.setAttribute("aria-current", "true");
+          else item.removeAttribute("aria-current");
+        });
+      };
+      test.addEventListener("change", update);
+    }
+  </script>
 </SiteLayout>

@@ -34,6 +34,16 @@ export function formatTopicDate(iso: string): string {
   });
 }
 
+/** Silent-reading rate from Brysbaert, 2019. */
+export function readingMinutes(markdown: string): number {
+  const words = markdown
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/[#>*_[\]()`|-]/g, " ")
+    .split(/\s+/)
+    .filter((word) => word.length > 0).length;
+  return Math.max(1, Math.round(words / 238));
+}
+
 export function workingDefinition(markdown: string): string {
   const match = markdown.match(/^>\s+\*\*(.+?)\*\*\s*$/m);
   return match?.[1] ?? "";

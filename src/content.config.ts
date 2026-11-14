@@ -14,6 +14,7 @@ const book = defineCollection({
     datePublished: z.string(),
     dateModified: z.string(),
     version: z.string(),
+    keyPoints: z.array(z.string()).optional(),
     changelog: z.array(
       z.object({
         version: z.string(),

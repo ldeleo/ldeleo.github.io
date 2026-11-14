@@ -9,6 +9,11 @@ author: "Lorenzo de Leo"
 datePublished: "2026-11-13"
 dateModified: "2026-11-13"
 version: "v0.1"
+keyPoints:
+  - "An AI-native company is one where people and agents work as one system: they share the same memory, the work moves through loops that close fast, and everyone knows where human judgment decides."
+  - "The product may or may not contain AI."
+  - "What matters is how the company itself is built."
+  - "Most companies are somewhere on the way, and the useful question is how far."
 changelog:
   - version: "v0.1"
     date: "2026-11-13"
