@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { SITE_URL } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/meta";
-import { formatTopicDate, readingMinutes, topicHeadings, workingDefinition } from "@/lib/topic";
+import { formatTopicDate, keepCompound, readingMinutes, topicHeadings, workingDefinition } from "@/lib/topic";
 
 export async function getStaticPaths() {
   const topics = await getCollection("book");
@@ -65,29 +65,15 @@ const jsonLd = {
   <div class="read-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
     <span></span>
   </div>
-  <a class="back-top" href="#main-content">Back to top</a>
   <div class="topic-shell">
     <div class="topic-layout">
-      <details class="topic-toc topic-toc-mobile">
-        <summary>On this page</summary>
-        <ol>
-          {
-            headings.map((heading) => (
-              <li>
-                <a href={`#${heading.id}`}>{heading.text}</a>
-              </li>
-            ))
-          }
-        </ol>
-      </details>
-
       <nav class="topic-toc topic-toc-desktop" aria-label="On this page">
         <p class="topic-toc-label">On this page</p>
         <ol>
           {
             headings.map((heading) => (
               <li>
-                <a href={`#${heading.id}`}>{heading.text}</a>
+                <a href={`#${heading.id}`}>{keepCompound(heading.text)}</a>
               </li>
             ))
           }
@@ -96,8 +82,24 @@ const jsonLd = {
 
       <article>
         <p class="topic-kicker">
-          {entry.data.book} · {entry.data.topic} · {entry.data.version} · Updated {updated} · {minutes} min read
+          <span>{keepCompound(entry.data.book)} · {entry.data.topic} · {entry.data.version}</span>
+          <span class="topic-kicker-meta">
+            <span class="topic-kicker-date">Updated {updated}</span>
+            <span class="topic-kicker-time">{minutes} min read</span>
+          </span>
         </p>
+        <details class="topic-toc topic-toc-mobile">
+          <summary>Contents</summary>
+          <ol>
+            {
+              headings.map((heading) => (
+                <li>
+                  <a href={`#${heading.id}`}>{keepCompound(heading.text)}</a>
+                </li>
+              ))
+            }
+          </ol>
+        </details>
         <div class="topic-prose">
           <Content />
         </div>
@@ -116,6 +118,7 @@ const jsonLd = {
             }
           </ul>
         </footer>
+        <a class="back-top" href="#main-content">Back to top</a>
       </article>
     </div>
   </div>
@@ -136,25 +139,22 @@ const jsonLd = {
 
     const links = [...document.querySelectorAll(".topic-toc a")];
     const heads = [...document.querySelectorAll(".topic-prose h2")];
-    if (heads.length && "IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (!visible) return;
-          const id = visible.target.id;
-          for (const link of links) {
-            const on = link.getAttribute("href") === "#" + id;
-            link.classList.toggle("is-current", on);
-            if (on) link.setAttribute("aria-current", "location");
-            else link.removeAttribute("aria-current");
-          }
-        },
-        { rootMargin: "-15% 0px -70% 0px", threshold: [0, 1] }
-      );
-      heads.forEach((head) => observer.observe(head));
-    }
+    const markSection = () => {
+      if (!heads.length) return;
+      const line = 200;
+      let current = null;
+      for (const head of heads) {
+        if (head.getBoundingClientRect().top <= line) current = head;
+      }
+      for (const link of links) {
+        const on = current && link.getAttribute("href") === "#" + current.id;
+        link.classList.toggle("is-current", on);
+        if (on) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      }
+    };
+    document.addEventListener("scroll", markSection, { passive: true });
+    markSection();
 
     const test = document.querySelector(".topic-test");
     if (test) {
@@ -162,11 +162,20 @@ const jsonLd = {
       const text = test.querySelector(".score-result-text");
       const bands = [...test.querySelectorAll(".score-bands li")];
       const update = () => {
-        let total = 0;
-        for (const set of sets) {
-          const picked = set.querySelector("input:checked");
-          if (picked) total += Number(picked.value);
+        const picked = sets.map((set) => set.querySelector("input:checked")).filter(Boolean);
+        if (picked.length < sets.length) {
+          if (text) {
+            text.textContent = picked.length
+              ? picked.length + " of " + sets.length + " scored"
+              : "Score each question from 0 to 2.";
+          }
+          for (const item of bands) {
+            item.classList.remove("is-on");
+            item.removeAttribute("aria-current");
+          }
+          return;
         }
+        const total = picked.reduce((sum, input) => sum + Number(input.value), 0);
         const pct = Math.round((total / 14) * 100);
         const index = pct >= 75 ? 3 : pct >= 50 ? 2 : pct >= 25 ? 1 : 0;
         if (text) text.textContent = total + " of 14 · about " + pct + "%";

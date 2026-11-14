@@ -11,6 +11,11 @@ export function headingSlug(text: string, seen: Map<string, number>): string {
   return count === 0 ? base : `${base}-${count}`;
 }
 
+/** Keep "AI-native" on one line inside headings and the contents list. */
+export function keepCompound(text: string): string {
+  return text.replace(/AI-([Nn]ative)/g, "AI\u2011$1");
+}
+
 export function topicHeadings(markdown: string): { text: string; id: string }[] {
   const seen = new Map<string, number>();
   const headings: { text: string; id: string }[] = [];

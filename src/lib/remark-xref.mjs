@@ -81,6 +81,16 @@ function addClass(node, name) {
   node.properties.className = list;
 }
 
+function protectHyphen(node) {
+  if (!node) return;
+  if (node.type === "text" && node.value) {
+    node.value = node.value.replace(/AI-([Nn]ative)/g, "AI\u2011$1");
+    if (node.value.startsWith("\u201d")) node.value = `\u201c${node.value.slice(1)}`;
+    return;
+  }
+  if (node.children) node.children.forEach(protectHyphen);
+}
+
 function nodeText(node) {
   if (!node) return "";
   if (node.type === "text") return node.value;
@@ -90,7 +100,7 @@ function nodeText(node) {
 
 function keyPointsBox(points) {
   return element("aside", { className: ["key-points"] }, [
-    element("h2", {}, [plain("Key points")]),
+    element("p", { className: ["key-points-label"] }, [plain("Key points")]),
     element(
       "ul",
       {},
@@ -114,13 +124,11 @@ function scoreControl(index) {
 
 function scoreResult() {
   return element("div", { className: ["score-result"], ariaLive: "polite" }, [
-    element("p", { className: ["score-result-text"] }, [plain("0 of 14 · about 0%")]),
+    element("p", { className: ["score-result-text"] }, [plain("Score each question from 0 to 2.")]),
     element(
       "ol",
       { className: ["score-bands"] },
-      BANDS.map((name, index) =>
-        element("li", index === 0 ? { ariaCurrent: "true" } : {}, [plain(name)])
-      )
+      BANDS.map((name) => element("li", {}, [plain(name)]))
     ),
   ]);
 }
@@ -165,12 +173,21 @@ export function rehypeReading() {
 
     for (const child of tree.children) {
       if (child.type === "element" && child.tagName === "h1") {
+        headingId(child, seen);
+        protectHyphen(child);
         out.push(child);
         if (points.length) out.push(keyPointsBox(points));
         continue;
       }
+      if (child.type === "element" && child.tagName === "h3") {
+        protectHyphen(child);
+        if (section) section.children.push(child);
+        else out.push(child);
+        continue;
+      }
       if (child.type === "element" && child.tagName === "h2") {
         flush();
+        protectHyphen(child);
         const id = headingId(child, seen);
         const classes = sectionClass(id);
         section = element("section", { className: classes }, [child]);
@@ -182,7 +199,19 @@ export function rehypeReading() {
     flush();
     tree.children = out;
     annotate(tree);
+    tidyLinks(tree);
   };
+}
+
+function tidyLinks(node) {
+  if (!node?.children) return;
+  for (const child of node.children) {
+    if (child.type === "element" && child.tagName === "a") {
+      const label = nodeText(child).trim();
+      if (label && !/^https?:/i.test(label) && label.length <= 36) addClass(child, "cite");
+    }
+    tidyLinks(child);
+  }
 }
 
 function annotate(node) {

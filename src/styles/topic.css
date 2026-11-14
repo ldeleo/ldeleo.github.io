@@ -7,6 +7,7 @@ body.is-reading {
   --read-card: #fffdf8;
   --read-accent: #8c3e16;
   --read-accent-soft: #f4e7d8;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,12 +19,22 @@ body.is-reading {
     --read-card: #1c1a17;
     --read-accent: #e08a55;
     --read-accent-soft: rgba(224, 138, 85, 0.16);
+    color-scheme: dark;
   }
 }
 
 body.is-reading main {
   background: var(--read-bg);
   color: var(--read-ink);
+}
+
+body.is-reading ::selection {
+  background: #f0d3bc;
+  color: #1a1916;
+}
+
+body.is-reading :focus-visible {
+  outline-color: var(--read-accent);
 }
 
 body.is-reading .enya-header {
@@ -40,7 +51,10 @@ body.is-reading .enya-header {
 .topic-layout {
   display: grid;
   gap: 1.25rem;
+  width: min(100%, 66ch);
   min-width: 0;
+  margin-inline: auto;
+  font-size: 1.125rem;
 }
 
 .topic-layout > * {
@@ -49,14 +63,28 @@ body.is-reading .enya-header {
 }
 
 .topic-kicker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
   margin: 0 0 1.15rem;
-  max-width: min(66ch, 100%);
+  max-width: 100%;
   color: var(--read-muted);
   font-size: 0.78rem;
   font-weight: 650;
   letter-spacing: 0.06em;
-  line-height: 1.5;
+  line-height: 1.45;
   text-transform: uppercase;
+}
+
+.topic-kicker-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.85rem;
+}
+
+.topic-kicker-date,
+.topic-kicker-time {
+  white-space: nowrap;
 }
 
 .topic-prose {
@@ -75,6 +103,8 @@ body.is-reading .enya-header {
   font-weight: 700;
   letter-spacing: -0.025em;
   text-wrap: balance;
+  hyphens: none;
+  overflow-wrap: normal;
   scroll-margin-top: 5.75rem;
 }
 
@@ -98,19 +128,29 @@ body.is-reading .enya-header {
 
 .topic-prose p {
   margin: 0;
+  text-wrap: pretty;
 }
 
 .topic-prose p + p,
 .topic-prose ul + p,
 .topic-prose ol + p,
 .topic-prose .spine-callout + p {
-  margin-top: 1.15em;
+  margin-top: 1.25em;
 }
 
 .topic-prose ul,
 .topic-prose ol {
   margin: 0.85rem 0 0;
-  padding-left: 1.25rem;
+  padding-left: 1.35rem;
+  list-style-position: outside;
+}
+
+.topic-prose ul {
+  list-style: disc;
+}
+
+.topic-prose ol {
+  list-style: decimal;
 }
 
 .topic-prose li + li {
@@ -130,6 +170,10 @@ body.is-reading .enya-header {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
+}
+
+.topic-prose a.cite {
+  white-space: nowrap;
 }
 
 .topic-prose a:hover {
@@ -162,8 +206,8 @@ body.is-reading .enya-header {
   padding: 1.1rem 1.2rem 1.2rem;
 }
 
-.key-points h2 {
-  margin: 0 0 0.7rem;
+.key-points-label {
+  margin: 0 0 0.75rem;
   color: var(--read-accent);
   font-family: var(--font-sans);
   font-size: 0.75rem;
@@ -173,20 +217,28 @@ body.is-reading .enya-header {
   text-transform: uppercase;
 }
 
-.key-points ul {
-  margin: 0;
-  padding-left: 1.15rem;
+.topic-prose .key-points ul {
+  margin: 0.1rem 0 0;
+  padding: 0 0 0 1.2rem;
+  list-style: disc outside;
 }
 
-.key-points li {
+.topic-prose .key-points li,
+.topic-prose .key-points li + li {
+  display: list-item;
   margin: 0;
+  padding: 0 0 0 0.35rem;
   color: var(--read-ink);
   font-size: 1.02rem;
   line-height: 1.5;
 }
 
-.key-points li + li {
-  margin-top: 0.55rem;
+.topic-prose .key-points li + li {
+  margin-top: 0.7rem;
+}
+
+.topic-prose .key-points li::marker {
+  color: var(--read-accent);
 }
 
 .spine-callout,
@@ -341,13 +393,18 @@ body.is-reading .enya-header {
   font-weight: 700;
 }
 
-.score-bands {
+.topic-prose .score-bands {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   margin: 0.75rem 0 0;
   padding: 0;
   list-style: none;
+}
+
+.topic-prose .score-bands li,
+.topic-prose .score-bands li + li {
+  margin: 0;
 }
 
 .score-bands li {
@@ -410,6 +467,15 @@ body.is-reading .enya-header {
   pointer-events: auto;
 }
 
+@media (max-width: 1099px) {
+  .back-top {
+    position: static;
+    margin: 2.25rem 0 0;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .topic-toc summary,
 .topic-toc-label {
   color: var(--read-muted);
@@ -419,11 +485,42 @@ body.is-reading .enya-header {
   text-transform: uppercase;
 }
 
-.topic-toc summary {
+.topic-toc-mobile {
+  border: 1px solid var(--read-line);
+  border-radius: 12px;
+  background: var(--read-card);
+  padding: 0 0.9rem;
+}
+
+.topic-toc-mobile summary {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   min-height: 44px;
   cursor: pointer;
+  list-style: none;
+}
+
+.topic-toc-mobile summary::-webkit-details-marker {
+  display: none;
+}
+
+.topic-toc-mobile summary::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-left: auto;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.1rem) rotate(45deg);
+}
+
+.topic-toc-mobile[open] summary::after {
+  transform: translateY(0.15rem) rotate(-135deg);
+}
+
+.topic-toc-mobile ol {
+  padding-bottom: 0.4rem;
 }
 
 .topic-toc ol {
@@ -436,13 +533,14 @@ body.is-reading .enya-header {
   display: flex;
   align-items: center;
   min-height: 44px;
-  padding-left: 0.55rem;
-  box-shadow: inset 2px 0 0 transparent;
+  padding-left: 0.7rem;
+  border-left: 2px solid transparent;
   color: var(--read-muted);
   font-size: 0.92rem;
   line-height: 1.35;
   text-decoration: none;
-  overflow-wrap: anywhere;
+  hyphens: none;
+  overflow-wrap: normal;
 }
 
 .topic-toc a:hover,
@@ -451,7 +549,9 @@ body.is-reading .enya-header {
 }
 
 .topic-toc a.is-current {
-  box-shadow: inset 2px 0 0 var(--read-accent);
+  border-left-color: var(--read-accent);
+  color: var(--read-ink);
+  font-weight: 700;
 }
 
 .topic-toc-desktop {
@@ -496,24 +596,36 @@ body.is-reading .enya-header {
 }
 
 @media (min-width: 900px) {
+  .topic-layout,
   .topic-prose {
     font-size: 1.1875rem;
   }
 }
 
 @media (min-width: 1100px) {
+  .topic-shell {
+    padding-inline: 2rem;
+  }
+
   .topic-layout {
-    grid-template-columns: 14.5rem minmax(0, 56rem);
-    gap: 2.75rem;
+    width: min(100%, 1180px);
+    grid-template-columns: minmax(10.5rem, 1fr) minmax(0, 66ch) minmax(10.5rem, 1fr);
+    column-gap: 2.25rem;
     align-items: start;
   }
 
-  .table-wrap {
-    width: min(56rem, 100%);
+  .topic-toc-desktop {
+    grid-column: 1;
+    justify-self: end;
+    width: min(15rem, 100%);
+  }
+
+  .topic-layout > article {
+    grid-column: 2;
   }
 
   .topic-prose table {
-    min-width: 0;
+    min-width: 36rem;
   }
 
   .topic-toc-mobile {
