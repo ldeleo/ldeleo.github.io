@@ -12,6 +12,11 @@ export default defineConfig({
   base: previewBase,
   output: "static",
   trailingSlash: "never",
+  build: {
+    // Keep CSS in the head. A stylesheet link after </body> paints the
+    // page unstyled and shifts the whole viewport.
+    inlineStylesheets: "always",
+  },
   integrations: previewBase ? [] : [sitemap()],
   vite: {
     plugins: [tailwindcss()],
