@@ -10,6 +10,7 @@ type Props = {
 
 const { level = "h2" } = Astro.props;
 const Title = level;
+const TalkTitle = level === "h1" ? "h2" : "h3";
 ---
 
 <Section id="talks" class="room-talks">
@@ -47,7 +48,7 @@ const Title = level;
             <span class="talk-format">{talk.format}</span>
           </div>
           <div>
-            <h3>{talk.title}</h3>
+            <TalkTitle>{talk.title}</TalkTitle>
             <p class="talk-for">For {talk.audience}.</p>
             <p class="talk-idea">{talk.idea}</p>
             <p class="text-eyebrow mt-8" style="color: var(--color-muted);">
@@ -64,7 +65,7 @@ const Title = level;
                 {talk.links?.map((link, n) => (
                   <span>
                     {n > 0 && " · "}
-                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    <a class="tap-44" href={link.href} target="_blank" rel="noopener noreferrer">
                       {link.label}
                     </a>
                   </span>

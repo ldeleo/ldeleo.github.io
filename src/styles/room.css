@@ -247,18 +247,32 @@
 }
 
 .contact-channels a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
   color: var(--color-ink);
   font-size: 0.95rem;
   text-underline-offset: 0.18em;
 }
 
 @media (max-width: 760px) {
+  .enya-header a.ldl-mark,
+  .room-invite a,
+  .room-hero__invite a,
   footer nav a,
-  footer a {
+  footer a,
+  .tap-44 {
+    min-width: 44px;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
     font-size: 1rem;
+  }
+  footer nav a,
+  footer a,
+  .tap-44 {
+    justify-content: center;
   }
 }
 
