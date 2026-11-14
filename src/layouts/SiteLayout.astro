@@ -12,9 +12,16 @@ type Props = {
   ogImage?: string;
   /** BCP-47 code for pages not written in English (e.g. the EspacioTec resources). */
   lang?: string;
+  author?: string;
+  datePublished?: string;
+  dateModified?: string;
+  /** Future translations. `es` is not rewritten onto /preview. */
+  alternates?: { hreflang: string; href: string }[];
+  jsonLd?: unknown;
 };
 
-const { title, description, path, ogImage, lang = "en" } = Astro.props;
+const { title, description, path, ogImage, lang = "en", author, datePublished, dateModified, alternates, jsonLd } =
+  Astro.props;
 const canonical = canonicalUrl(path);
 const image = ogImage ?? ogImageUrl();
 ---
@@ -46,6 +53,15 @@ const image = ogImage ?? ogImageUrl();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
+    {author && <meta name="author" content={author} />}
+    {datePublished && <meta property="article:published_time" content={datePublished} />}
+    {dateModified && <meta property="article:modified_time" content={dateModified} />}
+    {
+      alternates?.map((alternate) => (
+        <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+      ))
+    }
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <noscript>

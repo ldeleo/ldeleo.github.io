@@ -12,7 +12,12 @@ const dist = fileURLToPath(new URL("../dist/", import.meta.url));
 const robots = '<meta name="robots" content="noindex, nofollow">';
 
 function rewrite(html) {
-  let out = html.replace(
+  const held = [];
+  let out = html.replace(/<link\b[^>]*hreflang=["']es["'][^>]*>/gi, (tag) => {
+    held.push(tag);
+    return `<!--HREFLANG_ES_${held.length - 1}-->`;
+  });
+  out = out.replace(
     /(\s(?:href|src)=["'])\/(?!preview\/)/g,
     "$1/preview/"
   );
@@ -20,6 +25,7 @@ function rewrite(html) {
     /(=["']https:\/\/lorenzodeleo\.com)\/(?!preview\/)/g,
     "$1/preview/"
   );
+  out = out.replace(/<!--HREFLANG_ES_(\d+)-->/g, (_, index) => held[Number(index)]);
   if (!/name=["']robots["']/i.test(out)) {
     out = out.replace(/<head([^>]*)>/i, `<head$1>\n    ${robots}`);
   }

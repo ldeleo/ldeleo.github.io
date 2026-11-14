@@ -1,0 +1,116 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { SITE_URL } from "@/lib/constants";
+import { canonicalUrl } from "@/lib/meta";
+import { formatTopicDate, topicHeadings, workingDefinition } from "@/lib/topic";
+
+export async function getStaticPaths() {
+  const topics = await getCollection("book");
+  return topics.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const headings = topicHeadings(entry.body ?? "");
+const updated = formatTopicDate(entry.data.dateModified);
+const path = `/${entry.data.slug}`;
+const canonical = canonicalUrl(path);
+const definition = workingDefinition(entry.body ?? "");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: entry.data.title,
+      description: entry.data.description,
+      datePublished: entry.data.datePublished,
+      dateModified: entry.data.dateModified,
+      inLanguage: entry.data.lang,
+      author: { "@type": "Person", name: entry.data.author },
+      about: { "@id": `${canonical}#term` },
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": `${canonical}#term`,
+      name: "AI-native company",
+      description: definition,
+      inDefinedTermSet: entry.data.book,
+    },
+  ],
+};
+---
+
+<SiteLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  path={path}
+  lang={entry.data.lang}
+  author={entry.data.author}
+  datePublished={entry.data.datePublished}
+  dateModified={entry.data.dateModified}
+  alternates={[
+    { hreflang: entry.data.lang, href: canonical },
+    { hreflang: "es", href: `${SITE_URL}/es${path}` },
+    { hreflang: "x-default", href: canonical },
+  ]}
+  jsonLd={jsonLd}
+>
+  <div class="topic-shell">
+    <div class="topic-layout">
+      <details class="topic-toc topic-toc-mobile">
+        <summary>On this page</summary>
+        <ol>
+          {
+            headings.map((heading) => (
+              <li>
+                <a href={`#${heading.id}`}>{heading.text}</a>
+              </li>
+            ))
+          }
+        </ol>
+      </details>
+
+      <nav class="topic-toc topic-toc-desktop" aria-label="On this page">
+        <p class="topic-toc-label">On this page</p>
+        <ol>
+          {
+            headings.map((heading) => (
+              <li>
+                <a href={`#${heading.id}`}>{heading.text}</a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
+      <article>
+        <p class="topic-kicker">
+          {entry.data.book} · {entry.data.topic} · {entry.data.version} · Updated {updated}
+        </p>
+        <div class="topic-prose">
+          <Content />
+        </div>
+        <footer class="topic-changelog">
+          <h2>Changelog</h2>
+          <ul>
+            {
+              entry.data.changelog.map((item) => (
+                <li>
+                  <strong>
+                    {item.version} · {formatTopicDate(item.date)}.
+                  </strong>{" "}
+                  {item.note}
+                </li>
+              ))
+            }
+          </ul>
+        </footer>
+      </article>
+    </div>
+  </div>
+</SiteLayout>

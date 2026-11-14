@@ -14,6 +14,7 @@
 @import "./tokens.css";
 @import "./editorial.css";
 @import "./room.css";
+@import "./topic.css";
 
 /* Metric-matched fallbacks so the web fonts swap without shifting the line boxes. */
 @font-face {

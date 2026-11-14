@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import { rehypeTableWrap, remarkXref } from "./src/lib/remark-xref.mjs";
 
 // Set only by the GitHub Pages job that publishes this branch at /preview.
 // A normal build (and a future merge to the site root) leaves this unset.
@@ -18,6 +19,10 @@ export default defineConfig({
     inlineStylesheets: "always",
   },
   integrations: previewBase ? [] : [sitemap()],
+  markdown: {
+    remarkPlugins: [remarkXref],
+    rehypePlugins: [rehypeTableWrap],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
