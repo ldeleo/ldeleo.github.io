@@ -10,11 +10,11 @@ datePublished: "2026-11-13"
 dateModified: "2026-11-14"
 version: "v0.2"
 keyPoints:
-  - "The phrase is doing several jobs at once. A map comes before a verdict."
-  - "\"AI from day one\" is a start date, not a design."
-  - "The sources are mostly right. Each one was written for its own job, and this chapter builds on them."
-  - "Cloud-native settled a fight like this by writing the definition down. Building has gotten cheaper before. This wave reaches more of the company."
-  - "The website can't tell you. Seven questions about the inside of the company can, and the answer is a degree."
+  - "The phrase is doing several jobs at once, so this chapter opens with a map instead of a verdict."
+  - "Using AI from the first day names a start date, not a design."
+  - "Each source lights up a different side of AI-native, and this chapter builds on all of them."
+  - "Cloud-native settled a similar argument by writing the definition down, and this wave reaches more of the company than the last time building got cheaper."
+  - "You cannot tell how AI-native a company is from its website, but seven questions about how it is built can."
 changelog:
   - version: "v0.2"
     date: "2026-11-14"
@@ -34,35 +34,35 @@ I don't read that as a mess. A venture firm, a research team, a consultancy, a n
 
 A venture firm uses the phrase to name a market category. A research team uses it to describe a growth pattern. A consultancy uses it for an enterprise operating model. A telecom standard uses it for a network. A founder uses it to say "we used AI from day one." They are not disagreeing so much as they are pointing at different parts of the same object.
 
-The honest way in is a map, not a verdict. Each source below had its own job, and I have tried to read it for that job. A request for startups was never meant to be a definition. A spending report was never meant to be an org design. I agree with the direction of all of them. For each one I want to say what aspect of AI-native it emphasizes, and what I take from it and build on. The rest of the chapter is my angle: the same aspects, taken further, until they become a definition and a test.
+The honest way in is a map, not a verdict. Each source had its own job, and I read it for that job. Below, I say which side of AI-native each one lights up, and what I take from it. The rest of the chapter goes further on those sides, until they become a definition and a test.
 
 ## The map
 
-Nine sources, in the order I actually use them. The quotes are theirs. The "what I take" is mine.
+Here's what nine sources emphasize, in their own words, and what I take from each.
 
 ### The product test (CRV)
 
 CRV's founder guide asks one question: *"if you remove the AI, does the product cease to function?"* It adds a second question I have started asking myself: *"when the models get better, are you happy or sad?"* ([CRV, March 2026](https://www.crv.com/content/what-is-ai-native))
 
-What it emphasizes is the product. Is the AI the thing, or a feature on the thing, and does progress in the models help you or strand you? I take both questions. They are a clean test of a product, which is the job of a founder's guide. A company's construction is a related question, and people's roles are a corollary of that construction, not a missing clause in the product test. I use CRV's questions when I look at what a company sells. The test at the end of this page is for how the company is built.
+What it emphasizes is the product: whether the AI is the thing or a feature on the thing, and whether better models help you. I take both questions. They are a clear way to look at what a company sells, which is the job of a founder's guide, and I use them for that. How the company is built is the other side of the same subject, and that is what the test at the end of this page is for. Roles follow from that construction. They are a corollary of the definition, and I come back to them later.
 
 ### The system definition (IBM)
 
 IBM defines AI-native as something *"designed from the ground up with AI as a core component, not bolted on later as a mere feature."* It notes that legacy enterprises can qualify if they *"comprehensively re-orient their business model around data and AI models,"* and it predicts that *"the term's usefulness [will] fade over time as AI's ubiquity advances."* ([IBM, February 2026](https://www.ibm.com/think/topics/ai-native))
 
-What it emphasizes is the system: AI as a core component of the design, not a layer added at the end, and a path for companies that were not born this way. I take all three. IBM's definition is well aligned with the one I use. Who does which job is a corollary. Once the construction assumes a system of people and agents, roles follow from it. They are not a second definition. I go further on that corollary in the chapters on judgment and organization. I also take the prediction. The word will fade. The design question will not.
+What it emphasizes is the system: AI as a core component of the design, not a layer added at the end, and a path for companies that were not born this way. I take all three. IBM's definition is well aligned with the one I use. Who does which job follows from that construction, and I go further on it in the chapters on judgment and organization. I also take the prediction. The word will fade. The design question will not.
 
 ### The market category (Y Combinator)
 
 Y Combinator opened its Summer 2026 Requests for Startups with *"AI has stopped being a feature and started being the foundation."* One request asks for *"AI-native companies that don't sell software—they sell the service. Instead of giving you a tool, they just do the work."* Another, "The AI Operating System for Companies," starts from this observation: *"The best AI-native companies we're seeing have figured out something most haven't: they've made their entire company queryable."* It describes the result as turning *"a company from an open loop into a closed loop."* ([Y Combinator, Requests for Startups, Summer 2026](https://www.ycombinator.com/rfs))
 
-This was a request for startups. It was never offered as a definition, and it reads better once you leave it in that job: a public note about where founders might build. I take two things from it. The first is the company that sells the work rather than the tool. The second is the queryable company, the firm that can be read and written as one system, an open loop closed. That second idea is the one I build on. [→ Technology: The tool downloads. The context doesn't.]
+What it emphasizes is where founders might build next. I read it as a request for startups, which is the job it was written for, and I take two things from it. The first is the company that sells the work rather than the tool. The second is the queryable company, the firm that can be read and written as one system, an open loop closed. That second idea is one I build on. [→ Technology: The tool downloads. The context doesn't.]
 
 ### The buying pattern (a16z)
 
 a16z's spending report observes that *"while big companies are getting incremental benefits to existing team structures, at startups we're seeing truly AI-native companies emerge."* It splits vertical AI into products that supercharge human employees and ones that act as *"AI employees."* ([a16z, October 2025](https://a16z.com/the-ai-application-spending-report-where-startup-dollars-really-go/))
 
-What it emphasizes is the market. What are companies actually paying for, and where is the spend showing up. I take the split. Tools that make a person faster, and tools that do a job a person used to do, are different purchases, and a spending report is the right instrument for seeing the difference. How a company is built is the question this book stays on. The report tells me which way the money is leaning while that question is still open.
+What it emphasizes is the market: what companies are actually paying for, and where that spend shows up. I take the split. Tools that make a person faster, and tools that do a job a person used to do, are different purchases, and a spending report is exactly the place to see that. I build on the split when I look at how a company is built.
 
 ### The business model (Emergence Capital)
 
@@ -74,7 +74,7 @@ What it emphasizes is one business model, services, and a failure mode inside it
 
 Bessemer's State of AI benchmarks two kinds of AI startups, "Supernovas" and "Shooting Stars," by growth and margin. On how the best teams work, it asks a question I want to leave standing, because it is a great one: *"Today, the question isn't if your team uses AI, but how well you orchestrate it into a compounding, high-velocity system."* ([Bessemer, August 2025](https://www.bvp.com/atlas/the-state-of-ai-2025))
 
-What it emphasizes is the shape of growth, and then, in that one sentence, the work of orchestration. I take the question. Two companies can post the same numbers and be built in different ways. The benchmarks describe the outcome. The question describes the work. The book is about the work. [→ Investing: New benchmarks]
+What it emphasizes is the shape of growth, and then, in that one sentence, the work of orchestration. I take the question, and I want to keep it in front of me. Two companies can post the same numbers and be built in different ways, and the question is what I follow from there. [→ Investing: New benchmarks]
 
 ### The enterprise operating model (McKinsey)
 
@@ -86,7 +86,7 @@ What it emphasizes is the operating model of a company that is already large and
 
 Anthropic's founder playbook walks through each stage of a startup *"when AI is core to your technical and organizational development,"* and notes that *"the lean 10-person unicorn has gone from scrappy underdog story to deliberate plan of action."* ([Anthropic](https://claude.com/resources/guides/the-founders-playbook-building-an-ai-native-startup))
 
-What it emphasizes is the sequence. How you actually build, once AI is core to the company and not only to the product. I take the sequence, and I take the small team as a design rather than a holding pattern. A playbook starts once you know what you are aiming at. This page is the sentence that comes before it.
+What it emphasizes is the sequence: how you actually build, once AI is core to the company and not only to the product. I take the sequence, and I take the small team as a design rather than a holding pattern. The aim those steps serve is the definition on this page.
 
 ### The network standard (Ericsson)
 
@@ -102,7 +102,7 @@ That is the ambition of this page. A working definition, versioned, dated, and c
 
 There is a second parallel, closer to the work itself. Building has gotten cheaper before. Over roughly the past fifteen years, standing up a store went from a custom project to something a person can do in a weekend: hosted commerce, payments, off-the-shelf logistics. The same thing happened. When the making gets cheap, the advantage moves, toward taste, distribution, and the operation around the tool. A cheap store did not make a good merchant.
 
-Where it is not the same is the width of the wave. That one cheapened a layer. You could open the store without a team of engineers, and you still hired people to merchandise, to talk to customers, and to fulfill. This wave reaches those jobs too. Building, selling, support, and the loop that connects them can all move at once. A definition that only covers the product repeats the last lesson. The lesson this time is the company.
+Where it is not the same is the width of the wave. That one cheapened a layer. You could open the store without a team of engineers, and you still hired people to merchandise, to talk to customers, and to fulfill. This wave reaches those jobs too. Building, selling, support, and the loop that connects them can all move at once. Last time, cheaper building changed the store. This time it reaches the company around it.
 
 ## How the words relate
 
