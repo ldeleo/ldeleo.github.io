@@ -231,7 +231,7 @@ const FIGURES = {
     description:
       "A timeline from the July 2026 essay, built around AI from the beginning, to the November 2026 working definition, version 0.2. Between them: the start date mattered less, people and agents replaced built around AI, infrastructure became shared memory, and startup became company.",
     caption:
-      "July 2026 was the essay. November 2026, v0.2, is the working definition. Four things moved, and no other dates are claimed.",
+      "The essay came out in July 2026, and the working definition, version 0.2, dates from November 2026. Four things changed in between.",
     wide: timelineWide,
     stack: timelineStack,
   },
@@ -239,7 +239,7 @@ const FIGURES = {
     title: "Four words, four jobs",
     description:
       "AI-enabled is a feature added. AI-first is a direction. Agentic is a capability. AI-native, in this book, is how the company is built.",
-    caption: "Same distinction as the prose above. AI-native is the word this book uses. The others name something nearby.",
+    caption: "A summary of the distinctions above. AI-native is the term this book uses. The other three name things that sit close to it.",
     wide: wordsWide,
     stack: wordsStack,
   },

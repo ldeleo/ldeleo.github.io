@@ -218,7 +218,7 @@ const CTA = {
   },
   cases: {
     id: "invite-cases",
-    text: "If you're building one, or you know one, I'd like to see it. Send it my way, and the best cases will make it into this chapter.",
+    text: "If you're building a company like this, or you know one, I'd like to see it. Send it my way, and the strongest cases will make their way into this chapter.",
     x: "@LorenzodeLeo_ here's an AI-native company for your book: [name], because [what makes it AI-native].",
     linkedin: "Lorenzo de Leo, here's an AI-native company for your book: [name], because [what makes it AI-native].",
   },
