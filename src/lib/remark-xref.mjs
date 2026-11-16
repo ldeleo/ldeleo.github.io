@@ -267,6 +267,13 @@ function ctaBox(kind, file) {
   ]);
 }
 
+function moreNote(topic, section) {
+  return element("p", { className: ["more-note"] }, [
+    element("span", { className: ["soon"], title: "Coming soon" }, [plain("Coming soon")]),
+    plain(` More in ${topic}: ${section}`),
+  ]);
+}
+
 function replaceEmbeds(node, file) {
   if (!node?.children) return;
   node.children = node.children.flatMap((child) => {
@@ -276,6 +283,8 @@ function replaceEmbeds(node, file) {
       if (cta) return [ctaBox(cta[1], file)];
       const diagram = text.match(/^\[\[diagram:(system|timeline|words|waves)\]\]$/);
       if (diagram) return [{ type: "raw", value: diagramHtml(diagram[1]) }];
+      const more = text.match(/^\[\[more:([^|\]]+)\|(.+)\]\]$/);
+      if (more) return [moreNote(more[1].trim(), more[2].trim())];
     }
     replaceEmbeds(child, file);
     return [child];

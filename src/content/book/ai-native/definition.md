@@ -56,7 +56,9 @@ What it emphasizes is the system: AI as a core component of the design, not a la
 
 Y Combinator opened its Summer 2026 Requests for Startups with *"AI has stopped being a feature and started being the foundation."* One request asks for *"AI-native companies that don't sell software—they sell the service. Instead of giving you a tool, they just do the work."* Another, "The AI Operating System for Companies," starts from this observation: *"The best AI-native companies we're seeing have figured out something most haven't: they've made their entire company queryable."* It describes the result as turning *"a company from an open loop into a closed loop."* ([Y Combinator, Requests for Startups, Summer 2026](https://www.ycombinator.com/rfs))
 
-What it emphasizes is where founders might build next. I read it as a request for startups, which is the job it was written for, and I take two things from it. The first is the company that sells the work rather than the tool. The second is the queryable company, the firm that can be read and written as one system, an open loop closed. That second idea is one I build on. [→ Technology: The tool downloads. The context doesn't.]
+What it emphasizes is where founders might build next. I read it as a request for startups, which is the job it was written for, and I take two things from it. The first is the company that sells the work rather than the tool. The second is the queryable company, the firm that can be read and written as one system, an open loop closed. That second idea is one I build on.
+
+[[more:Technology|The tool downloads. The context doesn't.]]
 
 ### The buying pattern (a16z)
 
@@ -68,19 +70,25 @@ What it emphasizes is the market: what companies are actually paying for, and wh
 
 Emergence names a category, AI-native services: companies that sell the outcome rather than the tool. It also names a trap, *"Mirage PMF: The illusion of product-market fit created by revenue growth that's powered by human labor rather than AI leverage."* ([Emergence, March 2026](https://www.emcap.com/thoughts/the-ai-native-services-playbook))
 
-What it emphasizes is one business model, services, and a failure mode inside it. I take Mirage PMF, and I use it beyond services. Fast revenue that is still a room of people doing the work by hand is a signal about the construction, whatever the company sells. [→ Building: Product-market fit in an AI-native company]
+What it emphasizes is one business model, services, and a failure mode inside it. I take Mirage PMF, and I use it beyond services. Fast revenue that is still a room of people doing the work by hand is a signal about the construction, whatever the company sells.
+
+[[more:Building|Product-market fit in an AI-native company]]
 
 ### The growth profile (Bessemer)
 
 Bessemer's State of AI benchmarks two kinds of AI startups, "Supernovas" and "Shooting Stars," by growth and margin. On how the best teams work, it asks a question I want to leave standing, because it is a great one: *"Today, the question isn't if your team uses AI, but how well you orchestrate it into a compounding, high-velocity system."* ([Bessemer, August 2025](https://www.bvp.com/atlas/the-state-of-ai-2025))
 
-What it emphasizes is the shape of growth, and then, in that one sentence, the work of orchestration. I take the question, and I want to keep it in front of me. Two companies can post the same numbers and be built in different ways, and the question is what I follow from there. [→ Investing: New benchmarks]
+What it emphasizes is the shape of growth, and then, in that one sentence, the work of orchestration. I take the question, and I want to keep it in front of me. Two companies can post the same numbers and be built in different ways, and the question is what I follow from there.
+
+[[more:Investing|New benchmarks]]
 
 ### The enterprise operating model (McKinsey)
 
 McKinsey's "seven operating truths" come from interviews with 15 AI-centric companies and describe *"what it takes to successfully place AI at the center of the organization."* It observes that *"jobs are being redefined as collaborations between humans and agents."* ([McKinsey, June 2026](https://www.mckinsey.com/capabilities/business-building/our-insights/the-seven-operating-truths-of-ai-native-companies))
 
-What it emphasizes is the operating model of a company that is already large and in the middle of changing itself. I take the collaboration. A job that is a person and an agent, working as one, is the picture I recognize. McKinsey drew it from that seat. I build on the same picture from a smaller starting point. [→ Organization: Don't clone the org chart]
+What it emphasizes is the operating model of a company that is already large and in the middle of changing itself. I take the collaboration. A job that is a person and an agent, working as one, is the picture I recognize. McKinsey drew it from that seat. I build on the same picture from a smaller starting point.
+
+[[more:Organization|Don't clone the org chart]]
 
 ### The builder's playbook (Anthropic)
 
@@ -124,14 +132,18 @@ Four phrases get used as if they were one. They are not, and the differences are
 
 Many new companies describe themselves as AI-native because they used AI from their first day. That's true, and it matters: they don't have to undo anything. But on its own it describes when they started, not how they're built. A company can use AI from day one and still be organized like any company of its kind, with the same org chart, knowledge in the founders' heads, and AI in a few tools on the side.
 
-So I don't read the phrase as a claim to argue with. I read it as the start of a better question: *what did you build differently because AI was there from the start?* [→ Building: Start AI-native or transform: who wins]
+So I don't read the phrase as a claim to argue with. I read it as the start of a better question: *what did you build differently because AI was there from the start?*
+
+[[more:Building|Start AI-native or transform: who wins]]
 
 ## A few real points on the spectrum
 
 None of these is a verdict. Each shows a different part of the picture, with the date it was true.
 
 - **Anthropic (2026): construction can change over time.** Anthropic has said that as of May 2026 more than 80% of the code merged into its codebase was authored by Claude, up from low single digits before Claude Code launched in early 2025. The figure is self-reported and covers code, not the whole company ([VentureBeat](https://venturebeat.com/technology/anthropic-says-80-of-its-new-production-code-is-now-authored-by-claude-how-your-enterprise-can-keep-up)). Anthropic wasn't founded that way. The AI worked its way into how the company produces what it sells.
-- **Crosby (2025): AI-native in how it works, selling something that isn't software.** Crosby is a law firm. It sells contract review, not an AI tool. Its own description is *"a hybrid AI law firm"* that combines *"the speed and intelligence of AI with the safety of lawyers-in-the-loop"* ([Crosby, June 2025](https://crosby.ai/blog/introducing-crosby-the-worlds-first-hybrid-law-firm)). Agents take the first pass, flag common issues and prepare redlines, while its attorneys focus on strategic decisions. It builds a knowledge base for each customer that becomes more bespoke over time ([Sequoia](https://sequoiacap.com/article/partnering-with-crosby-a-law-firm-at-the-speed-of-ai); [TechCrunch](https://techcrunch.com/2025/06/17/sequoia-backed-crosby-launches-a-new-kind-of-ai-powered-law-firm/)). Shared memory, a fast loop and an explicit point where a human decides: it's the definition, in a profession that runs on judgment [→ Judgment: Who signs].
+- **Crosby (2025): AI-native in how it works, selling something that isn't software.** Crosby is a law firm. It sells contract review, not an AI tool. Its own description is *"a hybrid AI law firm"* that combines *"the speed and intelligence of AI with the safety of lawyers-in-the-loop"* ([Crosby, June 2025](https://crosby.ai/blog/introducing-crosby-the-worlds-first-hybrid-law-firm)). Agents take the first pass, flag common issues and prepare redlines, while its attorneys focus on strategic decisions. It builds a knowledge base for each customer that becomes more bespoke over time ([Sequoia](https://sequoiacap.com/article/partnering-with-crosby-a-law-firm-at-the-speed-of-ai); [TechCrunch](https://techcrunch.com/2025/06/17/sequoia-backed-crosby-launches-a-new-kind-of-ai-powered-law-firm/)). Shared memory, a fast loop and an explicit point where a human decides: it's the definition, in a profession that runs on judgment.
+
+[[more:Judgment|Who signs]]
 - **Shopify (2025): an incumbent asking the right question as policy.** Before asking for more headcount, teams *"must demonstrate why they cannot get what they want done using AI"* ([The Verge](https://www.theverge.com/news/644943/shopify-ceo-memo-ai-hires-job)). Age doesn't decide it.
 - **Klarna (2024–2025): automation is not the same as design.** Its AI assistant took over about two-thirds of support chats. A year later, the CEO said cost had been *"a too predominant evaluation factor"* and quality suffered, and Klarna brought humans back for more of the work ([CNBC](https://www.cnbc.com/2025/05/14/klarna-ceo-says-ai-helped-company-shrink-workforce-by-40percent.html)). A spokesperson later said the remark referred to outsourced human agents ([Silicon Republic](https://www.siliconrepublic.com/machines/klarna-ai-hiring-humans-forrester)). Getting the human part right is part of the system, not a retreat from it.
 
@@ -147,7 +159,9 @@ So here's my working definition, as of November 2026:
 
 [[diagram:system]]
 
-Two cautions travel with it. It isn't a moat. It's the rate at which you build one, and the edge over incumbents is real but temporary [→ Investing: The moat is not "I use AI"]. And it isn't binary. Companies are 40%, 60% or 80% of the way there, and the direction matters as much as the level.
+Two cautions travel with it. It isn't a moat. It's the rate at which you build one, and the edge over incumbents is real but temporary. And it isn't binary. Companies are 40%, 60% or 80% of the way there, and the direction matters as much as the level.
+
+[[more:Investing|The moat is not "I use AI"]]
 
 **How this definition evolved.** This isn't the definition I started with, and I'd rather show the change than hide it.
 
@@ -168,13 +182,11 @@ This is a working definition. It's dated on purpose, and I expect it to change a
 
 ## The test: questions only the inside of a company can answer
 
-Which leaves the practical question. If you can't see it from the website, how do you tell?
-
-You can't tell whether a company is AI-native from its website, its product or its pitch. Most startups I meet are not AI-native yet. Even the ones that are, especially the ones that call themselves AI-native, are rarely all the way there. It is a matter of degree. The seven questions are how you see the inside.
+Which leaves the practical question. You can't see the construction from the website or the product. A pitch can show the intent, and in New York it often does. It does not show how the company is built. Most startups I meet are not AI-native yet. Even the ones that are, especially the ones that call themselves AI-native, are rarely all the way there. It is a matter of degree. The seven questions are how you see the inside.
 
 The difficulty is that this lives inside the company. Nobody publishes their internal setup. So the test has to be a conversation, and it has to ask for evidence: the last time something happened, not the policy.
 
-An angel investor who sees pitch decks in both New York and Bogotá put the problem better than I can. In New York, she told me, it's visible in the pitch whether a company is AI-native. In Latin America, most pitches still say "we have this business model, and we use AI for this part of the process." *And so what?* That's the gap the test is for.
+An angel investor who sees pitch decks in both New York and Bogotá put the story side of this better than I can. In New York, she told me, it's visible in the pitch whether a company is AI-native. In Latin America, most pitches still say "we have this business model, and we use AI for this part of the process." *And so what?* The pitch can carry the intent. The questions below are for the construction.
 
 **Question 0, unscored.** *Tell me what you sell in one line, without the word AI.* I don't score this. AI-native is about how a company is built, not what it sells. If the pitch only works with the word AI in it, AI is the product story, not necessarily the construction. Saying what you sell without that word separates the two, and then the seven questions can test the build.
 
@@ -196,7 +208,9 @@ Three cautions. This is not a quality score. A company can be early on this scal
 
 ENYA is the fund I am building, and I hold it to the same test because it is the setup I can see from the inside. It is one example. It is not the best way, and it is not the only one. Advisors and collaborators are part of the work around the fund, and they sit outside this setup. They have no access to the memory, and no access to the agents.
 
-I am the only human inside it. There is one memory of people, conversations, decisions, and content, which I and a small set of agents both read and write. Each agent has a job: research, publishing, relationships. Nothing enters the memory without a validation step, and nothing goes out under my name until I have approved that specific piece. On the test, the memory and the judgment map are where I want them. The learning loop runs in days to weeks, not continuously, so it is still slower than I would like. How the system is put together belongs in Technology. [→ Technology: The tool downloads. The context doesn't.]
+I am the only human inside it. There is one memory of people, conversations, decisions, and content, which I and a small set of agents both read and write. Each agent has a job: research, publishing, relationships. Nothing enters the memory without a validation step, and nothing goes out under my name until I have approved that specific piece. On the test, the memory and the judgment map are where I want them. The learning loop runs in days to weeks, not continuously, so it is still slower than I would like. How the system is put together belongs in Technology.
+
+[[more:Technology|The tool downloads. The context doesn't.]]
 
 Until August, I wasn't asking these questions explicitly in conversations with founders, and they weren't on the fund's intake form. A fund built on an AI-native thesis wasn't asking its own question. Writing this test is how I'm fixing that.
 
@@ -208,11 +222,15 @@ The method is the part worth copying: shared memory, clear judgment points, loop
 
 Three things I expect to change on this page.
 
-First, the judgment question. As agents take on more of the work, I expect question four, *who signs for the result*, to become most of the test [→ Judgment: Trust before autonomy].
+First, the judgment question. As agents take on more of the work, I expect question four, *who signs for the result*, to become most of the test.
+
+[[more:Judgment|Trust before autonomy]]
 
 Second, the word itself. IBM predicts the term's usefulness will fade as AI becomes ubiquitous, and I think that's right. "Internet company" stopped meaning anything once every company was one. When that happens to "AI-native," the question underneath won't go away. It will just stop needing a label.
 
-Third, the cases. Right now this page leans on examples from the US. The Latin American ones I'm looking for will probably look different. They'll be built with less capital, closer to the customer and with less room for fake progress [→ Investing: The view from Latin America].
+Third, the cases. Right now this page leans on examples from the US. The Latin American ones I'm looking for will probably look different. They'll be built with less capital, closer to the customer and with less room for fake progress.
+
+[[more:Investing|The view from Latin America]]
 
 The label will fade. What will be left is the design question: how do people and agents work as one system, and who builds that system first?
 

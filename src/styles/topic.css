@@ -925,7 +925,7 @@ body.is-reading .enya-header {
 }
 
 .diagram {
-  margin: 1.6rem 0 0.2rem;
+  margin: 1.85rem 0 2.15rem;
 }
 
 .diagram-title {
@@ -964,10 +964,26 @@ body.is-reading .enya-header {
 }
 
 .diagram-caption {
-  margin: 0.7rem 0 0;
+  margin: 0.95rem 0 0;
   color: var(--read-muted);
-  font-size: 0.98rem;
+  font-size: 0.95rem;
+  font-style: italic;
   line-height: 1.5;
+}
+
+.topic-prose p.more-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  align-items: center;
+  margin-top: 0.55rem;
+  color: var(--read-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.topic-prose p.more-note .soon {
+  margin-left: 0;
 }
 
 .book-landing .topic-pager {

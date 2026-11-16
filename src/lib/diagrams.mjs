@@ -27,7 +27,7 @@ const serif = "var(--font-serif)";
 function systemWide(labelId, captionId) {
   return svg(
     "diagram-wide",
-    "0 0 720 320",
+    "0 0 720 380",
     labelId,
     captionId,
     `
@@ -43,17 +43,20 @@ function systemWide(labelId, captionId) {
     <text x="360" y="184" text-anchor="middle" fill="var(--read-muted)" font-family="${sans}" font-size="14">one system</text>
     <circle cx="628" cy="163" r="58" fill="var(--read-card)" stroke="${ink}" stroke-width="1.5"/>
     <text x="628" y="169" text-anchor="middle" fill="${ink}" font-family="${serif}" font-size="18">Agents</text>
-    <circle cx="292" cy="246" r="6" fill="var(--read-accent)"/>
-    <circle cx="360" cy="258" r="6" fill="var(--read-accent)"/>
-    <circle cx="428" cy="246" r="6" fill="var(--read-accent)"/>
-    <text x="360" y="302" text-anchor="middle" fill="var(--read-accent)" font-family="${sans}" font-size="14">Human judgment decides</text>`
+    <circle cx="168" cy="318" r="6" fill="var(--read-accent)"/>
+    <text x="180" y="323" fill="var(--read-accent)" font-family="${sans}" font-size="14">Judgment</text>
+    <circle cx="292" cy="318" r="6" fill="var(--read-accent)"/>
+    <text x="304" y="323" fill="var(--read-accent)" font-family="${sans}" font-size="14">Judgment</text>
+    <circle cx="416" cy="318" r="6" fill="var(--read-accent)"/>
+    <text x="428" y="323" fill="var(--read-accent)" font-family="${sans}" font-size="14">Judgment</text>
+    <text x="360" y="356" text-anchor="middle" fill="var(--read-accent)" font-family="${sans}" font-size="14">where a person decides</text>`
   );
 }
 
 function systemStack(labelId, captionId) {
   return svg(
     "diagram-stack",
-    "0 0 360 520",
+    "0 0 360 640",
     labelId,
     captionId,
     `
@@ -65,15 +68,18 @@ function systemStack(labelId, captionId) {
     <rect x="36" y="176" width="248" height="92" rx="16" fill="var(--read-card)" stroke="${ink}" stroke-width="1.5"/>
     <text x="160" y="216" text-anchor="middle" fill="${ink}" font-family="${serif}" font-size="18">Shared memory</text>
     <text x="160" y="240" text-anchor="middle" fill="var(--read-muted)" font-family="${sans}" font-size="13">one system</text>
-    <circle cx="100" cy="300" r="6" fill="var(--read-accent)"/>
-    <circle cx="160" cy="300" r="6" fill="var(--read-accent)"/>
-    <circle cx="220" cy="300" r="6" fill="var(--read-accent)"/>
-    <text x="160" y="328" text-anchor="middle" fill="var(--read-accent)" font-family="${sans}" font-size="13">Human judgment decides</text>
-    <path d="M160 342v28" fill="none" stroke="${ink}" stroke-width="1.5"/>
-    <path d="M154 362l6 10 6-10" fill="none" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/>
-    <circle cx="160" cy="436" r="44" fill="var(--read-card)" stroke="${ink}" stroke-width="1.5"/>
-    <text x="160" y="442" text-anchor="middle" fill="${ink}" font-family="${serif}" font-size="16">Agents</text>
-    <path d="M204 436C332 420 332 96 224 86" fill="none" stroke="${ink}" stroke-width="1.5"/>
+    <circle cx="78" cy="304" r="6" fill="var(--read-accent)"/>
+    <text x="92" y="309" fill="var(--read-accent)" font-family="${sans}" font-size="14">Judgment</text>
+    <circle cx="78" cy="332" r="6" fill="var(--read-accent)"/>
+    <text x="92" y="337" fill="var(--read-accent)" font-family="${sans}" font-size="14">Judgment</text>
+    <circle cx="78" cy="360" r="6" fill="var(--read-accent)"/>
+    <text x="92" y="365" fill="var(--read-accent)" font-family="${sans}" font-size="14">Judgment</text>
+    <text x="160" y="392" text-anchor="middle" fill="var(--read-accent)" font-family="${sans}" font-size="13">where a person decides</text>
+    <path d="M160 408v28" fill="none" stroke="${ink}" stroke-width="1.5"/>
+    <path d="M154 428l6 10 6-10" fill="none" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="160" cy="512" r="44" fill="var(--read-card)" stroke="${ink}" stroke-width="1.5"/>
+    <text x="160" y="518" text-anchor="middle" fill="${ink}" font-family="${serif}" font-size="16">Agents</text>
+    <path d="M204 512C332 496 332 96 224 86" fill="none" stroke="${ink}" stroke-width="1.5"/>
     <path d="M214 98l10-14 6 12" fill="none" stroke="${ink}" stroke-width="1.5" stroke-linejoin="round"/>`
   );
 }
