@@ -26,17 +26,17 @@ export type BookTopic = {
 export const BOOK_TOPICS: BookTopic[] = [
   {
     title: "Definition",
-    line: "What the phrase is being asked to mean, the definition this book uses, and seven questions about how far along a company is.",
+    line: 'What people mean when they say "AI-native", the definition this book uses, and seven questions that show how far along a company is.',
     href: "/ai-native/definition",
     source: { title: "What's an AI-native startup?", href: ARTICLE_AI_NATIVE_URL },
   },
   {
     title: "Technology",
-    line: "The tool downloads. The context doesn't. Where a company's memory lives, and who can read and write it.",
+    line: "Anyone can download the same tools, but nobody can download a company's context. This topic is about where a company's memory lives, and who, among its people and its agents, can read it and add to it.",
   },
   {
     title: "Judgment",
-    line: "Who signs, and what a company decides not to automate.",
+    line: "When an agent does the work, who signs for the result? And what does a company deliberately choose not to automate?",
     source: {
       title: "When building gets cheap, judgment is the company",
       href: ARTICLE_JUDGMENT_URL,
@@ -44,15 +44,15 @@ export const BOOK_TOPICS: BookTopic[] = [
   },
   {
     title: "Organization",
-    line: "How the company is shaped when you don't clone the old org chart.",
+    line: "What a company looks like when it is designed around people and agents together, instead of copying the old org chart and adding AI to each box.",
   },
   {
     title: "Building",
-    line: "Starting this way, or getting there later.",
+    line: "Starting a company this way from the first day, or rebuilding an existing one to get there later, and what each path asks of the people doing it.",
   },
   {
     title: "Investing",
-    line: "The same design question, from Latin America, at the earliest stage.",
+    line: "The same design question, seen from Latin America and from the earliest stage of a company, when its construction is still being decided.",
     source: {
       title: "A compelling case for pre-seed venture in Spanish-speaking Latin America",
       href: ARTICLE_LATAM_URL,

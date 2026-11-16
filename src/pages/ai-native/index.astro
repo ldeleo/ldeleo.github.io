@@ -8,7 +8,7 @@ import { canonicalUrl } from "@/lib/meta";
 const path = BOOK_HREF;
 const title = `${BOOK_TITLE} — Lorenzo de Leo`;
 const description =
-  "The AI-Native Company, written in public. People and agents as one system, and the advantage to whoever builds that system first. Six topics. Definition is the chapter that's up.";
+  "A book about how companies are built now that people and AI agents can work together as a single system. Written in public, one topic at a time.";
 const canonical = canonicalUrl(path);
 const previewBase = import.meta.env.BASE_URL.replace(/\/$/, "");
 const shareUrl = `${SITE_URL}${previewBase}${path}`;
@@ -34,20 +34,47 @@ const jsonLd = {
         <div class="topic-prose">
           <h1>{BOOK_TITLE}</h1>
           <p>
-            This is a book about how a company is built once people and agents can work as one system. It is not a
-            catalog of tools, and it is not a verdict on who has "added AI." The interesting question is the
-            construction: shared memory, loops that close, and the points where a person still decides.
+            This is a book about how companies are built now that people and AI agents can work together as a single
+            system.
           </p>
+          <p>
+            Much of what gets written about AI in business is about tools: which ones to buy, which tasks they take
+            over, and which companies have "added AI" and which haven't. That work is useful, and I draw on a lot of
+            it, but it is not what this book is about. The question I care about is how a company is put together.
+            Where does its memory live, so that people and agents work from the same knowledge? How does the work move
+            in loops that close quickly, so that what the company learns this week changes what it does next week? And
+            where, inside all of that, does a person still make the call?
+          </p>
+          <p>Everything in the book starts from one sentence:</p>
           <p class="spine-callout" id="spine">{SPINE}</p>
           <Fragment set:html={diagramHtml("system")} />
           <p>
-            That sentence is the spine. Every topic hangs off it. The book is written in public, which means a view
-            can change. When it does, the change is recorded on the page, with a date, the way a definition gets a
-            version rather than a silent edit.
+            The diagram is that sentence drawn out. On one side are the people and on the other the agents, and
+            between them sits a single memory that both can read and write. The work moves around the loop: something
+            happens, the company learns from it, and what it learns changes the next round of work. The marked points
+            are the moments where a person, not a model, makes the decision. Each topic in this book takes one part of
+            this picture and looks at it closely, and the Definition topic explains the full working definition behind
+            it.
+          </p>
+          <h2>Written in public</h2>
+          <p>
+            This book is being written in public, one topic at a time, and that has a consequence worth stating at the
+            start: some of my views will change as I learn. When one does, I won't quietly rewrite the page. Each topic
+            carries a version number and a changelog, and every change is recorded there with its date, so you can see
+            what I thought before and why I changed my mind.
           </p>
           <p>
-            Six topics. Definition is the one you can read now. The others are coming, and the book grows in public
-            as they do.
+            It is the same habit that helped settle an earlier argument. "Cloud-native" also meant whatever a vendor
+            needed it to mean, until a community wrote a definition down and kept maintaining it in the open. This book
+            is one person keeping a set of pages rather than a foundation, but the practice is the same.
+          </p>
+          <h2>The six topics</h2>
+          <p>
+            The book is organized in six topics. The first, Definition, is ready to read now. It looks at what
+            different people mean by "AI-native", sets out the definition this book uses, and offers seven questions
+            for judging how far along a company really is. The other five are in progress, and each one will appear
+            here when it is published. Where I have written about a topic before, you'll find a link to that earlier
+            piece under it.
           </p>
           <ol class="book-topics">
             {

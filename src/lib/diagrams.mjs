@@ -222,7 +222,7 @@ const FIGURES = {
     description:
       "People on one side and agents on the other, sharing one memory. The work moves in loops that close fast. Ember marks show where human judgment decides.",
     caption:
-      "People and agents share one memory. The work moves in loops that close fast, and the marked points are where a person decides.",
+      "People and agents share one memory. The work moves in loops that close quickly, and the marked points are where a person decides.",
     wide: systemWide,
     stack: systemStack,
   },
