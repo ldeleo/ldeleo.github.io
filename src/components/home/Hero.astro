@@ -1,5 +1,6 @@
 ---
 import { CTA_HREF, CTA_FULL, ENYA_URL } from "@/lib/constants";
+import { publicUrl } from "@/lib/public-url";
 import Photo from "@/components/media/Photo.astro";
 ---
 
@@ -25,7 +26,7 @@ import Photo from "@/components/media/Photo.astro";
   />
   <img
     class="room-hero__mobile"
-    src="/images/room/volcano-mobile.jpg"
+    src={publicUrl("/images/room/volcano-mobile.jpg")}
     alt="Lorenzo de Leo on the Volcano Innovation Summit stage."
     width="540"
     height="552"

@@ -3,6 +3,7 @@ import "@/styles/global.css";
 import SiteHeader from "@/components/nav/SiteHeader.astro";
 import SiteFooter from "@/components/nav/SiteFooter.astro";
 import { canonicalUrl, ogImageUrl } from "@/lib/meta";
+import { publicUrl } from "@/lib/public-url";
 import { BRAND_NAME_FULL } from "@/lib/constants";
 import manropeLatin from "@fontsource/manrope/files/manrope-latin-400-normal.woff2?url";
 import manropeBold from "@fontsource/manrope/files/manrope-latin-700-normal.woff2?url";
@@ -81,7 +82,7 @@ const image = ogImage ?? ogImageUrl();
         </>
       )
     }
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={publicUrl("/favicon.svg")} />
     <noscript>
       <style>
         [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }

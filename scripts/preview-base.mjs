@@ -1,8 +1,8 @@
 /**
  * After `PREVIEW_BASE=/preview astro build`, prefix root-relative URLs
  * and mark every HTML file noindex. Astro's `base` covers bundled CSS and
- * JS; handwritten href/src in pages and public HTML stay root-relative
- * unless rewritten here.
+ * JS. Handwritten root-relative URLs, including srcset candidates, are
+ * prefixed here when a page did not already use the base path.
  */
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -11,6 +11,16 @@ import { fileURLToPath } from "node:url";
 const dist = fileURLToPath(new URL("../dist/", import.meta.url));
 const robots = '<meta name="robots" content="noindex, nofollow">';
 
+function prefixRoot(url) {
+  if (!url.startsWith("/") || url.startsWith("//") || url.startsWith("/preview/")) return url;
+  return `/preview${url}`;
+}
+
+/** srcset is a comma-separated list of URL plus an optional descriptor. */
+function prefixSrcset(value) {
+  return value.replace(/(^|,)\s*(\/(?!\/|preview\/)\S+)/g, (match, lead, url) => match.replace(url, prefixRoot(url)));
+}
+
 function rewrite(html) {
   const held = [];
   let out = html.replace(/<link\b[^>]*hreflang=["']es["'][^>]*>/gi, (tag) => {
@@ -18,9 +28,14 @@ function rewrite(html) {
     return `<!--HREFLANG_ES_${held.length - 1}-->`;
   });
   out = out.replace(
-    /(\s(?:href|src)=["'])\/(?!preview\/)/g,
+    /(\s(?:href|src|poster)=["'])\/(?!preview\/)/g,
     "$1/preview/"
   );
+  out = out.replace(/\s(srcset|imagesrcset)=(["'])([\s\S]*?)\2/gi, (full, name, quote, value) => {
+    const lead = full.slice(0, full.indexOf(name));
+    return `${lead}${name}=${quote}${prefixSrcset(value)}${quote}`;
+  });
+  out = out.replace(/url\((['"]?)(\/(?!\/|preview\/)[^)'"]+)\1\)/g, (_, quote, url) => `url(${quote}${prefixRoot(url)}${quote})`);
   out = out.replace(
     /(=["']https:\/\/lorenzodeleo\.com)\/(?!preview\/)/g,
     "$1/preview/"

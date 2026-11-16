@@ -2,6 +2,7 @@
 import Section from "@/components/primitives/Section.astro";
 import Eyebrow from "@/components/primitives/Eyebrow.astro";
 import { TALKS } from "@/data/content";
+import { publicUrl } from "@/lib/public-url";
 
 type Props = {
   /** h1 when this section opens a page; h2 on the home page. */
@@ -25,11 +26,11 @@ const TalkTitle = level === "h1" ? "h2" : "h3";
     </p>
     </div>
     <picture>
-      <source srcset="/images/room/cut-stage.avif" type="image/avif" />
-      <source srcset="/images/room/cut-stage.webp" type="image/webp" />
+      <source srcset={publicUrl("/images/room/cut-stage.avif")} type="image/avif" />
+      <source srcset={publicUrl("/images/room/cut-stage.webp")} type="image/webp" />
       <img
         class="room-split__cut"
-        src="/images/room/cut-stage.webp"
+        src={publicUrl("/images/room/cut-stage.webp")}
         alt="Lorenzo de Leo speaking into a microphone, close up."
         width="900"
         height="574"

@@ -2,6 +2,7 @@
 import Container from "@/components/primitives/Container.astro";
 import Eyebrow from "@/components/primitives/Eyebrow.astro";
 import { STAGES } from "@/data/content";
+import { publicUrl } from "@/lib/public-url";
 
 type Props = {
   level?: "h1" | "h2";
@@ -28,7 +29,7 @@ const Title = level;
           STAGES.map((logo) => (
             <li>
               <img
-                src={logo.src}
+                src={publicUrl(logo.src)}
                 alt={logo.name}
                 width={logo.width}
                 height={logo.height}
@@ -45,7 +46,7 @@ const Title = level;
           STAGES.map((logo) => (
             <li>
               <img
-                src={logo.src}
+                src={publicUrl(logo.src)}
                 alt=""
                 width={logo.width}
                 height={logo.height}
