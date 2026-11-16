@@ -2,6 +2,8 @@
  * Turns `[→ Topic: Section title]` into a non-clickable chip.
  * Later topics can become links by reading data-topic and data-section.
  */
+import { diagramHtml } from "./diagrams.mjs";
+
 const XREF = /\[→\s*([^:\]]+?):\s*([^\]]+?)\]/g;
 
 function escapeHtml(value) {
@@ -200,7 +202,7 @@ export function rehypeReading() {
     }
     flush();
     tree.children = out;
-    replaceCtas(tree, file);
+    replaceEmbeds(tree, file);
     annotate(tree);
     labelTables(tree);
     tidyLinks(tree);
@@ -211,12 +213,14 @@ const CTA = {
   hear: {
     id: "invite-hear",
     text: "If you think it's wrong, or you've seen a case it doesn't fit, I'd genuinely like to hear it.",
-    post: "If you think this definition of an AI-native company is wrong, or you've seen a case it doesn't fit, I'd genuinely like to hear it.",
+    x: "@LorenzodeLeo_ I'd define AI-native differently: …",
+    linkedin: "Lorenzo de Leo, I'd define AI-native differently: …",
   },
   cases: {
     id: "invite-cases",
     text: "If you're building one, or you know one, I'd like to see it. Send it my way, and the best cases will make it into this chapter.",
-    post: "If you're building an AI-native company, or you know one, I'd like to see it. The best cases will make it into the chapter.",
+    x: "@LorenzodeLeo_ here's an AI-native company for your book: [name], because [what makes it AI-native].",
+    linkedin: "Lorenzo de Leo, here's an AI-native company for your book: [name], because [what makes it AI-native].",
   },
 };
 
@@ -226,8 +230,8 @@ function pageUrl(file, hash) {
   return `https://lorenzodeleo.com${preview}/${slug}${hash}`;
 }
 
-function shareHref(kind, post, url) {
-  const payload = `${post} ${url} @LorenzodeLeo_`;
+function shareHref(kind, text, url) {
+  const payload = `${text} ${url}`;
   if (kind === "x") return `https://x.com/intent/post?text=${encodeURIComponent(payload)}`;
   return `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(payload)}`;
 }
@@ -257,22 +261,24 @@ function ctaBox(kind, file) {
   return element("aside", { className: ["cta-box"], id: spec.id }, [
     element("p", {}, [plain(spec.text)]),
     element("div", { className: ["cta-actions"] }, [
-      shareLink("x", "Post on X", spec.post, url),
-      shareLink("linkedin", "Post on LinkedIn", spec.post, url),
+      shareLink("x", "Post on X", spec.x, url),
+      shareLink("linkedin", "Post on LinkedIn", spec.linkedin, url),
     ]),
   ]);
 }
 
-function replaceCtas(node, file) {
+function replaceEmbeds(node, file) {
   if (!node?.children) return;
-  node.children = node.children.map((child) => {
+  node.children = node.children.flatMap((child) => {
     if (child.type === "element" && child.tagName === "p") {
       const text = nodeText(child).trim();
-      const match = text.match(/^\[\[cta:(hear|cases)\]\]$/);
-      if (match) return ctaBox(match[1], file);
+      const cta = text.match(/^\[\[cta:(hear|cases)\]\]$/);
+      if (cta) return [ctaBox(cta[1], file)];
+      const diagram = text.match(/^\[\[diagram:(system|timeline|words|waves)\]\]$/);
+      if (diagram) return [{ type: "raw", value: diagramHtml(diagram[1]) }];
     }
-    replaceCtas(child, file);
-    return child;
+    replaceEmbeds(child, file);
+    return [child];
   });
 }
 

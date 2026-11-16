@@ -104,6 +104,8 @@ There is a second parallel, closer to the work itself. Building has gotten cheap
 
 Where it is not the same is the width of the wave. That one cheapened a layer. You could open the store without a team of engineers, and you still hired people to merchandise, to talk to customers, and to fulfill. This wave reaches those jobs too. Building, selling, support, and the loop that connects them can all move at once. Last time, cheaper building changed the store. This time it reaches the company around it.
 
+[[diagram:waves]]
+
 ## How the words relate
 
 Four phrases get used as if they were one. They are not, and the differences are ordinary once you say them in sentences.
@@ -116,14 +118,7 @@ Four phrases get used as if they were one. They are not, and the differences are
 
 **AI-native**, as this book uses it, is about that construction. People and agents as one system: shared memory, loops that close fast, and explicit points where human judgment decides. It is a degree, not a badge, and the test is how you read the degree.
 
-The table is the same distinction, compressed.
-
-| Term | How it's usually used | What it describes | How the test reads it |
-|---|---|---|---|
-| **AI-enabled** (or AI-powered, AI-augmented) | AI features added to a product or process that existed before | A product or a function | A function automated, the structure unchanged |
-| **AI-first** | A company that makes AI central to its product and decisions, often an existing company committing to change | A strategic commitment | A direction, not a place you arrive |
-| **Agentic** | Systems or organizations where AI agents take actions, not just answer | A capability of the system | Part of the picture, once memory and judgment are there |
-| **AI-native** (as used in this book) | People and agents working as one system, with shared memory, closed loops and explicit judgment points | How the company is built | A degree, read with the test |
+[[diagram:words]]
 
 ## "AI from day one" is a start date, not a design
 
@@ -150,6 +145,8 @@ So here's my working definition, as of November 2026:
 
 > **An AI-native company is one whose construction assumes a system of people and agents: shared memory, loops that close fast, and explicit points where human judgment decides.**
 
+[[diagram:system]]
+
 Two cautions travel with it. It isn't a moat. It's the rate at which you build one, and the edge over incumbents is real but temporary [→ Investing: The moat is not "I use AI"]. And it isn't binary. Companies are 40%, 60% or 80% of the way there, and the direction matters as much as the level.
 
 **How this definition evolved.** This isn't the definition I started with, and I'd rather show the change than hide it.
@@ -165,19 +162,23 @@ I still agree with most of it. Four months of conversations, and of writing the 
 
 This is a working definition. It's dated on purpose, and I expect it to change again. Probably the next change will come from the judgment side, as agents take on more of the work. Changing my mind in public is part of how this book is supposed to work.
 
+[[diagram:timeline]]
+
 [[cta:hear]]
 
 ## The test: questions only the inside of a company can answer
 
 Which leaves the practical question. If you can't see it from the website, how do you tell?
 
-You can't tell whether a company is AI-native from its website, its product or its pitch. You can tell from seven questions about how it is built. The answer is almost never yes or no. It's a degree: most companies I meet are AI-native in parts, maybe 60% or 80% of the way, and the useful conversation is about the rest.
+You can't tell whether a company is AI-native from its website, its product or its pitch. Most startups I meet are not AI-native yet. Even the ones that are, especially the ones that call themselves AI-native, are rarely all the way there. It is a matter of degree. The seven questions are how you see the inside.
 
 The difficulty is that this lives inside the company. Nobody publishes their internal setup. So the test has to be a conversation, and it has to ask for evidence: the last time something happened, not the policy.
 
 An angel investor who sees pitch decks in both New York and Bogotá put the problem better than I can. In New York, she told me, it's visible in the pitch whether a company is AI-native. In Latin America, most pitches still say "we have this business model, and we use AI for this part of the process." *And so what?* That's the gap the test is for.
 
-I start with a warm-up I don't score: *tell me what you sell in one line, without the word AI.* Then:
+**Question 0, unscored.** *Tell me what you sell in one line, without the word AI.* I don't score this. AI-native is about how a company is built, not what it sells. If the pitch only works with the word AI in it, AI is the product story, not necessarily the construction. Saying what you sell without that word separates the two, and then the seven questions can test the build.
+
+Then:
 
 1. **What did you decide not to hire for, and what carries that work now?** An AI-native team can name a function a company like theirs would normally staff, the system that runs it, and the person who stands behind its output.
 2. **Where does the company's memory live, and who can read and write it, people and agents alike?** The tool downloads. The context doesn't. If the knowledge sits in the founders' heads and in a separate island for each tool, the agents start from zero every day.
@@ -199,7 +200,7 @@ I am the only human inside it. There is one memory of people, conversations, dec
 
 Until August, I wasn't asking these questions explicitly in conversations with founders, and they weren't on the fund's intake form. A fund built on an AI-native thesis wasn't asking its own question. Writing this test is how I'm fixing that.
 
-The method is the part worth copying: shared memory, clear judgment points, loops that close. The implementation is not. What works for one person building a fund will not map onto a clinic or a logistics company. ENYA is one point on the scale. I have met many companies that look 60% or 80% of the way there. I have not been inside them. AI-native is a degree.
+The method is the part worth copying: shared memory, clear judgment points, loops that close. The implementation is not. What works for one person building a fund will not map onto a clinic or a logistics company. ENYA is one point on that scale, not the measure of anyone else.
 
 [[cta:cases]]
 

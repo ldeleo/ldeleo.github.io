@@ -37,7 +37,7 @@ export const WEB3FORMS_ACCESS_KEY = "778c9787-a8c2-422f-8cb9-0ae21af4d276";
 
 export const NAV_LINKS = [
   { href: "/speaking", label: "Speaking" },
-  { href: "/writing", label: "Writing" },
+  { href: "/ai-native", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;

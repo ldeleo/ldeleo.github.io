@@ -89,8 +89,6 @@ const jsonLd = {
 
       <article>
         <nav class="crumbs" aria-label="Breadcrumb">
-          <a href="/writing">Writing</a>
-          <span aria-hidden="true">/</span>
           <a href={BOOK_HREF}>{BOOK_TITLE}</a>
           <span aria-hidden="true">/</span>
           <span aria-current="page">{entry.data.topic}</span>
@@ -286,7 +284,7 @@ const jsonLd = {
       test.addEventListener("change", update);
     }
 
-    const payloadFor = (text, url) => text + " " + url + " @LorenzodeLeo_";
+    const payloadFor = (text, url) => text + " " + url;
     const intent = (kind, text, url) => {
       const payload = encodeURIComponent(payloadFor(text, url));
       return kind === "x"
@@ -346,9 +344,10 @@ const jsonLd = {
         if (head.compareDocumentPosition(range.startContainer) & Node.DOCUMENT_POSITION_FOLLOWING) section = head;
       }
       const url = pageUrl() + (section && section.id ? "#" + section.id : "");
-      const quote = "“" + text + "”";
-      popX.href = intent("x", quote, url);
-      popIn.href = intent("linkedin", quote, url);
+      const room = Math.max(40, 280 - url.length - 1);
+      const clip = (value) => (value.length <= room ? value : value.slice(0, room - 1).trimEnd() + "…");
+      popX.href = intent("x", clip("@LorenzodeLeo_ “" + text + "”"), url);
+      popIn.href = intent("linkedin", clip("“" + text + "” — Lorenzo de Leo"), url);
       const rect = range.getBoundingClientRect();
       pop.hidden = false;
       const width = pop.offsetWidth;

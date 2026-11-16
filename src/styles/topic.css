@@ -924,6 +924,71 @@ body.is-reading .enya-header {
   margin-top: 0.55rem;
 }
 
+.diagram {
+  margin: 1.6rem 0 0.2rem;
+}
+
+.diagram-title {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.diagram-desc {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.diagram svg {
+  width: 100%;
+  height: auto;
+  color: var(--read-ink);
+}
+
+.diagram svg.diagram-stack {
+  display: block;
+}
+
+.diagram svg.diagram-wide {
+  display: none;
+}
+
+.diagram-caption {
+  margin: 0.7rem 0 0;
+  color: var(--read-muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.book-landing .topic-pager {
+  grid-template-columns: 1fr;
+}
+
+.book-landing .topic-pager .pager-next {
+  align-items: flex-start;
+  text-align: left;
+}
+
+@media (min-width: 760px) {
+  .diagram svg.diagram-stack {
+    display: none;
+  }
+
+  .diagram svg.diagram-wide {
+    display: block;
+  }
+}
+
 .topic-changelog {
   max-width: 66ch;
   margin-top: 3rem;

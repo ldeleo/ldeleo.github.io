@@ -8,6 +8,7 @@ const raw = Astro.url.pathname.replace(/\/$/, "") || "/";
 const currentPath = (base && raw.startsWith(base) ? raw.slice(base.length) : raw) || "/";
 function isActive(href: string) {
   if (href === "/") return currentPath === "/";
+  if (href === "/ai-native") return currentPath === "/ai-native" || currentPath.startsWith("/ai-native/");
   return currentPath === href;
 }
 ---

@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { BOOK_HREF, BOOK_TITLE, BOOK_TOPICS, SPINE } from "@/data/book";
+import { diagramHtml } from "@/lib/diagrams.mjs";
 import { SITE_URL } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/meta";
 
@@ -27,11 +28,6 @@ const jsonLd = {
   <div class="topic-shell book-landing">
     <div class="topic-layout">
       <article>
-        <nav class="crumbs" aria-label="Breadcrumb">
-          <a href="/writing">Writing</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">{BOOK_TITLE}</span>
-        </nav>
         <p class="topic-kicker">
           <span>Book · written in public</span>
         </p>
@@ -43,6 +39,7 @@ const jsonLd = {
             construction: shared memory, loops that close, and the points where a person still decides.
           </p>
           <p class="spine-callout" id="spine">{SPINE}</p>
+          <Fragment set:html={diagramHtml("system")} />
           <p>
             That sentence is the spine. Every topic hangs off it. The book is written in public, which means a view
             can change. When it does, the change is recorded on the page, with a date, the way a definition gets a
@@ -88,10 +85,6 @@ const jsonLd = {
             }
           </ol>
           <nav class="topic-pager" aria-label="Chapters">
-            <a href="/writing">
-              <span class="pager-kicker">Back</span>
-              Writing
-            </a>
             <a class="pager-next" href="/ai-native/definition">
               <span class="pager-kicker">Next</span>
               Definition
@@ -113,7 +106,7 @@ const jsonLd = {
     </div>
   </div>
   <script is:inline>
-    const payloadFor = (text, url) => text + " " + url + " @LorenzodeLeo_";
+    const payloadFor = (text, url) => text + " " + url;
     const intent = (kind, text, url) => {
       const payload = encodeURIComponent(payloadFor(text, url));
       return kind === "x"
