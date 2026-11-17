@@ -1,0 +1,42 @@
+---
+import { CTA_HREF, CTA_FULL } from "@/lib/constants";
+import { publicUrl } from "@/lib/public-url";
+import Photo from "@/components/media/Photo.astro";
+---
+
+<section class="room-hero">
+  <div class="room-hero__media">
+    <Photo
+      class="room-hero__plate"
+      name="volcano-hero"
+      alt="Lorenzo de Leo on the Volcano Innovation Summit stage."
+      width="1616"
+      height="1080"
+      sizes="100vw"
+      widths={[480, 800, 1200, 1600]}
+      priority
+    />
+    <img
+      class="room-hero__mobile"
+      src={publicUrl("/images/room/volcano-mobile.jpg")}
+      alt="Lorenzo de Leo on the Volcano Innovation Summit stage."
+      width="540"
+      height="552"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <p class="room-hero__credit">Volcano Innovation Summit, 2026 · Photo: Volcano Summit</p>
+  </div>
+  <div class="room-hero__scrim" aria-hidden="true"></div>
+  <div class="room-hero__copy">
+    <h1>
+      Adding AI to your company is an upgrade.
+      <span class="hero-break">Being AI‑native is a redesign.</span>
+    </h1>
+    <p class="room-hero__line">An investor who builds AI-native companies, and speaks about the redesign.</p>
+    <p class="room-hero__invite">
+      <a href={CTA_HREF}>{CTA_FULL}</a>
+    </p>
+  </div>
+</section>

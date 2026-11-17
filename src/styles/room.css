@@ -1,0 +1,445 @@
+/* The Room. Type sits on photographs. No framed cards. */
+
+.room-hero {
+  position: relative;
+  height: calc(100svh - 4.5rem);
+  min-height: calc(100svh - 4.5rem);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: var(--color-ink);
+  background: #0c0b0a;
+}
+
+.room-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.room-hero__plate,
+.room-hero__mobile {
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+}
+
+.room-hero__plate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% 42%;
+}
+
+.room-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12, 11, 10, 0.94) 0%, rgba(12, 11, 10, 0.88) 28%, rgba(12, 11, 10, 0.55) 42%, rgba(12, 11, 10, 0.08) 58%, rgba(12, 11, 10, 0.2) 100%),
+    linear-gradient(180deg, rgba(12, 11, 10, 0.55) 0%, rgba(12, 11, 10, 0.05) 22%, rgba(12, 11, 10, 0.2) 70%, rgba(12, 11, 10, 0.84) 100%);
+}
+
+.room-hero__copy {
+  position: relative;
+  z-index: 1;
+  width: min(40rem, 52vw);
+  padding: 6.5rem 7vw 4.75rem;
+}
+
+.room-hero h1 {
+  margin: 0;
+  max-width: 11em;
+  font-size: clamp(2.5rem, 4.4vw, 4.35rem);
+  font-weight: 560;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.room-hero__mobile {
+  display: none;
+}
+
+.room-hero__line {
+  margin: 1.6rem 0 0;
+  max-width: 26rem;
+  font-size: 1.08rem;
+  font-weight: 450;
+  line-height: 1.45;
+  color: rgba(244, 240, 230, 0.82);
+}
+
+.room-hero__invite {
+  margin: 1.85rem 0 0;
+}
+
+.room-hero__invite a {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 240, 230, 0.88);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-electric-magenta);
+  padding-bottom: 0.18rem;
+}
+
+.room-hero__invite a:hover {
+  color: var(--color-ink);
+}
+
+.room-hero__credit {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1rem;
+  z-index: 2;
+  margin: 0;
+  max-width: 16rem;
+  font-size: 0.62rem;
+  font-weight: 550;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-align: right;
+  color: rgba(244, 240, 230, 0.88);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.enya-mark {
+  background-image: none;
+  -webkit-text-fill-color: currentColor;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-electric-magenta);
+  text-underline-offset: 0.16em;
+}
+
+.room-who__copy {
+  max-width: 38rem;
+}
+
+.room-who__lead {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 2.6vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.room-who__copy p + p {
+  margin: 1.15rem 0 0;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  font-weight: 450;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.room-who__copy a {
+  margin-left: 0.35rem;
+}
+
+.room-band {
+  padding: 5.75rem 8vw;
+  background: #141210;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.room-band.is-quiet {
+  background: transparent;
+}
+
+.room-band p {
+  margin: 0 auto;
+  max-width: 16em;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3.5vw, 2.85rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  text-wrap: balance;
+  color: var(--color-ink);
+}
+
+.room-beliefs {
+  padding-bottom: 2rem;
+}
+
+.room-beliefs .belief-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 2.75rem;
+  border-top: 1px solid var(--color-rule-strong);
+}
+
+.room-beliefs .belief {
+  display: block;
+  padding: 2.6rem 0 2.8rem;
+  border-top: 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.room-beliefs .belief p {
+  max-width: 38rem;
+  font-weight: 430;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.room-beliefs .belief-index {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 650;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--color-electric-magenta);
+}
+
+.room-beliefs .belief h3 {
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  max-width: 16em;
+}
+
+@media (min-width: 860px) {
+  .room-beliefs .belief-list {
+    grid-template-columns: 1fr;
+    max-width: 46rem;
+  }
+  .room-beliefs .belief:last-child {
+    border-bottom: 0;
+  }
+}
+
+.room-bleed {
+  position: relative;
+  margin: 2.5rem 0 0;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.room-bleed img {
+  width: 100%;
+  height: min(78vh, 820px);
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+
+.room-bleed figcaption {
+  position: absolute;
+  right: 6vw;
+  bottom: 1rem;
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 240, 230, 0.8);
+}
+
+.room-split {
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+  padding: 4.5rem 6vw 1rem;
+}
+
+.room-split__cut {
+  width: min(100%, 34rem);
+  height: auto;
+  justify-self: end;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45));
+}
+
+@media (min-width: 900px) {
+  .room-split {
+    grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
+    gap: 3rem;
+    align-items: center;
+  }
+}
+
+.room-talks .talk {
+  border-top-color: var(--color-rule-strong);
+}
+
+.room-invite-block {
+  margin: 0;
+  padding: 4.5rem 6vw 5rem;
+  border-top: 1px solid var(--color-rule);
+}
+
+.room-invite-block h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.room-invite-block p {
+  margin: 1.25rem 0 0;
+}
+
+.room-invite-block a {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-electric-magenta);
+  padding-bottom: 0.2rem;
+}
+
+.room-invite-block a:hover {
+  color: var(--color-electric-magenta);
+}
+
+.contact-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.contact-channels a {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  text-underline-offset: 0.18em;
+}
+
+@media (max-width: 760px) {
+  .enya-header a.ldl-mark,
+  .room-invite a,
+  .room-hero__invite a,
+  footer nav a,
+  footer a,
+  .tap-44 {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+  footer nav a,
+  footer a,
+  .tap-44 {
+    justify-content: center;
+  }
+}
+
+.room-invite {
+  margin: 0;
+  padding: 1rem 6vw 5rem;
+}
+
+.room-invite a {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-electric-magenta);
+  padding-bottom: 0.2rem;
+}
+
+.room-invite a:hover {
+  color: var(--color-electric-magenta);
+}
+
+.room-book {
+  min-height: 70svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 8rem 6vw 5rem;
+}
+
+.room-book h1 {
+  margin: 0.8rem 0 0;
+  max-width: 10em;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.room-book p {
+  margin: 1.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 1.05rem;
+}
+
+.room-portrait {
+  margin: 0;
+  width: min(100%, 28rem);
+}
+
+.room-portrait img,
+.room-still img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.room-still {
+  margin: 2.75rem 0 0;
+}
+
+@media (max-width: 800px) {
+  .room-hero {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  .room-hero__media {
+    position: relative;
+    inset: auto;
+  }
+  .room-hero__plate,
+  .room-hero__scrim {
+    display: none;
+  }
+  .room-hero__mobile {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .room-hero__credit {
+    right: 0.85rem;
+    bottom: 0.7rem;
+    max-width: 14rem;
+  }
+  .room-hero__copy {
+    width: 100%;
+    padding: 1.85rem 1.25rem 2.25rem;
+    background: #0c0b0a;
+  }
+  .room-hero h1 {
+    max-width: 12em;
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+  .room-split__cut {
+    justify-self: start;
+  }
+}

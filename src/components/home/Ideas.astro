@@ -1,0 +1,57 @@
+---
+import Section from "@/components/primitives/Section.astro";
+import Eyebrow from "@/components/primitives/Eyebrow.astro";
+import CtaSecondary from "@/components/primitives/CtaSecondary.astro";
+import { ESSAYS } from "@/data/content";
+import { LINKEDIN_URL, SUBSTACK_URL, X_URL } from "@/lib/constants";
+
+type Props = {
+  level?: "h1" | "h2";
+};
+
+const { level = "h2" } = Astro.props;
+const Title = level;
+---
+
+<Section
+  id="ideas"
+  style="background: color-mix(in srgb, var(--color-paper-deep) 65%, var(--color-paper));"
+>
+  <div class="max-w-3xl" data-reveal>
+    <Eyebrow>Ideas</Eyebrow>
+    <Title class="text-d2 mt-6" style="color: var(--color-ink);">
+      The writing behind the talks.
+    </Title>
+    <p class="lede measure mt-6">
+      Three essays. The same thesis, worked out in prose. Each one sits behind one of the talks.
+    </p>
+  </div>
+
+  <div class="essay-list">
+    {
+      ESSAYS.map((essay, i) => (
+        <article class="essay" data-reveal style={`--reveal-i: ${i % 2};`}>
+          <p class="essay-kicker">{essay.behind}</p>
+          <h3>
+            <a href={essay.href} target="_blank" rel="noopener noreferrer">
+              {essay.title}
+            </a>
+          </h3>
+          <p>{essay.body}</p>
+          <CtaSecondary href={essay.href} external class="mt-5 text-base">
+            Read the essay
+          </CtaSecondary>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="mt-12 text-base" style="color: var(--color-muted);" data-reveal>
+    Published on
+    <a href={SUBSTACK_URL} class="font-semibold underline" target="_blank" rel="noopener noreferrer">Substack</a>.
+    Shorter notes on
+    <a href={LINKEDIN_URL} class="font-semibold underline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    and
+    <a href={X_URL} class="tap-44 font-semibold underline" target="_blank" rel="noopener noreferrer">X</a>.
+  </p>
+</Section>

@@ -1,0 +1,25 @@
+---
+type Props = {
+  src: string;
+  alt: string;
+  priority?: boolean;
+};
+
+const { src, alt, priority = false } = Astro.props;
+---
+
+<figure class="stage-photo">
+  <img
+    src={src}
+    alt={alt}
+    width="1616"
+    height="1080"
+    loading={priority ? "eager" : "lazy"}
+    fetchpriority={priority ? "high" : "auto"}
+    decoding="async"
+  />
+  <figcaption>
+    <span>Volcano Innovation Summit, 2026</span>
+    <span>Photo: Volcano Summit</span>
+  </figcaption>
+</figure>
