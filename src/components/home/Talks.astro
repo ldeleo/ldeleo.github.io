@@ -19,10 +19,13 @@ const TalkTitle = level === "h1" ? "h2" : "h3";
     <div data-reveal>
     <Eyebrow>Talks</Eyebrow>
     <Title class="text-d2 mt-6" style="color: var(--color-ink);">
-      One idea, three rooms.
+      One idea, three formats.
     </Title>
     <p class="lede measure mt-6">
-      Same thesis, brought to a different audience. English, Spanish, or Italian.
+      Talks and keynotes, in person or virtual. Workshops in person.
+    </p>
+    <p class="lede measure mt-4">
+      For leadership teams, family businesses, founders, and investors. English, Spanish, or Italian.
     </p>
     </div>
     <picture>
@@ -44,35 +47,22 @@ const TalkTitle = level === "h1" ? "h2" : "h3";
     {
       TALKS.map((talk, i) => (
         <article class="talk" id={talk.id} data-reveal style={`--reveal-i: ${i % 2};`}>
-          <div class="talk-kicker">
-            <span class="talk-index">{talk.index}</span>
-            <span class="talk-format">{talk.format}</span>
-          </div>
-          <div>
+          <div class="talk-main">
+            <p class="talk-kicker">
+              <span class="talk-index">{talk.index}</span>
+              <span class="talk-format">{talk.format}</span>
+            </p>
             <TalkTitle>{talk.title}</TalkTitle>
             <p class="talk-for">For {talk.audience}.</p>
             <p class="talk-idea">{talk.idea}</p>
-            <p class="text-eyebrow mt-8" style="color: var(--color-muted);">
-              The room leaves with
-            </p>
+          </div>
+          <div class="talk-leaves">
+            <p class="talk-leaves-label">The room leaves with</p>
             <ul class="takeaways">
               {talk.takeaways.map((item) => (
                 <li>{item}</li>
               ))}
             </ul>
-            {talk.note && (
-              <p class="talk-note">
-                {talk.note}{" "}
-                {talk.links?.map((link, n) => (
-                  <span>
-                    {n > 0 && " · "}
-                    <a class="tap-44" href={link.href} target="_blank" rel="noopener noreferrer">
-                      {link.label}
-                    </a>
-                  </span>
-                ))}
-              </p>
-            )}
           </div>
         </article>
       ))

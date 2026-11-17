@@ -3,37 +3,13 @@ import SiteLayout from "@/layouts/SiteLayout.astro";
 import Talks from "@/components/home/Talks.astro";
 import Praise from "@/components/home/Praise.astro";
 import Stages from "@/components/home/Stages.astro";
-import Reel from "@/components/home/Reel.astro";
 import Invite from "@/components/home/Invite.astro";
-import Photo from "@/components/media/Photo.astro";
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 ---
 
 <SiteLayout title={PAGE_TITLES.speaking} description={PAGE_DESCRIPTIONS.speaking} path="/speaking">
   <Talks level="h1" />
-  <Invite />
-  <figure class="room-bleed">
-    <Photo
-      name="d3"
-      alt="Lorenzo de Leo speaking at D3 Bahamas, with the audience seated behind him."
-      width="1500"
-      height="1500"
-      sizes="100vw"
-      widths={[480, 800, 1200]}
-    />
-  </figure>
   <Praise />
   <Stages />
-  <figure class="room-bleed">
-    <Photo
-      name="point"
-      alt="Lorenzo de Leo teaching, pointing at a screen."
-      width="1600"
-      height="1066"
-      sizes="100vw"
-      widths={[480, 800, 1200]}
-    />
-  </figure>
-  <Reel />
   <Invite />
 </SiteLayout>

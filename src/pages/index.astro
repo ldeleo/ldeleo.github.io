@@ -1,6 +1,8 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import Hero from "@/components/home/Hero.astro";
+import Who from "@/components/home/Who.astro";
+import Band from "@/components/home/Band.astro";
 import Thesis from "@/components/home/Thesis.astro";
 import Invite from "@/components/home/Invite.astro";
 import Photo from "@/components/media/Photo.astro";
@@ -9,16 +11,20 @@ import { PAGE_DESCRIPTIONS, PAGE_TITLES } from "@/lib/constants";
 
 <SiteLayout title={PAGE_TITLES.home} description={PAGE_DESCRIPTIONS.home} path="/">
   <Hero />
+  <Who />
+  <Band>People and agents work as one system. The advantage goes to whoever builds it first.</Band>
   <Thesis />
+  <Band tone="quiet">When building gets cheap, judgment is the company.</Band>
   <figure class="room-bleed">
     <Photo
-      name="workshop"
-      alt="Lorenzo de Leo speaking to a seated room."
-      width="1600"
-      height="1066"
+      name="volcano-gesture"
+      alt="Lorenzo de Leo speaking alone on the Volcano Innovation Summit stage."
+      width="1616"
+      height="1080"
       sizes="100vw"
-      widths={[480, 800, 1200]}
+      widths={[480, 800, 1200, 1600]}
     />
+    <figcaption>Volcano Innovation Summit, 2026 · Photo: Volcano Summit</figcaption>
   </figure>
   <Invite />
 </SiteLayout>

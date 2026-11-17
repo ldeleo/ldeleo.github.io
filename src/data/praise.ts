@@ -38,16 +38,16 @@ export const PRAISE: PraiseItem[] = [
     id: "davivienda",
     quote:
       "Lorenzo showed us how to turn AI theory into agile, scalable solutions that transform the experience of our customers and users, and it strengthened our value proposition.",
-    attribution:
-      "Andrés Pineda, Innovation & Operations Manager, Banco Davivienda Salvadoreño",
+    attribution: "Andrés Pineda, Innovation & Operations Manager",
+    org: "Banco Davivienda",
     pending: false,
   },
   {
     id: "btg-pactual",
     quote:
       "A talk that put a pragmatic approach to AI on the table, along with what it means to be AI-native, as a starting point for a new generation of entrepreneurs.",
-    attribution:
-      "Luisa Plazas, Executive Director, Marketing and Communications, BTG Pactual Colombia",
+    attribution: "Luisa Plazas, Executive Director, Marketing and Communications",
+    org: "BTG Pactual",
     pending: false,
   },
   {
@@ -61,14 +61,16 @@ export const PRAISE: PraiseItem[] = [
     id: "eduardo-hernandez",
     quote:
       "Lorenzo opened the doors of ENYA Ventures and showed us, live, how his fund runs on AI agents. We left with a lot of ideas for applying these tools in our startups and in our day-to-day work.",
-    attribution: "Eduardo Hernández Fuentes, Partner, LeapstartMx",
+    attribution: "Eduardo Hernández Fuentes, Partner",
+    org: "LeapstartMx",
     pending: false,
   },
   {
     id: "search-club-roberto",
     quote:
       "Lorenzo is one of those minds that is always a step ahead. He knows what's coming and helps you stay in the game.",
-    attribution: "Roberto López Castellanos, CEO & Co-Founder, Search Club",
+    attribution: "Roberto López Castellanos, CEO & Co-Founder",
+    org: "Search Club",
     pending: false,
   },
   {
@@ -82,7 +84,8 @@ export const PRAISE: PraiseItem[] = [
     id: "andrea-arnau",
     quote:
       "Lorenzo's approach to complex concepts is transformative, turning bewildering ideas into empowering knowledge for all audiences.",
-    attribution: "Andrea Arnau, investor, Shark Tank celebrity",
+    attribution: "Andrea Arnau",
+    org: "Shark Tank celebrity and investor",
     pending: false,
   },
 ];

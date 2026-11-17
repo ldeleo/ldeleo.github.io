@@ -53,9 +53,9 @@ export const PAGE_TITLES = {
 } as const;
 
 export const PAGE_DESCRIPTIONS = {
-  home: "Adding AI to a company is an upgrade. Being AI‑native is a redesign. Lorenzo de Leo, Managing Director of ENYA Ventures, on the thesis — for leadership teams, founders, and investors. English, Spanish, or Italian.",
+  home: "Adding AI to a company is an upgrade. Being AI‑native is a redesign. Lorenzo de Leo is an investor who builds AI-native companies and speaks about the redesign.",
   speaking:
-    "Three talks, one thesis: the AI‑native redesign. A keynote for leadership teams, a workshop for founders and investors, and a fireside on Latin America. English, Spanish, or Italian.",
+    "One idea, three formats. Talks and keynotes in person or virtual. Workshops in person. For leadership teams, family businesses, founders, and investors. English, Spanish, or Italian.",
   writing:
     "The AI-Native Company, written in public. People and agents as one system, and the advantage to whoever builds that system first.",
   about:

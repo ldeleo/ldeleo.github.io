@@ -33,7 +33,10 @@ const quotes = PRAISE.filter((item) => !item.pending);
         >
           {item.pending && <p class="praise-flag">Placeholder</p>}
           <p class="praise-quote">{item.quote}</p>
-          <footer>{praiseAttribution(item)}</footer>
+          <footer>
+            <span>{praiseAttribution(item)}</span>
+            {item.org && <span class="praise-org">{item.org}</span>}
+          </footer>
         </blockquote>
       ))
     }

@@ -88,17 +88,6 @@ export const TALKS: Talk[] = [
       "Why to design agents by objective rather than by job title, and when one agent is better than many.",
       "A realistic picture of the effort: this isn't plug-and-play, and the value shows up after months of feeding the system and correcting it.",
     ],
-    note: "Given at Mexico Tech Week 2026. Next, in Miami:",
-    links: [
-      {
-        href: "https://luma.com/d7vjc7c7",
-        label: "Venture Summit, 27 Jan 2027",
-      },
-      {
-        href: "https://luma.com/62jtm2ad",
-        label: "Venture Week, 24 Feb 2027",
-      },
-    ],
   },
   {
     id: "fertile-ground",

@@ -2,11 +2,27 @@
 
 .room-hero {
   position: relative;
-  min-height: 100svh;
+  height: calc(100svh - 4.5rem);
+  min-height: calc(100svh - 4.5rem);
   display: flex;
   align-items: flex-end;
+  overflow: hidden;
   color: var(--color-ink);
   background: #0c0b0a;
+}
+
+.room-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.room-hero__plate,
+.room-hero__mobile {
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
 }
 
 .room-hero__plate {
@@ -29,66 +45,67 @@
 .room-hero__copy {
   position: relative;
   z-index: 1;
-  width: min(34rem, 46vw);
-  padding: 7.5rem 6vw 3.5rem;
-}
-
-.room-kicker {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-electric-magenta);
+  width: min(40rem, 52vw);
+  padding: 6.5rem 7vw 4.75rem;
 }
 
 .room-hero h1 {
-  margin: 1rem 0 0;
-  max-width: 7.6em;
-  font-size: clamp(2.6rem, 5.8vw, 5.375rem);
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+  margin: 0;
+  max-width: 11em;
+  font-size: clamp(2.5rem, 4.4vw, 4.35rem);
+  font-weight: 560;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
 }
 
-.room-hero__mobile,
-.room-hero__invite {
+.room-hero__mobile {
   display: none;
 }
 
-.room-hero__lede,
-.room-hero__who {
-  max-width: 36rem;
-  color: var(--color-muted-strong);
-}
-
-.room-hero__lede {
-  margin: 1.4rem 0 0;
-  font-size: 1.05rem;
+.room-hero__line {
+  margin: 1.6rem 0 0;
+  max-width: 26rem;
+  font-size: 1.08rem;
+  font-weight: 450;
   line-height: 1.45;
+  color: rgba(244, 240, 230, 0.82);
 }
 
-.room-hero__who {
-  margin: 1.1rem 0 0;
-  font-size: 1rem;
-  line-height: 1.55;
+.room-hero__invite {
+  margin: 1.85rem 0 0;
 }
 
-.room-hero__who a {
+.room-hero__invite a {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 240, 230, 0.88);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-electric-magenta);
+  padding-bottom: 0.18rem;
+}
+
+.room-hero__invite a:hover {
   color: var(--color-ink);
-  text-underline-offset: 0.18em;
 }
 
 .room-hero__credit {
-  position: relative;
-  z-index: 1;
-  margin: 1.5rem 0 0;
-  max-width: 22rem;
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1rem;
+  z-index: 2;
+  margin: 0;
+  max-width: 16rem;
   font-size: 0.62rem;
-  font-weight: 650;
-  letter-spacing: 0.16em;
+  font-weight: 550;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
   text-transform: uppercase;
-  color: rgba(244, 240, 230, 0.72);
+  text-align: right;
+  color: rgba(244, 240, 230, 0.88);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .enya-mark {
@@ -100,8 +117,58 @@
   text-underline-offset: 0.16em;
 }
 
+.room-who__copy {
+  max-width: 38rem;
+}
+
+.room-who__lead {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 2.6vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.room-who__copy p + p {
+  margin: 1.15rem 0 0;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  font-weight: 450;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.room-who__copy a {
+  margin-left: 0.35rem;
+}
+
+.room-band {
+  padding: 5.75rem 8vw;
+  background: #141210;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.room-band.is-quiet {
+  background: transparent;
+}
+
+.room-band p {
+  margin: 0 auto;
+  max-width: 16em;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3.5vw, 2.85rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  text-wrap: balance;
+  color: var(--color-ink);
+}
+
 .room-beliefs {
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .room-beliefs .belief-list {
@@ -113,9 +180,17 @@
 
 .room-beliefs .belief {
   display: block;
-  padding: 1.6rem 0 1.8rem;
+  padding: 2.6rem 0 2.8rem;
   border-top: 0;
   border-bottom: 1px solid var(--color-rule);
+}
+
+.room-beliefs .belief p {
+  max-width: 38rem;
+  font-weight: 430;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-muted);
 }
 
 .room-beliefs .belief-index {
@@ -136,16 +211,10 @@
 
 @media (min-width: 860px) {
   .room-beliefs .belief-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    max-width: 46rem;
   }
-  .room-beliefs .belief:nth-child(odd) {
-    padding-right: 2.5rem;
-    border-right: 1px solid var(--color-rule);
-  }
-  .room-beliefs .belief:nth-child(even) {
-    padding-left: 2.5rem;
-  }
-  .room-beliefs .belief:nth-last-child(-n + 2) {
+  .room-beliefs .belief:last-child {
     border-bottom: 0;
   }
 }
@@ -338,7 +407,13 @@
 @media (max-width: 800px) {
   .room-hero {
     display: block;
+    height: auto;
     min-height: 0;
+    overflow: visible;
+  }
+  .room-hero__media {
+    position: relative;
+    inset: auto;
   }
   .room-hero__plate,
   .room-hero__scrim {
@@ -346,41 +421,23 @@
   }
   .room-hero__mobile {
     display: block;
+    position: relative;
     width: 100%;
     height: auto;
   }
+  .room-hero__credit {
+    right: 0.85rem;
+    bottom: 0.7rem;
+    max-width: 14rem;
+  }
   .room-hero__copy {
     width: 100%;
-    padding: 1.75rem 1.25rem 0.5rem;
+    padding: 1.85rem 1.25rem 2.25rem;
     background: #0c0b0a;
   }
   .room-hero h1 {
     max-width: 12em;
-    font-size: clamp(2.35rem, 11vw, 3.2rem);
-  }
-  .room-hero__copy {
-    display: flex;
-    flex-direction: column;
-  }
-  .room-kicker { order: 1; }
-  .room-hero h1 { order: 2; }
-  .room-hero__lede { order: 3; }
-  .room-hero__invite { order: 4; }
-  .room-hero__who { order: 5; }
-  .room-hero__credit { order: 6; }
-  .room-hero__invite {
-    display: block;
-    margin: 1.35rem 0 0.4rem;
-  }
-  .room-hero__invite a {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-electric-magenta);
-    padding-bottom: 0.2rem;
+    font-size: clamp(2.2rem, 10vw, 3rem);
   }
   .room-split__cut {
     justify-self: start;

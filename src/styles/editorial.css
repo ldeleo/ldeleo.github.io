@@ -126,23 +126,26 @@
 
 .talk {
   display: grid;
-  gap: 1.25rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--color-ink);
+  gap: 1.5rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--color-rule-strong);
 }
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
   .talk {
-    grid-template-columns: 11rem minmax(0, 1fr);
-    gap: 2rem 3rem;
-    padding-top: 2.25rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+    gap: 2rem 3.5rem;
+    align-items: start;
+    padding-top: 2.75rem;
   }
 }
 
 .talk-kicker {
-  display: grid;
-  gap: 0.35rem;
-  align-content: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  align-items: baseline;
+  margin: 0 0 0.85rem;
 }
 
 .talk-format {
@@ -159,9 +162,19 @@
   max-width: 18em;
 }
 
+.talk-index {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  color: var(--color-electric-magenta);
+}
+
 .talk-for {
   margin-top: 0.85rem;
   font-size: 0.95rem;
+  font-weight: 450;
   color: var(--color-muted);
 }
 
@@ -170,22 +183,37 @@
   font-size: 1.0625rem;
 }
 
+.talk-leaves-label {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
 .takeaways {
   list-style: none;
-  margin: 1.75rem 0 0;
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.85rem 0 0;
   padding: 0;
-  max-width: 40rem;
 }
 
 .takeaways li {
-  padding: 0.85rem 0;
-  border-top: 1px solid var(--color-rule);
+  padding: 0.95rem 1.05rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 12px;
+  background: rgba(244, 240, 230, 0.035);
   color: var(--color-muted-strong);
+  font-weight: 450;
   line-height: 1.5;
+  transition: border-color 180ms ease, background 180ms ease;
 }
 
-.takeaways li:last-child {
-  border-bottom: 1px solid var(--color-rule);
+.takeaways li:hover {
+  border-color: rgba(196, 92, 38, 0.7);
+  background: rgba(196, 92, 38, 0.1);
 }
 
 .talk-note {
@@ -208,16 +236,26 @@
 }
 
 .praise-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   margin-top: 2.75rem;
 }
 
+.praise-grid .praise-card {
+  flex: 1 1 100%;
+}
+
 @media (min-width: 800px) {
   .praise-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem 1.5rem;
-    align-items: start;
+    gap: 1.25rem;
+  }
+  .praise-grid .praise-card {
+    flex: 0 0 calc((100% - 2.5rem) / 3);
+    width: calc((100% - 2.5rem) / 3);
+    max-width: calc((100% - 2.5rem) / 3);
+    min-width: 0;
   }
 }
 
@@ -265,7 +303,7 @@
 .praise-card:not(.is-pending) .praise-quote {
   font-family: var(--font-serif);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-optical-sizing: auto;
   font-size: clamp(1.125rem, 1.25vw, 1.3125rem);
   letter-spacing: -0.015em;
@@ -277,11 +315,18 @@
 .praise-card footer {
   margin-top: 1.1rem;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1.45;
   text-wrap: pretty;
   color: var(--color-muted);
+}
+
+.praise-org {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--color-electric-magenta);
+  font-weight: 650;
 }
 
 .bio-note {

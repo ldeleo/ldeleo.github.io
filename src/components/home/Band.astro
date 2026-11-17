@@ -1,0 +1,12 @@
+---
+type Props = {
+  /** Pull the sentence out of the flow between denser sections. */
+  tone?: "plain" | "quiet";
+};
+
+const { tone = "plain" } = Astro.props;
+---
+
+<section class:list={["room-band", tone === "quiet" && "is-quiet"]}>
+  <p><slot /></p>
+</section>
